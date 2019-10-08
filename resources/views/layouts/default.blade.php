@@ -13,9 +13,7 @@
     <meta name="description" content="">
 
     <meta name="author" content="">
-
     <title>{{ config('app.name', 'Annewatt') }}</title>
-
     <!-- Bootstrap Core CSS -->
 
     <link href="{!! asset('theme/vendor/bootstrap/css/bootstrap.min.css') !!}" rel="stylesheet">
