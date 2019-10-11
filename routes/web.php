@@ -20,3 +20,11 @@ Route::get('/home', 'HomeController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+
+Route::get('/riders/create-rider', 'RidersController@createRider');
+Route::post('/riders/create-rider', 'RidersController@postRider');
+
+
+
+Route::get('/bike_details/create-bike', 'BikeDetailsController@createBike');
+Route::post('/bike_details/create-bike', 'BikeDetailsController@postBike');
