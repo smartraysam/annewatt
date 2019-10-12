@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Nextkin_details extends Model
 {
     //
+    protected $guarded = [];
 }

@@ -29,13 +29,15 @@
 
     <link href="{!! asset('theme/vendor/metisMenu/metisMenu.min.css') !!}" rel="stylesheet">
 
-
-
+   
+    <link href="{!! asset('theme/vendor/metisMenu/metisMenu.min.css') !!}" rel="stylesheet">
+    <link href="{!! asset('theme/vendor/metisMenu/metisMenu.min.css') !!}" rel="stylesheet">
     <!-- Custom CSS -->
 
     <link href="{!! asset('theme/css/sb-admin-2.css') !!}" rel="stylesheet">
 
-
+    <link rel="stylesheet" href="{!! asset('theme/css/main.css') !!}">
+    <link rel="stylesheet" href="{!! asset('theme/css/jquery.steps.css') !!}">
 
     <!-- Morris Charts CSS -->
 
@@ -47,7 +49,7 @@
 
     <link href="{!! asset('theme/vendor/font-awesome/css/font-awesome.min.css') !!}" rel="stylesheet" type="text/css">
 
-
+    
 
 </head>
 
@@ -60,7 +62,7 @@
         <div id="content-wrapper" class="d-flex flex-column">
 
             @yield('content')
-
+            @include('theme.footer')
         </div>
     </div>
 
@@ -75,10 +77,15 @@
     <script src="{!! asset('theme/vendor/bootstrap/js/bootstrap.bundle.min.js') !!}"></script>
     <script src="{!! asset('theme/vendor/jquery-easing/jquery.easing.min.js') !!}"></script>
     <script src="{!! asset('theme/js/sb-admin-2.min.js') !!}"></script>
-
+    <script src="{!! asset('theme/js/app.js') !!}"></script>
+    <script src="{!! asset('theme/js/jquery.js') !!}"></script>
+    <script src="{!! asset('theme/js/jquery.validate.js') !!}"></script>
     <script src="{!! asset('theme/vendor/chart.js/Chart.min.js') !!}"></script>
     <script src="{!! asset('theme/js/demo/chart-area-demo.js') !!}"></script>
     <script src="{!! asset('theme/js/demo/chart-pie-demo.js') !!}"></script>
+    <script src="{!! asset('theme/js/jquery.steps.js') !!}"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
 
 
 

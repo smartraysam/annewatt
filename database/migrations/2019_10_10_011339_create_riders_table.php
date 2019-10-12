@@ -30,6 +30,7 @@ class CreateRidersTable extends Migration
             $table->string('bvn');
             $table->string('dob');
             $table->longText('address');
+            $table->string('profilepic')->default('user.jpg');
             $table->timestamps();
         });
     }

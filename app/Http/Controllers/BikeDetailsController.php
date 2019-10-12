@@ -13,7 +13,7 @@ class BikeDetailsController extends Controller
     public function createBike(Request $request)
     {
         $bike = $request->session()->get('bike');
-        return view('bike_details.create-bike',compact('bike', $rider));
+        return view('riders.create-bike',compact('bike', $bike));
     }
 
     /**
@@ -26,7 +26,7 @@ class BikeDetailsController extends Controller
     {
 
         $validatedData = $request->validate([
-            'phonenumber' => 'required|numeric|unique:riders',
+            'phonenumber' => 'required|numeric|unique:bike_details',
             'ridername' => 'required',
             'bikebrand' => 'required',
             'enginenumber' => 'required',
@@ -38,7 +38,7 @@ class BikeDetailsController extends Controller
         ]);
 
         if(empty($request->session()->get('bike'))){
-            $bike = new Riders();
+            $bike = new Bike_details();
             $bike->fill($validatedData);
             $request->session()->put('bike', $bike);
         }else{
@@ -47,6 +47,13 @@ class BikeDetailsController extends Controller
             $request->session()->put('bike', $bike);
         }
 
-        return redirect('/nextkin_details/create-nextkin');
+        return redirect('/riders/create-nextkin');
+    }
+
+    public function back(Request $request)
+    {
+        //validate the form
+        return redirect('/riders/create-rider');
+
     }
 }

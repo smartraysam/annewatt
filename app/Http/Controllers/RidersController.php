@@ -9,6 +9,13 @@ class RidersController extends Controller
     public function __construct(){
         $this->middleware('auth');
     }
+
+    public function index(Request $request)
+    {
+        $request->session()->forget('rider');
+        $rider = Riders::all();
+        return view('riders.index',compact('rider',$rider));
+    }
     public function createRider(Request $request)
     {
         $rider = $request->session()->get('rider');
@@ -23,7 +30,6 @@ class RidersController extends Controller
      */
     public function postRider(Request $request)
     {
-
         $validatedData = $request->validate([
             'phonenumber' => 'required|numeric|unique:riders',
             'firstname' => 'required',
@@ -52,6 +58,38 @@ class RidersController extends Controller
             $request->session()->put('rider', $rider);
         }
 
-        return redirect('/bike_details/create-bike');
+        return redirect('/riders/create-bike');
+    }
+    public function postRiderimage(Request $request)
+    {
+        $rider = $request->session()->get('rider');
+        if(!isset($rider->profilePic)) {
+            $request->validate([
+                'profilepic' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+
+            $fileName = "profilepic-" . time() . '.' . request()->profilepic->getClientOriginalExtension();
+
+            $request->profilepic->storeAs('profilepic', $fileName);
+
+            $rider = $request->session()->get('rider');
+
+            $rider->profilePic = $fileName;
+            $request->session()->put('rider', $rider);
+        }
+        return redirect('/riders/create-rider');
+
+    }
+
+    /**
+     * Show the Product Review page
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function removeImage(Request $request)
+    {
+        $rider = $request->session()->get('rider');
+        $rider->profilePic = null;
+        return view('riders.create-rider',compact('rider', $rider));
     }
 }
