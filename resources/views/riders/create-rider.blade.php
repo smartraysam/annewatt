@@ -20,9 +20,9 @@
                             <div class="form-group row">
                                 <label for="firstname" class="col-md-4 col-form-label text-md-right">First Name</label>
                                 <div class="col-md-7">
-                                    <input id="name" type="text"
+                                    <input id="firstname" type="text"
                                         class="form-control @error('firstname') is-invalid @enderror" name="firstname"
-                                        value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>
+                                        value="{{ old('firstname') }}" required autocomplete="name" autofocus>
 
                                     @error('firstname')
                                     <span class="invalid-feedback" role="alert">
@@ -32,13 +32,14 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="firstname" class="col-md-4 col-form-label text-md-right">First Name</label>
+                                <label for="middlename" class="col-md-4 col-form-label text-md-right">Middle
+                                    Name</label>
                                 <div class="col-md-7">
-                                    <input id="name" type="text"
-                                        class="form-control @error('firstname') is-invalid @enderror" name="firstname"
-                                        value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>
+                                    <input id="middlename" type="text"
+                                        class="form-control @error('middlename') is-invalid @enderror" name="middlename"
+                                        value="{{ old('middlename') }}" required autocomplete="name" autofocus>
 
-                                    @error('firstname')
+                                    @error('middlename')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -46,13 +47,13 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="firstname" class="col-md-4 col-form-label text-md-right">First Name</label>
+                                <label for="lastname" class="col-md-4 col-form-label text-md-right">Surname</label>
                                 <div class="col-md-7">
-                                    <input id="name" type="text"
-                                        class="form-control @error('firstname') is-invalid @enderror" name="firstname"
-                                        value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>
+                                    <input id="lastname" type="text"
+                                        class="form-control @error('lastname') is-invalid @enderror" name="lastname"
+                                        value="{{ old('lastname') }}" required autocomplete="name" autofocus>
 
-                                    @error('firstname')
+                                    @error('lastname')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -60,13 +61,13 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="firstname" class="col-md-4 col-form-label text-md-right">First Name</label>
+                                <label for="nickname" class="col-md-4 col-form-label text-md-right">Nick Name</label>
                                 <div class="col-md-7">
-                                    <input id="name" type="text"
-                                        class="form-control @error('firstname') is-invalid @enderror" name="firstname"
-                                        value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>
+                                    <input id="nickname" type="text"
+                                        class="form-control @error('nickname') is-invalid @enderror" name="nickname"
+                                        value="{{ old('nickname') }}" required autocomplete="nickname" autofocus>
 
-                                    @error('firstname')
+                                    @error('nickname')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -74,62 +75,72 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="firstname" class="col-md-4 col-form-label text-md-right">First Name</label>
-                                <div class="col-md-7">
-                                    <input id="name" type="text"
-                                        class="form-control @error('firstname') is-invalid @enderror" name="firstname"
-                                        value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>
+                                <!-- <label for="gender" class="col-md-4 col-form-label text-md-right">Gender</label> -->
+                                {{Form::label('status', 'Rider Status', ['class' => 'col-md-4 col-form-label text-md-right'])}}
+                                <div class="radio col-form-label ml-2">
+                                    {{Form::label('label', 'Active')}}
+                                    {{ Form::radio('status', 'active' , true, ['id' => 'active']) }}
 
-                                    @error('firstname')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
+                                    <!-- <label><input type="radio" name="gender" value="male" checked>Male</label> -->
+                                </div>
+                                <div class="radio col-form-label ml-5">
+                                    {{Form::label('label', 'Part-Time')}}
+                                    {{ Form::radio('status', 'part' , false, ['id' => 'part']) }}
+                                    <!-- <label><input type="radio" name="gender" value="female">Female</label> -->
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <!-- <label for="gender" class="col-md-4 col-form-label text-md-right">Gender</label> -->
+                                {{Form::label('gender', 'Gender', ['class' => 'col-md-4 col-form-label text-md-right'])}}
+                                <div class="radio col-form-label ml-2">
+                                    {{Form::label('radio', 'Male')}}
+                                    {{ Form::radio('gender', 'male' , true, ['id' => 'male']) }}
+
+                                    <!-- <label><input type="radio" name="gender" value="male" checked>Male</label> -->
+                                </div>
+                                <div class="radio col-form-label ml-5">
+                                    {{Form::label('radio', 'Female')}}
+                                    {{ Form::radio('gender', 'female' , false, ['id' => 'female']) }}
+                                    <!-- <label><input type="radio" name="gender" value="female">Female</label> -->
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <!-- <label for="gender" class="col-md-4 col-form-label text-md-right">Gender</label> -->
+                                {{Form::label('marital', 'Marital Status', ['class' => 'col-md-4 col-form-label text-md-right'])}}
+
+                                <div class="radio col-form-label ml-2">
+                                    {{Form::label('label', 'Married')}}
+                                    {{ Form::radio('marital', 'married' , true, ['id' => 'married']) }}
+
+                                    <!-- <label><input type="radio" name="gender" value="male" checked>Male</label> -->
+                                </div>
+                                <div class="radio col-form-label ml-2">
+                                    {{Form::label('label', 'Single')}}
+                                    {{ Form::radio('marital', 'single' , false, ['id' => 'single']) }}
+                                    <!-- <label><input type="radio" name="gender" value="female">Female</label> -->
+                                </div>
+
+
+                                <div class="radio col-form-label ml-1">
+                                    {{Form::label('label', 'Divorce')}}
+                                    {{ Form::radio('marital', 'divorce' , false, ['id' => 'divorce']) }}
+                                    <!-- <label><input type="radio" name="gender" value="female">Female</label> -->
+                                </div>
+                                <div class="radio col-form-label ml-1">
+                                    {{Form::label('label', 'Widower')}}
+                                    {{ Form::radio('marital', 'widower' , false, ['id' => 'widower']) }}
+                                    <!-- <label><input type="radio" name="gender" value="female">Female</label> -->
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="email"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                <label for="dateofbirth" class="col-md-4 col-form-label text-md-right">Date of
+                                    Birth</label>
+                                <div class='input-group date col-md-7' id='dob'>
+                                    <input type="date" class="form-control" id="date">
 
-                                <div class="col-md-7">
-                                    <input id="email" type="email"
-                                        class="form-control @error('email') is-invalid @enderror" name="email"
-                                        value="{{ old('email') }}" required autocomplete="email">
-
-                                    @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
                                 </div>
-                            </div>
 
-                            <div class="form-group row">
-                                <label for="password"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                                <div class="col-md-7">
-                                    <input id="password" type="password"
-                                        class="form-control @error('password') is-invalid @enderror" name="password"
-                                        required autocomplete="new-password">
-
-                                    @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                                <div class="col-md-7">
-                                    <input id="password-confirm" type="password" class="form-control"
-                                        name="password_confirmation" required autocomplete="new-password">
-                                </div>
                             </div>
                             @if(isset($rider->profilePic))
                             <img alt="profile Image" src="/storage/profilepic/{{$rider->profilePic}}" />
@@ -143,7 +154,7 @@
                                         <input id="profile" type="file" class="form-control" name="profilepic"
                                             accept=".png, .jpg, .jpeg">
                                         <img id="profilepic" class="rounded mt-2" alt="profile Image"
-                                            src="{!! asset('theme/img/user.png') !!}" width="150" height="150" />
+                                            src="{!! asset('img/user.png') !!}" width="150" height="150" />
                                     </div>
                                 </div>
                                 <div class="form-group ">
@@ -166,14 +177,75 @@
                     <div class="col-sm">
                         <div class="card-body">
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
+                                <label for="nationality"
+                                    class="col-md-4 col-form-label text-md-right">Nationality</label>
                                 <div class="col-md-7">
-                                    <input id="name" type="text"
-                                        class="form-control @error('name') is-invalid @enderror" name="name"
-                                        value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                    @error('name')
+                                    <select id="country" class="selectpicker countrypicker form-control"
+                                        data-live-search="true" data-default="NG"></select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="state" class="col-md-4 col-form-label text-md-right">State of
+                                    Origin</label>
+                                <div class="col-md-7">
+                                    <select name="state" id="state" class="form-control">
+                                        <option value="" selected="selected">- Select -</option>
+                                        <option value='Abia'>Abia</option>
+                                        <option value='Adamawa'>Adamawa</option>
+                                        <option value='AkwaIbom'>AkwaIbom</option>
+                                        <option value='Anambra'>Anambra</option>
+                                        <option value='Bauchi'>Bauchi</option>
+                                        <option value='Bayelsa'>Bayelsa</option>
+                                        <option value='Benue'>Benue</option>
+                                        <option value='Borno'>Borno</option>
+                                        <option value='Cross River'>Cross River</option>
+                                        <option value='Delta'>Delta</option>
+                                        <option value='Ebonyi'>Ebonyi</option>
+                                        <option value='Edo'>Edo</option>
+                                        <option value='Ekiti'>Ekiti</option>
+                                        <option value='Enugu'>Enugu</option>
+                                        <option value='Gombe'>Gombe</option>
+                                        <option value='Imo'>Imo</option>
+                                        <option value='Jigawa'>Jigawa</option>
+                                        <option value='Kaduna'>Kaduna</option>
+                                        <option value='Kano'>Kano</option>
+                                        <option value='Katsina'>Katsina</option>
+                                        <option value='Kebbi'>Kebbi</option>
+                                        <option value='Kogi'>Kogi</option>
+                                        <option value='Kwara'>Kwara</option>
+                                        <option value='Lagos'>Lagos</option>
+                                        <option value='Nasarawa'>Nasarawa</option>
+                                        <option value='Niger'>Niger</option>
+                                        <option value='Ogun'>Ogun</option>
+                                        <option value='Ondo'>Ondo</option>
+                                        <option value='Osun'>Osun</option>
+                                        <option value='Oyo'>Oyo</option>
+                                        <option value='Plateau'>Plateau</option>
+                                        <option value='Rivers'>Rivers</option>
+                                        <option value='Sokoto'>Sokoto</option>
+                                        <option value='Taraba'>Taraba</option>
+                                        <option value='Yobe'>Yobe</option>
+                                        <option value='Zamfara'>Zamafara</option>
+                                        <option value='Others'>Others</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="localorigin" class="col-md-4 col-form-label text-md-right">LGA of
+                                    Origin</label>
+                                <div class="col-md-7">
+                                    <select name="lga" id="lga" class="form-control" required>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="placebirth" class="col-md-4 col-form-label text-md-right">Place of
+                                    Birth</label>
+                                <div class="col-md-7">
+                                    <input id="placeofbirth" type="text"
+                                        class="form-control @error('placeofbirth') is-invalid @enderror" name="placeofbirth"
+                                        value="{{ old('placeofbirth') }}" required autocomplete="placeofbirth" autofocus>
+                                        @error('placeofbirth')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -181,57 +253,14 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="firstname" class="col-md-4 col-form-label text-md-right">First Name</label>
-                                <div class="col-md-7">
-                                    <input id="name" type="text"
-                                        class="form-control @error('firstname') is-invalid @enderror" name="firstname"
-                                        value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>
-
-                                    @error('firstname')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="firstname" class="col-md-4 col-form-label text-md-right">First Name</label>
-                                <div class="col-md-7">
-                                    <input id="name" type="text"
-                                        class="form-control @error('firstname') is-invalid @enderror" name="firstname"
-                                        value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>
-
-                                    @error('firstname')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="firstname" class="col-md-4 col-form-label text-md-right">First Name</label>
-                                <div class="col-md-7">
-                                    <input id="name" type="text"
-                                        class="form-control @error('firstname') is-invalid @enderror" name="firstname"
-                                        value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>
-
-                                    @error('firstname')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="email"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                <label for="bvn" class="col-md-4 col-form-label text-md-right">BVN</label>
 
                                 <div class="col-md-7">
-                                    <input id="email" type="email"
-                                        class="form-control @error('email') is-invalid @enderror" name="email"
-                                        value="{{ old('email') }}" required autocomplete="email">
+                                    <input id="bvn" type="text"
+                                        class="form-control @error('bvn') is-invalid @enderror" name="bvn"
+                                        value="{{ old('bvn') }}" required autocomplete="bvn">
 
-                                    @error('email')
+                                    @error('bvn')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -240,15 +269,15 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="password"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                <label for="phonenumber" class="col-md-4 col-form-label text-md-right">Contact
+                                    Number</label>
 
                                 <div class="col-md-7">
-                                    <input id="password" type="password"
-                                        class="form-control @error('password') is-invalid @enderror" name="password"
-                                        required autocomplete="new-password">
+                                    <input id="phonenumber" type="phonenumber"
+                                        class="form-control @error('phonenumber') is-invalid @enderror" name="phonenumber"
+                                        required autocomplete="phonenumber">
 
-                                    @error('password')
+                                    @error('phonenumber')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -260,8 +289,14 @@
                                     Address:</label>
                                 <div class="col-md-7">
                                     <textarea class="form-control" rows="5" id="address" required
-                                        autocomplete="new-password">
+                                        autocomplete="address">
                                 </textarea>
+                                
+                                @error('address')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>

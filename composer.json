@@ -12,6 +12,7 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
+        "laravelcollective/html": "^6.0",
         "monarobase/country-list": "^2.1",
         "pragmarx/countries": "^0.7.0"
     },
