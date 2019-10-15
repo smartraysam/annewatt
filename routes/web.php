@@ -14,13 +14,9 @@
 Route::get('/', function () {
     return view('home');
 })->middleware('auth');
-
-Route::get('/home', 'HomeController@index');
-
 Auth::routes();
-
+Route::get('/home', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
-
 //create rider
 
 Route::get('/riders', 'RidersController@index')->name('viewriders');;
@@ -37,18 +33,18 @@ Route::post('/riders/remove-riderpic', 'RidersController@removeImage')->name('re
 Route::get('/riders/create-bike', 'BikeDetailsController@createBike')->name('createBike');
 Route::post('/riders/create-bike', 'BikeDetailsController@postBike')->name('postBike');
 
-Route::post('/riders/back-bike', 'BikeDetailsController@back')->name('backbike');
+Route::get('/riders/back-bike', 'BikeDetailsController@back')->name('backbike');
 
 
 //create next of kin
 Route::get('/riders/create-nextkin', 'NextkinDetailsController@createNextkin')->name('createNextkin');
 Route::post('/riders/create-nextkin', 'NextkinDetailsController@postNextkin')->name('postNextkin');
-Route::post('/riders/back-nextkin', 'NextkinDetailsController@back')->name('backnext');
+Route::get('/riders/back-nextkin', 'NextkinDetailsController@back')->name('backnext');
 
 //create other details
 Route::get('/riders/create-other', 'OtherDetailsController@createOther')->name('createOther');
 Route::post('/riders/create-other', 'OtherDetailsController@postOther')->name('postOther');
-Route::post('/riders/back-other', 'OtherDetailsController@back')->name('backother');
+Route::get('/riders/back-other', 'OtherDetailsController@back')->name('backother');
 
 //create ticket
 Route::get('/tickets', 'TicketsController@index')->name('viewtickets');
@@ -58,9 +54,9 @@ Route::post('/tickets/create-ticket', 'TicketsController@postTicket')->name('pos
 //preview
 
 Route::post('/riders/confirmation', 'RiderpreviewController@confirmation')->name('confirmrider');
-Route::post('/riders/backconfirmation', 'RiderpreviewController@back')->name('confirmback');
+Route::get('/riders/backconfirmation', 'RiderpreviewController@back')->name('confirmback');
 Route::post('/riders/saveconfirmation', 'RiderpreviewController@submit')->name('saverider');
 
 Route::post('/tickets/confirmation', 'TicketsPreviewController@confirmation')->name('confirmticket');
-Route::post('/tickets/backconfirmation', 'TicketsPreviewController@back')->name('backticket');
+Route::get('/tickets/backconfirmation', 'TicketsPreviewController@back')->name('backticket');
 Route::post('/tickets/saveconfirmation', 'TicketsPreviewController@submit')->name('saveticket');

@@ -24,7 +24,7 @@ class CreateRidersTable extends Migration
             $table->string('gender');
             $table->string('martialstatus');
             $table->string('nationality');
-            $table->string('stateoforgin');
+            $table->string('stateoforigin');
             $table->string('lga');
             $table->string('placeofbirth');
             $table->string('bvn');

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Riders;
 use Illuminate\Http\Request;
 
 class RidersController extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth');
     }
 
@@ -14,12 +16,12 @@ class RidersController extends Controller
     {
         $request->session()->forget('rider');
         $rider = Riders::all();
-        return view('riders.index',compact('rider',$rider));
+        return view('riders.index', compact('rider', $rider));
     }
     public function createRider(Request $request)
     {
         $rider = $request->session()->get('rider');
-        return view('riders.create-rider',compact('rider', $rider));
+        return view('riders.create-rider', compact('rider', $rider));
     }
 
     /**
@@ -31,7 +33,7 @@ class RidersController extends Controller
     public function postRider(Request $request)
     {
         $validatedData = $request->validate([
-            'phonenumber' => 'required|numeric|unique:riders',
+            'phonenumber' => 'required|numeric',
             'firstname' => 'required',
             'middlename' => 'required',
             'surname' => 'required',
@@ -40,19 +42,26 @@ class RidersController extends Controller
             'gender' => 'required',
             'martialstatus' => 'required',
             'nationality' => 'required',
-            'stateoforgin' => 'required',
+            'stateoforigin' => 'required',
             'lga' => 'required',
             'placeofbirth' => 'required',
             'bvn' => 'required',
             'dob' => 'required',
             'address' => 'required',
+            'profilepic' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
         ]);
 
-        if(empty($request->session()->get('rider'))){
+        if (empty($request->session()->get('rider'))) {
             $rider = new Riders();
             $rider->fill($validatedData);
+            if (!isset($rider->profilePic)) {
+                $fileName = "profilepic-" . time() . '.' . request()->profilepic->getClientOriginalExtension();
+                $request->profilepic->storeAs('profilepic', $fileName);
+                $rider->profilePic = $fileName;
+            }
             $request->session()->put('rider', $rider);
-        }else{
+        } else {
             $rider = $request->session()->get('rider');
             $rider->fill($validatedData);
             $request->session()->put('rider', $rider);
@@ -63,7 +72,7 @@ class RidersController extends Controller
     public function postRiderimage(Request $request)
     {
         $rider = $request->session()->get('rider');
-        if(!isset($rider->profilePic)) {
+        if (!isset($rider->profilePic)) {
             $request->validate([
                 'profilepic' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
@@ -78,7 +87,6 @@ class RidersController extends Controller
             $request->session()->put('rider', $rider);
         }
         return redirect('/riders/create-rider');
-
     }
 
     /**
@@ -90,6 +98,6 @@ class RidersController extends Controller
     {
         $rider = $request->session()->get('rider');
         $rider->profilePic = null;
-        return view('riders.create-rider',compact('rider', $rider));
+        return view('riders.create-rider', compact('rider', $rider));
     }
 }
