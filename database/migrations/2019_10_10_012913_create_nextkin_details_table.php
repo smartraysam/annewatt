@@ -15,7 +15,7 @@ class CreateNextkinDetailsTable extends Migration
     {
         Schema::create('nextkin_details', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('riderphonenumber')->unique();
+            $table->string('kinphonenumber');
             $table->string('phonenumber');
             $table->string('title');
             $table->string('firstname');

@@ -131,30 +131,8 @@
                             <div class="form-group row">
                                 <!-- <label for="gender" class="col-md-4 col-form-label text-md-right">Gender</label> -->
                                 {{Form::label('martialstatus', 'Marital Status', ['class' => 'col-md-4 col-form-label text-md-right'])}}
-
-                                <div class="radio col-form-label ml-2">
-
-                                    {{ Form::radio('martialstatus', 'married' ,((isset($rider->martialstatus) && $rider->martialstatus == 'married') ? "checked" : "true"), ['id' => 'married']) }}
-                                    {{Form::label('label', 'Married')}}
-                                    <!-- <label><input type="radio" name="gender" value="male" checked>Male</label> -->
-                                </div>
-                                <div class="radio col-form-label ml-2">
-
-                                    {{ Form::radio('martialstatus', 'single' , ((isset($rider->martialstatus) && $rider->martialstatus == 'single') ? "checked" : ""), ['id' => 'single']) }}
-                                    {{Form::label('label', 'Single')}}
-                                    <!-- <label><input type="radio" name="gender" value="female">Female</label> -->
-                                </div>
-                                <div class="radio col-form-label ml-1">
-
-                                    {{ Form::radio('martialstatus', 'divorce' ,  ((isset($rider->martialstatus) && $rider->martialstatus == 'divorce') ? "checked" : ""), ['id' => 'divorce']) }}
-                                    {{Form::label('label', 'Divorce')}}
-                                    <!-- <label><input type="radio" name="gender" value="female">Female</label> -->
-                                </div>
-                                <div class="radio col-form-label ml-1">
-
-                                    {{ Form::radio('martialstatus', 'widower' ,  ((isset($rider->martialstatus) && $rider->martialstatus == 'divorce') ? "checked" : ""), ['id' => 'widower']) }}
-                                    {{Form::label('label', 'Widower')}}
-                                    <!-- <label><input type="radio" name="gender" value="female">Female</label> -->
+                                <div class="col-md-7">
+                                    {{Form::select('martialstatus', ['M' => 'Married', 'S' => 'Single', 'D' => 'Divorce', 'W' => 'Widower'], 'M', ['class' => 'form-control'])}}
                                 </div>
                                 @error('martialstatus')
                                 <span class="invalid-feedback" role="alert">
@@ -185,15 +163,11 @@
                                 <label for="profilepic" class="col-md-4 col-form-label text-md-right">Profile
                                     Image</label>
                                 <div class="col-md-7">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                                        </div>
-                                        <div class="custom-file">
-                                            <input id="profile"  type="file" class="custom-file-input" id="inputGroupFile01"
-                                                aria-describedby="inputGroupFileAddon01" name="profilepic" accept=".png, .jpg, .jpeg">
-                                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                        </div>
+                                    <div class="form-group custom-file">
+                                        <input type="file" id="profile"
+                                            {{ (!empty($rider->profilepic)) ? "disabled" : ''}}
+                                            class="form-control-file" id="profilepic" aria-describedby="fileHelp"
+                                            name="profilepic" accept=".png, .jpg, .jpeg">
                                     </div>
                                     <img id="profilepic" class="rounded mt-2" alt="profile Image"
                                         src="{!! asset('img/user.png') !!}" width="150" height="150" />

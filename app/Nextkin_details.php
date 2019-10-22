@@ -7,5 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class Nextkin_details extends Model
 {
     //
-    protected $guarded = [];
+    protected $fillable = [
+        'kinphonenumber',
+        'phonenumber',
+        'title',
+        'firstname',
+        'middlename',
+        'surname',
+        'relationship',
+        'address',
+        'stateoforgin',
+        'lga',
+        'gender',
+        'bvn',
+    ];
 }

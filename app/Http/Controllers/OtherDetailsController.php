@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Other_details;
 use Illuminate\Http\Request;
 
 class OtherDetailsController extends Controller
 {
     //
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth');
     }
     public function createOther(Request $request)
     {
         $other = $request->session()->get('other');
-        return view('riders.create-other',compact('other', $other));
+        return view('riders.create-other', compact('other', $other));
     }
 
     /**
@@ -27,20 +29,33 @@ class OtherDetailsController extends Controller
 
         $validatedData = $request->validate([
             'unitparkname' => 'required',
-           
+
         ]);
 
-        if(empty($request->session()->get('other'))){
+        if (empty($request->session()->get('other'))) {
             $other = new Other_details();
             $other->fill($validatedData);
+            $rider = $request->session()->get('rider');
+            $other->phonenumber = $rider->phonenumber;
             $request->session()->put('other', $other);
-        }else{
+        } else {
             $other = $request->session()->get('other');
             $other->fill($validatedData);
+            $rider = $request->session()->get('rider');
+            $other->phonenumber = $rider->phonenumber;
             $request->session()->put('other', $other);
         }
-
-        return redirect('/riders/confirmation');
+        $rider = $request->session()->get('rider');
+        $bike = $request->session()->get('bike');
+        $nextkin = $request->session()->get('nextkin');
+        $other = $request->session()->get('other');
+        $rider->save();
+        $bike->save();
+        $nextkin->save();
+        $other->save();
+        $request->session()->flush();
+        return redirect('/home');
+        // return redirect('/riders/confirmation');
     }
 
     public function back(Request $request)

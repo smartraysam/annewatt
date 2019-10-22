@@ -15,7 +15,7 @@ class CreateOtherDetailsTable extends Migration
     {
         Schema::create('other_details', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('phonenumber')->unique();
+            $table->string('phonenumber');
             $table->string('unitparkname');
             $table->string('chairmanname');
             $table->string('chairmanphoneno');

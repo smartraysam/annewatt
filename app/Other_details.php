@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Other_details extends Model
 {
     //
-    protected $guarded = [];
+    protected $fillable = [
+        'unitparkname',
+        'chairmanname',
+        'chairmanphoneno',
+        'riderid',
+    ];
 }

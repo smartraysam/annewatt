@@ -11,11 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->middleware('auth');
 Auth::routes();
-Route::get('/home', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('/')->middleware('auth');;
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 //create rider
 

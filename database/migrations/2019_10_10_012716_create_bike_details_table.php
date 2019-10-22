@@ -23,9 +23,6 @@ class CreateBikeDetailsTable extends Migration
             $table->string('registrationnum');
             $table->string('receiptnumber');
             $table->string('dateofpurchase');
-            $table->string('witnessname');
-            $table->longText('witnessaddress');
-            $table->string('witnessphonenum');
             $table->timestamps();
         });
     }

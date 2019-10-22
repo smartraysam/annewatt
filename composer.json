@@ -9,15 +9,17 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "facade/ignition": "^1.11",
+        "facade/ignition-code-editor": "^1.0",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^6.0",
+        "league/flysystem": "^1.0",
         "monarobase/country-list": "^2.1",
         "pragmarx/countries": "^0.7.0"
     },
     "require-dev": {
-        "facade/ignition": "^1.4",
         "fzaninotto/faker": "^1.4",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^3.0",

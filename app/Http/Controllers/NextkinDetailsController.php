@@ -1,19 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Nextkin_details;
 use Illuminate\Http\Request;
 
 class NextkinDetailsController extends Controller
 {
     //
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth');
     }
     public function createNextkin(Request $request)
     {
         $nextkin = $request->session()->get('nextkin');
-        return view('riders.create-nextkin',compact('nextkin', $nextkin));
+        return view('riders.create-nextkin', compact('nextkin', $nextkin));
     }
 
     /**
@@ -26,7 +27,7 @@ class NextkinDetailsController extends Controller
     {
 
         $validatedData = $request->validate([
-            'phonenumber' => 'required|numeric',
+
             'firstname' => 'required',
             'middlename' => 'required',
             'surname' => 'required',
@@ -34,13 +35,17 @@ class NextkinDetailsController extends Controller
             'address' => 'required',
         ]);
 
-        if(empty($request->session()->get('nextkin'))){
+        if (empty($request->session()->get('nextkin'))) {
             $nextkin = new Nextkin_details();
             $nextkin->fill($validatedData);
+            $rider = $request->session()->get('rider');
+            $nextkin->phonenumber = $rider->phonenumber;
             $request->session()->put('nextkin', $nextkin);
-        }else{
+        } else {
             $nextkin = $request->session()->get('nextkin');
             $nextkin->fill($validatedData);
+            $rider = $request->session()->get('rider');
+            $nextkin->phonenumber = $rider->phonenumber;
             $request->session()->put('nextkin', $nextkin);
         }
 

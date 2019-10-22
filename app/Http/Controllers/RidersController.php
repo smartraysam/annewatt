@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Riders;
 use Illuminate\Http\Request;
+ use Illuminate\Support\Facades\File;
+ use Illuminate\Support\Facades\Storage;
 
 class RidersController extends Controller
 {
@@ -33,7 +34,7 @@ class RidersController extends Controller
     public function postRider(Request $request)
     {
         $validatedData = $request->validate([
-            'phonenumber' => 'required|numeric',
+            'phonenumber' => 'required|numeric|unique:riders',
             'firstname' => 'required',
             'middlename' => 'required',
             'surname' => 'required',
@@ -48,56 +49,23 @@ class RidersController extends Controller
             'bvn' => 'required',
             'dob' => 'required',
             'address' => 'required',
-            'profilepic' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-
+            'profilepic' => 'required',
         ]);
 
         if (empty($request->session()->get('rider'))) {
             $rider = new Riders();
             $rider->fill($validatedData);
-            if (!isset($rider->profilePic)) {
-                $fileName = "profilepic-" . time() . '.' . request()->profilepic->getClientOriginalExtension();
-                $request->profilepic->storeAs('profilepic', $fileName);
-                $rider->profilePic = $fileName;
-            }
+            $cover = $request->file('profilepic');
+            $extension = $cover->getClientOriginalExtension();
+            Storage::disk('public')->put($cover->getFilename() . '.' . $extension, File::get($cover));
+            $rider->profilepic = $cover->getFilename() . '.' . $extension;
             $request->session()->put('rider', $rider);
         } else {
             $rider = $request->session()->get('rider');
             $rider->fill($validatedData);
             $request->session()->put('rider', $rider);
         }
-
         return redirect('/riders/create-bike');
     }
-    public function postRiderimage(Request $request)
-    {
-        $rider = $request->session()->get('rider');
-        if (!isset($rider->profilePic)) {
-            $request->validate([
-                'profilepic' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            ]);
 
-            $fileName = "profilepic-" . time() . '.' . request()->profilepic->getClientOriginalExtension();
-
-            $request->profilepic->storeAs('profilepic', $fileName);
-
-            $rider = $request->session()->get('rider');
-
-            $rider->profilePic = $fileName;
-            $request->session()->put('rider', $rider);
-        }
-        return redirect('/riders/create-rider');
-    }
-
-    /**
-     * Show the Product Review page
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function removeImage(Request $request)
-    {
-        $rider = $request->session()->get('rider');
-        $rider->profilePic = null;
-        return view('riders.create-rider', compact('rider', $rider));
-    }
 }
