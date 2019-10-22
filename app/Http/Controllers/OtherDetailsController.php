@@ -29,6 +29,9 @@ class OtherDetailsController extends Controller
 
         $validatedData = $request->validate([
             'unitparkname' => 'required',
+            'chairmanname' => 'required',
+            'chairmanphoneno' => 'required',
+            'riderid' => 'required',
 
         ]);
 
@@ -45,17 +48,7 @@ class OtherDetailsController extends Controller
             $other->phonenumber = $rider->phonenumber;
             $request->session()->put('other', $other);
         }
-        $rider = $request->session()->get('rider');
-        $bike = $request->session()->get('bike');
-        $nextkin = $request->session()->get('nextkin');
-        $other = $request->session()->get('other');
-        $rider->save();
-        $bike->save();
-        $nextkin->save();
-        $other->save();
-        $request->session()->flush();
-        return redirect('/home');
-        // return redirect('/riders/confirmation');
+     return redirect('/riders/confirmation');
     }
 
     public function back(Request $request)

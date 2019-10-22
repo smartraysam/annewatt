@@ -29,12 +29,14 @@ class BikeDetailsController extends Controller
             'bikebrand' => 'required',
             'enginenumber' => 'required|numeric',
             'chasisno' => 'required|numeric',
-            'registrationnum' => 'required|numeric',
+            'registrationnum' => 'required',
             'receiptnumber' => 'required|numeric',
             'dateofpurchase' => 'required',
-            'witnessname' => 'required',
-            'witnessaddress' => 'required',
-            'witnessphonenum' => 'required|numeric',
+            'witnessname' => 'nullable',
+            'witnessaddress' => 'nullable',
+            'witnessphonenum' => 'nullable|numeric',
+
+           
         ]);
 
         if (empty($request->session()->get('bike'))) {

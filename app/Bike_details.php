@@ -15,6 +15,9 @@ class Bike_details extends Model
         'registrationnum',
         'receiptnumber',
         'dateofpurchase',
+        'witnessname',
+        'witnessaddress',
+        'witnessphonenum',
 
     ];
 

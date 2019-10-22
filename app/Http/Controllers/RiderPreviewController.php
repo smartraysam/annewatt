@@ -11,34 +11,30 @@ class RiderPreviewController extends Controller
      *
      * @return void
      */
-   
 
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-   //
-   public function __construct(){
-    $this->middleware('auth');
+    //
+    public function __construct()
+    {
+        $this->middleware('auth');
     }
 
-    public function confirmation(Request $request)
+    public function preview(Request $request)
     {
         //validate the form
-        $rider = $request->session()->get('rider');
-        $bike = $request->session()->get('bike');
-        $nextkin = $request->session()->get('nextkin');
-        $other = $request->session()->get('other');
-        $riderInfo =$request->session() ->all();
+        $riderInfo = $request->session()->all();
 
-        return view('riders.confirmation',$riderInfo);
-        
+        return view('riders.confirmation', compact('riderinfo', $riderInfo));
+
     }
     public function back(Request $request)
     {
         //validate the form
-        return redirect('/other_details/create-other');
+        return redirect('/riders/create-other');
 
     }
 
@@ -53,7 +49,10 @@ class RiderPreviewController extends Controller
         $bike->save();
         $nextkin->save();
         $other->save();
-        $request->session()->flush();
+        $request->session()->forget('rider');
+        $request->session()->forget('bike');
+        $request->session()->forget('nextkin');
+        $request->session()->forget('other');
         return redirect('/home');
     }
 }

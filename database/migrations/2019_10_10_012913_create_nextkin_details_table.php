@@ -23,7 +23,7 @@ class CreateNextkinDetailsTable extends Migration
             $table->string('surname');
             $table->string('relationship');
             $table->longText('address');
-            $table->string('stateoforgin');
+            $table->string('stateoforigin');
             $table->string('lga');
             $table->string('gender');
             $table->string('bvn');

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Nextkin_details;
 use Illuminate\Http\Request;
 
@@ -33,6 +34,12 @@ class NextkinDetailsController extends Controller
             'surname' => 'required',
             'relationship' => 'required',
             'address' => 'required',
+            'kinphonenumber' => 'required',
+            'title' => 'required',
+            'stateoforigin' => 'required',
+            'lga' => 'required',
+            'gender' => 'required',
+            'bvn' => 'nullable',
         ]);
 
         if (empty($request->session()->get('nextkin'))) {

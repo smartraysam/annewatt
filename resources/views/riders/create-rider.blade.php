@@ -35,7 +35,7 @@
                                 <div class="col-md-7">
                                     <input id="firstname" type="text"
                                         class="form-control @error('firstname') is-invalid @enderror" name="firstname"
-                                        value="{{old('firstname') }}" required autocomplete="firstname" autofocus>
+                                        value="{{old('firstname') }}" required autocomplete="firstname" autofocus style="text-transform: uppercase;">
 
                                     @error('firstname')
                                     <span class="invalid-feedback" role="alert">
@@ -50,7 +50,7 @@
                                 <div class="col-md-7">
                                     <input id="middlename" type="text"
                                         class="form-control @error('middlename') is-invalid @enderror" name="middlename"
-                                        value="{{old('middlename')}}" required autocomplete="name" autofocus>
+                                        value="{{old('middlename')}}" required autocomplete="name" autofocus style="text-transform: uppercase;">
 
                                     @error('middlename')
                                     <span class="invalid-feedback" role="alert">
@@ -64,7 +64,7 @@
                                 <div class="col-md-7">
                                     <input id="surname" type="text"
                                         class="form-control @error('surname') is-invalid @enderror" name="surname"
-                                        value="{{old('surname') }}" required autocomplete="name" autofocus>
+                                        value="{{old('surname') }}" required autocomplete="name" autofocus style="text-transform: uppercase;">
 
                                     @error('surname')
                                     <span class="invalid-feedback" role="alert">
@@ -78,7 +78,7 @@
                                 <div class="col-md-7">
                                     <input id="nickname" type="text"
                                         class="form-control @error('nickname') is-invalid @enderror" name="nickname"
-                                        value="{{old('nickname') }}" required autocomplete="nickname" autofocus>
+                                        value="{{old('nickname') }}" required autocomplete="nickname" autofocus style="text-transform: uppercase;">
 
                                     @error('nickname')
                                     <span class="invalid-feedback" role="alert">
@@ -156,21 +156,22 @@
                                 @enderror
 
                             </div>
-                            @if(isset($rider->profilePic))
-                            <img alt="profile Image" src="/storage/profilepic/{{$rider->profilePic}}" />
-                            @endif
+        
                             <div class="form-group row">
                                 <label for="profilepic" class="col-md-4 col-form-label text-md-right">Profile
                                     Image</label>
                                 <div class="col-md-7">
                                     <div class="form-group custom-file">
-                                        <input type="file" id="profile"
-                                            {{ (!empty($rider->profilepic)) ? "disabled" : ''}}
-                                            class="form-control-file" id="profilepic" aria-describedby="fileHelp"
+                                        <input type="file" id="profile" class="form-control-file" id="profilepic" aria-describedby="fileHelp"
                                             name="profilepic" accept=".png, .jpg, .jpeg">
                                     </div>
+                                    @if(isset($rider->profilepic))
                                     <img id="profilepic" class="rounded mt-2" alt="profile Image"
-                                        src="{!! asset('img/user.png') !!}" width="150" height="150" />
+                                    src="/storage/{{$rider->profilepic}}" width="150" height="150" />
+                                    @else
+                                    <img id="profilepic" class="rounded mt-2" alt="profile Image"
+                                    src="{!! asset('img/user.png') !!}" width="150" height="150" />
+                                    @endif
                                 </div>
                             </div>
                             @if ($errors->any())
@@ -200,7 +201,13 @@
                                     Origin</label>
                                 <div class="col-md-7">
                                     <select name="stateoforigin" id="state" class="form-control">
+                                        @if(isset($rider->stateoforigin))
+                                        <option value="{{$rider->stateoforigin}}">{{$rider->stateoforigin}}</option>
+                                        @else {
                                         <option value="" selected="selected">- Select -</option>
+                                        }
+                                        @endif
+
                                         <option value="Abia">Abia</option>
                                         <option value='Adamawa'>Adamawa</option>
                                         <option value='AkwaIbom'>AkwaIbom</option>
@@ -262,7 +269,7 @@
                                     <input id="placeofbirth" type="text"
                                         class="form-control @error('placeofbirth') is-invalid @enderror"
                                         name="placeofbirth" value="{{ old('placeofbirth') }}" required
-                                        autocomplete="placeofbirth" autofocus>
+                                        autocomplete="placeofbirth" autofocus style="text-transform: uppercase;">
                                     @error('Place of birth')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -306,7 +313,7 @@
                                 <div class="col-md-7">
                                     <textarea class="form-control  @error('address') is-invalid @enderror"
                                         name="address" value={{ old('address') }} required autocomplete="address"
-                                        rows="5" id="address" required autocomplete="address">
+                                        rows="5" id="address" required autocomplete="address" style="text-transform: capitalize;">
                                 </textarea>
 
                                     @error('Address')

@@ -16,7 +16,7 @@ class Nextkin_details extends Model
         'surname',
         'relationship',
         'address',
-        'stateoforgin',
+        'stateoforigin',
         'lga',
         'gender',
         'bvn',

@@ -9,14 +9,14 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Auth::routes();
-Route::get('/', 'HomeController@index')->name('/')->middleware('auth');;
+Route::get('/', 'HomeController@index')->name('/')->middleware('auth');
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 //create rider
 
-Route::get('/riders', 'RidersController@index')->name('viewriders');;
+Route::get('/riders', 'RidersController@index')->name('viewriders');
 
 Route::get('/riders/create-rider', 'RidersController@createRider')->name('createRider');
 
@@ -31,7 +31,6 @@ Route::get('/riders/create-bike', 'BikeDetailsController@createBike')->name('cre
 Route::post('/riders/create-bike', 'BikeDetailsController@postBike')->name('postBike');
 
 Route::get('/riders/back-bike', 'BikeDetailsController@back')->name('backbike');
-
 
 //create next of kin
 Route::get('/riders/create-nextkin', 'NextkinDetailsController@createNextkin')->name('createNextkin');
@@ -50,9 +49,9 @@ Route::post('/tickets/create-ticket', 'TicketsController@postTicket')->name('pos
 
 //preview
 
-Route::post('/riders/confirmation', 'RiderpreviewController@confirmation')->name('confirmrider');
-Route::get('/riders/backconfirmation', 'RiderpreviewController@back')->name('confirmback');
-Route::post('/riders/saveconfirmation', 'RiderpreviewController@submit')->name('saverider');
+Route::get('/riders/confirmation', 'RiderPreviewController@preview')->name('preview');
+Route::get('/riders/backconfirmation', 'RiderPreviewController@back')->name('confirmback');
+Route::post('/riders/saveconfirmation', 'RiderPreviewController@submit')->name('saverider');
 
 Route::post('/tickets/confirmation', 'TicketsPreviewController@confirmation')->name('confirmticket');
 Route::get('/tickets/backconfirmation', 'TicketsPreviewController@back')->name('backticket');
