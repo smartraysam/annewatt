@@ -26,15 +26,29 @@ class RiderPreviewController extends Controller
     public function preview(Request $request)
     {
         //validate the form
-        $riderInfo = $request->session()->all();
+        $rider = $request->session()->get('rider');
+        $bike = $request->session()->get('bike');
+        $nextkin = $request->session()->get('nextkin');
+        $other = $request->session()->get('other');
+        $riderInfo = array("rider", "bike", "nextkin", "other");
 
-        return view('riders.confirmation', compact('riderinfo', $riderInfo));
+        return view('riders.confirmation', compact('riderInfo', $riderInfo));
 
     }
     public function back(Request $request)
     {
         //validate the form
         return redirect('/riders/create-other');
+
+    }
+    public function cancel(Request $request)
+    {
+        //validate the form
+        $request->session()->forget('rider');
+        $request->session()->forget('bike');
+        $request->session()->forget('nextkin');
+        $request->session()->forget('other');
+        return redirect('/home');
 
     }
 

@@ -43,6 +43,8 @@ Route::post('/riders/create-other', 'OtherDetailsController@postOther')->name('p
 Route::get('/riders/back-other', 'OtherDetailsController@back')->name('backother');
 
 //create ticket
+
+//create ticket
 Route::get('/tickets', 'TicketsController@index')->name('viewtickets');
 Route::get('/tickets/create-ticket', 'TicketsController@createTicket')->name('createTicket');
 Route::post('/tickets/create-ticket', 'TicketsController@postTicket')->name('postTicket');
@@ -52,6 +54,7 @@ Route::post('/tickets/create-ticket', 'TicketsController@postTicket')->name('pos
 Route::get('/riders/confirmation', 'RiderPreviewController@preview')->name('preview');
 Route::get('/riders/backconfirmation', 'RiderPreviewController@back')->name('confirmback');
 Route::post('/riders/saveconfirmation', 'RiderPreviewController@submit')->name('saverider');
+Route::get('/riders/cancel', 'RiderPreviewController@cancel')->name('cancel');
 
 Route::post('/tickets/confirmation', 'TicketsPreviewController@confirmation')->name('confirmticket');
 Route::get('/tickets/backconfirmation', 'TicketsPreviewController@back')->name('backticket');
