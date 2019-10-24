@@ -147,6 +147,7 @@
         //add the option values to the select list with an id of lga
         document.getElementById("lga").innerHTML = html.join('');
 
+
     });
 
 });

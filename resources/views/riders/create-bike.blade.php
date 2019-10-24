@@ -34,7 +34,7 @@
                             <div class="col-md-7">
                                 <input id="bikebrand" type="text"
                                     class="form-control @error('bikebrand') is-invalid @enderror" name="bikebrand"
-                                    value="{{old('bikebrand') }}" required autocomplete="bikebrand" autofocus>
+                                    value="{{old('bikebrand') }}" required autocomplete="bikebrand" autofocus style="text-transform: capitalize;">
                                 @error('bikebrand')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -47,7 +47,7 @@
 
                             <div class="col-md-7">
                                 <input id="enginenumber" type="text" class="form-control @error('enginenumber') is-invalid @enderror"
-                                    name="enginenumber" value="{{ old('enginenumber') }}" required autocomplete="enginenumber">
+                                    name="enginenumber" value="{{ old('enginenumber') }}" required autocomplete="enginenumber" style="text-transform: uppercase;">
 
                                 @error('enginenumber')
                                 <span class="invalid-feedback" role="alert">
@@ -62,7 +62,7 @@
 
                             <div class="col-md-7">
                                 <input id="chasisno" type="text" class="form-control @error('chasisno') is-invalid @enderror"
-                                    name="chasisno" value="{{ old('chasisno') }}" required autocomplete="chasisno">
+                                    name="chasisno" value="{{ old('chasisno') }}" required autocomplete="chasisno" style="text-transform: uppercase;">
 
                                 @error('chasisno')
                                 <span class="invalid-feedback" role="alert">
@@ -77,7 +77,7 @@
 
                             <div class="col-md-7">
                                 <input id="registrationnum" type="text" class="form-control @error('registrationnum') is-invalid @enderror"
-                                    name="registrationnum" value="{{ old('registrationnum') }}" required autocomplete="registrationnum">
+                                    name="registrationnum" value="{{ old('registrationnum') }}" required autocomplete="registrationnum" style="text-transform: uppercase;">
 
                                 @error('registrationnum')
                                 <span class="invalid-feedback" role="alert">
@@ -120,7 +120,7 @@
                             <div class="col-md-7">
                                 <input id="witnessname" type="text"
                                     class="form-control @error('witnessname') is-invalid @enderror" name="witnessname"
-                                    value="{{old('witnessname') }}" required autocomplete="witnessname" autofocus>
+                                    value="{{old('witnessname') }}" required autocomplete="witnessname" autofocus style="text-transform: capitalize;">
 
                                 @error('witnessname')
                                 <span class="invalid-feedback" role="alert">
@@ -133,7 +133,7 @@
                             <label for="witnessaddress" class="col-md-4 col-form-label text-md-right">Witness Address</label>
                             <div class="col-md-7">
                                 <textarea class="form-control  @error('witnessaddress') is-invalid @enderror" name="witnessaddress"
-                                    value={{ old('witnessaddress') }} required autocomplete="address" rows="5" id="witnessaddress">
+                                    value={{ old('witnessaddress') }} required autocomplete="address" rows="5" id="witnessaddress" style="text-transform: capitalize;">
                                 </textarea>
 
                                 @error('witnessaddress')

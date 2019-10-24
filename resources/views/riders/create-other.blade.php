@@ -34,7 +34,7 @@
                             <div class="col-md-7">
                                 <input id="riderid" type="text"
                                     class="form-control @error('bikebrand') is-invalid @enderror" name="riderid"
-                                    value="{{old('riderid') }}" required autocomplete="riderid" autofocus>
+                                    value="{{old('riderid') }}" required autocomplete="riderid" autofocus  style="text-transform: capitalize;">
                                 @error('riderid')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -47,7 +47,7 @@
 
                             <div class="col-md-7">
                                 <input id="unitparkname" type="text" class="form-control @error('unitparkname') is-invalid @enderror"
-                                    name="unitparkname" value="{{ old('unitparkname') }}" required autocomplete="unitparkname">
+                                    name="unitparkname" value="{{ old('unitparkname') }}" required autocomplete="unitparkname"  style="text-transform: capitalize;">
 
                                 @error('unitparkname')
                                 <span class="invalid-feedback" role="alert">
@@ -62,7 +62,7 @@
 
                             <div class="col-md-7">
                                 <input id="chairmanname" type="text" class="form-control @error('chairmanname') is-invalid @enderror"
-                                    name="chairmanname" value="{{ old('chairmanname') }}" required autocomplete="chairmanname">
+                                    name="chairmanname" value="{{ old('chairmanname') }}" required autocomplete="chairmanname"  style="text-transform: capitalize;">
 
                                 @error('chairmanname')
                                 <span class="invalid-feedback" role="alert">

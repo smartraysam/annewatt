@@ -49,7 +49,7 @@
                                 <div class="col-md-7">
                                     <input id="firstname" type="text"
                                         class="form-control @error('firstname') is-invalid @enderror" name="firstname"
-                                        value="{{old('firstname') }}" required autocomplete="firstname" autofocus>
+                                        value="{{old('firstname') }}" required autocomplete="firstname" autofocus style="text-transform: capitalize;">
 
                                     @error('firstname')
                                     <span class="invalid-feedback" role="alert">
@@ -64,7 +64,7 @@
                                 <div class="col-md-7">
                                     <input id="middlename" type="text"
                                         class="form-control @error('middlename') is-invalid @enderror" name="middlename"
-                                        value="{{old('middlename')}}" required autocomplete="name" autofocus>
+                                        value="{{old('middlename')}}" required autocomplete="name" autofocus style="text-transform: capitalize;">
 
                                     @error('middlename')
                                     <span class="invalid-feedback" role="alert">
@@ -78,7 +78,7 @@
                                 <div class="col-md-7">
                                     <input id="surname" type="text"
                                         class="form-control @error('surname') is-invalid @enderror" name="surname"
-                                        value="{{old('surname') }}" required autocomplete="name" autofocus>
+                                        value="{{old('surname') }}" required autocomplete="name" autofocus style="text-transform: capitalize;">
 
                                     @error('surname')
                                     <span class="invalid-feedback" role="alert">
@@ -112,7 +112,7 @@
                                 <!-- <label for="gender" class="col-md-4 col-form-label text-md-right">Gender</label> -->
                                 {{Form::label('relationship', 'Relationship', ['class' => 'col-md-4 col-form-label text-md-right'])}}
                                 <div class="col-md-7">
-                                    {{Form::select('relationship', ['So' => 'Son', 'D' => 'Daughter', 'B' => 'Brother', 'S' => 'Sister'], 'So', ['class' => 'form-control'])}}
+                                    {{Form::select('relationship', ['Son' => 'Son', 'Daughter' => 'Daughter', 'Brother' => 'Brother', 'Sister' => 'Sister'], 'Son', ['class' => 'form-control'])}}
                                 </div>
                                 @error('relationship')
                                 <span class="invalid-feedback" role="alert">
@@ -122,11 +122,11 @@
                             </div>
                             <div class="form-group row">
                                     <label for="bvn" class="col-md-4 col-form-label text-md-right">BVN</label>
-    
+
                                     <div class="col-md-7">
                                         <input id="bvn" type="text" class="form-control @error('bvn') is-invalid @enderror"
                                             name="bvn" value="{{ old('bvn') }}" required autocomplete="bvn">
-    
+
                                         @error('BVN')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -215,7 +215,7 @@
                                 <div class="col-md-7">
                                     <textarea class="form-control  @error('address') is-invalid @enderror"
                                         name="address" value={{ old('address') }} required autocomplete="address"
-                                        rows="5" id="address" required autocomplete="address">
+                                        rows="5" id="address" required autocomplete="address" style="text-transform: capitalize;">
                                         </textarea>
 
                                     @error('address')

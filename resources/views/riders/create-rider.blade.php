@@ -35,7 +35,7 @@
                                 <div class="col-md-7">
                                     <input id="firstname" type="text"
                                         class="form-control @error('firstname') is-invalid @enderror" name="firstname"
-                                        value="{{old('firstname') }}" required autocomplete="firstname" autofocus style="text-transform: uppercase;">
+                                        value="{{old('firstname') }}" required autocomplete="firstname" autofocus style="text-transform: capitalize;">
 
                                     @error('firstname')
                                     <span class="invalid-feedback" role="alert">
@@ -50,7 +50,7 @@
                                 <div class="col-md-7">
                                     <input id="middlename" type="text"
                                         class="form-control @error('middlename') is-invalid @enderror" name="middlename"
-                                        value="{{old('middlename')}}" required autocomplete="name" autofocus style="text-transform: uppercase;">
+                                        value="{{old('middlename')}}" required autocomplete="name" autofocus style="text-transform: capitalize;">
 
                                     @error('middlename')
                                     <span class="invalid-feedback" role="alert">
@@ -64,7 +64,7 @@
                                 <div class="col-md-7">
                                     <input id="surname" type="text"
                                         class="form-control @error('surname') is-invalid @enderror" name="surname"
-                                        value="{{old('surname') }}" required autocomplete="name" autofocus style="text-transform: uppercase;">
+                                        value="{{old('surname') }}" required autocomplete="name" autofocus style="text-transform: capitalize;">
 
                                     @error('surname')
                                     <span class="invalid-feedback" role="alert">
@@ -78,7 +78,7 @@
                                 <div class="col-md-7">
                                     <input id="nickname" type="text"
                                         class="form-control @error('nickname') is-invalid @enderror" name="nickname"
-                                        value="{{old('nickname') }}" required autocomplete="nickname" autofocus style="text-transform: uppercase;">
+                                        value="{{old('nickname') }}" required autocomplete="nickname" autofocus style="text-transform: capitalize;">
 
                                     @error('nickname')
                                     <span class="invalid-feedback" role="alert">
@@ -132,7 +132,7 @@
                                 <!-- <label for="gender" class="col-md-4 col-form-label text-md-right">Gender</label> -->
                                 {{Form::label('martialstatus', 'Marital Status', ['class' => 'col-md-4 col-form-label text-md-right'])}}
                                 <div class="col-md-7">
-                                    {{Form::select('martialstatus', ['M' => 'Married', 'S' => 'Single', 'D' => 'Divorce', 'W' => 'Widower'], 'M', ['class' => 'form-control'])}}
+                                    {{Form::select('martialstatus', ['Married' => 'Married', 'Single' => 'Single', 'Divorce' => 'Divorce', 'Widower' => 'Widower'], 'Married', ['class' => 'form-control'])}}
                                 </div>
                                 @error('martialstatus')
                                 <span class="invalid-feedback" role="alert">
@@ -156,7 +156,7 @@
                                 @enderror
 
                             </div>
-        
+
                             <div class="form-group row">
                                 <label for="profilepic" class="col-md-4 col-form-label text-md-right">Profile
                                     Image</label>
@@ -269,7 +269,7 @@
                                     <input id="placeofbirth" type="text"
                                         class="form-control @error('placeofbirth') is-invalid @enderror"
                                         name="placeofbirth" value="{{ old('placeofbirth') }}" required
-                                        autocomplete="placeofbirth" autofocus style="text-transform: uppercase;">
+                                        autocomplete="placeofbirth" autofocus style="text-transform: capitalize;">
                                     @error('Place of birth')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

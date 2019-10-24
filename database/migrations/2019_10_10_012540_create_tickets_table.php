@@ -15,9 +15,9 @@ class CreateTicketsTable extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('phonenumber');
             $table->string('collectorname');
             $table->string('collectionlga');
+            $table->string('collectiondate');
             $table->string('transID');
             $table->string('payername');
             $table->string('payerID');

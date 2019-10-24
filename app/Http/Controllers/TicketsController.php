@@ -2,25 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Tickets;
 use Illuminate\Http\Request;
 
 class TicketsController extends Controller
 {
     //
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth');
     }
     public function index(Request $request)
     {
-        $request->session()->forget('ticket');
+        //$request->session()->forget('ticket');
         $ticket = Tickets::all();
-        return view('tickets.index',compact('ticket',$ticket));
+        return view('tickets.index', compact('ticket', $ticket));
     }
     public function createTicket(Request $request)
     {
         $ticket = $request->session()->get('ticket');
-        return view('tickets.create-ticket',compact('ticket', $ticket));
+        return view('tickets.ticket', compact('ticket', $ticket));
     }
 
     /**
@@ -35,16 +37,22 @@ class TicketsController extends Controller
         $validatedData = $request->validate([
             'amount' => 'required|numeric',
             'vehicleno' => 'required',
-            'transID' => 'required',
+            'transID' => 'required|numeric',
             'collectorname' => 'required',
             'collectionlga' => 'required',
+            'collectiondate' => 'nullable',
+            'payername' => 'nullable',
+            'payerID' => 'nullable',
+            'payerphone' => 'nullable',
+            'payerlga' => 'nullable',
+
         ]);
 
-        if(empty($request->session()->get('ticket'))){
+        if (empty($request->session()->get('ticket'))) {
             $ticket = new Tickets();
             $ticket->fill($validatedData);
             $request->session()->put('ticket', $ticket);
-        }else{
+        } else {
             $ticket = $request->session()->get('ticket');
             $ticket->fill($validatedData);
             $request->session()->put('ticket', $ticket);
