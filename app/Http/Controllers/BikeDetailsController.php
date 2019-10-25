@@ -13,7 +13,7 @@ class BikeDetailsController extends Controller
     public function createBike(Request $request)
     {
         $bike = $request->session()->get('bike');
-        return view('riders.create-bike', compact('bike', $bike));
+        return view('riders.bike', compact('bike', $bike));
     }
 
     /**
@@ -57,13 +57,13 @@ class BikeDetailsController extends Controller
 
         }
 
-        return redirect('/riders/create-nextkin');
+        return redirect('/riders/nextkin');
     }
 
     public function back(Request $request)
     {
         //validate the form
-        return redirect('/riders/create-rider');
+        return redirect('/riders/rider');
 
     }
 }

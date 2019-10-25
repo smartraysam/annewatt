@@ -38,7 +38,7 @@
          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
              <div class="bg-white py-2 collapse-inner rounded">
                  <a class="collapse-item" href={{ route('createRider') }}> @csrf Add New Rider</a>
-                 <a class="collapse-item" href="cards.html">View All Riders</a>
+                 <a class="collapse-item" href={{ route('viewriders') }}>View All Riders</a>
              </div>
          </div>
      </li>
@@ -61,9 +61,9 @@
          <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
              data-parent="#accordionSidebar">
              <div class="bg-white py-2 collapse-inner rounded">
-                 <a class="collapse-item" href="{{route('createTicket')}}">@csrf New Ticket Entry</a>
-                 <a class="collapse-item" href="utilities-border.html">View All Tickets</a>
-                 <a class="collapse-item" href="utilities-animation.html">Generation Report</a>
+                 <a class="collapse-item" href={{route('createTicket')}}>@csrf New Ticket Entry</a>
+                 <a class="collapse-item" href={{route('viewtickets')}}>View All Tickets</a>
+                 <a class="collapse-item" href={{route('createTicket')}}>Generation Report</a>
              </div>
          </div>
      </li>

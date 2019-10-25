@@ -23,7 +23,7 @@ class RidersController extends Controller
     public function createRider(Request $request)
     {
         $rider = $request->session()->get('rider');
-        return view('riders.create-rider', compact('rider', $rider));
+        return view('riders.rider', compact('rider', $rider));
     }
 
     /**
@@ -66,7 +66,7 @@ class RidersController extends Controller
             $rider->fill($validatedData);
             $request->session()->put('rider', $rider);
         }
-        return redirect('/riders/create-bike');
+        return redirect('/riders/bike');
     }
 
 }

@@ -15,7 +15,7 @@ class OtherDetailsController extends Controller
     public function createOther(Request $request)
     {
         $other = $request->session()->get('other');
-        return view('riders.create-other', compact('other', $other));
+        return view('riders.other', compact('other', $other));
     }
 
     /**
@@ -54,7 +54,7 @@ class OtherDetailsController extends Controller
     public function back(Request $request)
     {
         //validate the form
-        return redirect('/riders/create-nextkin');
+        return redirect('/riders/nextkin');
 
     }
 }

@@ -38,7 +38,7 @@ class RiderPreviewController extends Controller
     public function back(Request $request)
     {
         //validate the form
-        return redirect('/riders/create-other');
+        return redirect('/riders/other');
 
     }
     public function cancel(Request $request)

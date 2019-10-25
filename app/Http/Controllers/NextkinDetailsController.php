@@ -15,7 +15,7 @@ class NextkinDetailsController extends Controller
     public function createNextkin(Request $request)
     {
         $nextkin = $request->session()->get('nextkin');
-        return view('riders.create-nextkin', compact('nextkin', $nextkin));
+        return view('riders.nextkin', compact('nextkin', $nextkin));
     }
 
     /**
@@ -56,12 +56,12 @@ class NextkinDetailsController extends Controller
             $request->session()->put('nextkin', $nextkin);
         }
 
-        return redirect('/riders/create-other');
+        return redirect('/riders/other');
     }
     public function back(Request $request)
     {
         //validate the form
-        return redirect('/riders/create-bike');
+        return redirect('/riders/bike');
 
     }
 }
