@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Tickets;
+use Datatables;
+use DB;
 use Illuminate\Http\Request;
+use Redirect;
+use Response;
 
 class TicketsController extends Controller
 {
@@ -15,9 +19,9 @@ class TicketsController extends Controller
     }
     public function index(Request $request)
     {
-        //$request->session()->forget('ticket');
-        $ticket = Tickets::all();
-        return view('tickets.index', compact('ticket', $ticket));
+        $request->session()->forget('ticket');
+        $tickets = DB::table('tickets')->get();
+        return view('tickets.index', compact('tickets',$tickets));
     }
     public function createTicket(Request $request)
     {

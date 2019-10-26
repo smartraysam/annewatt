@@ -17,7 +17,6 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 //create rider
 
 Route::get('/riders', 'RidersController@index')->name('viewriders');
-
 Route::get('/riders/rider', 'RidersController@createRider')->name('createRider');
 
 Route::post('/riders/rider', 'RidersController@postRider')->name('postRider');

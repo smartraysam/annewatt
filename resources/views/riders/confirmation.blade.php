@@ -8,10 +8,6 @@
     <!-- Begin Page Content -->
     <div class="container-fluid">
         <div class="card-header">Rider Information Review</div>
-        {{-- <p>{{  \Session::get('riderInfo')}}</p>
-        <p>{{  \Session::get('bike')}}</p>
-        <p>{{  \Session::get('nextkin')}}</p>
-        <p>{{  \Session::get('other')}}</p> --}}
         <form method="POST" action="{{ route('saverider') }}">
             {{ csrf_field() }}
             <div class="card shadow mb-4">
@@ -24,8 +20,14 @@
                 <div class="collapse show" id="collapseCardExample">
                     <div class="card-body justify-content-center">
                         <div style="text-align: center" class="justify-content-center">
+                            @if(isset($rider->profilepic))
                             <img id="profilepic" class="rounded mt-2 my-2" alt="profile Image"
-                                src="/storage/{{session('rider.profilepic')}}" width="150" height="150" />
+                            src="/img/{{session('rider.profilepic')}}" width="150" height="150" />
+                            @else
+                            <img id="profilepic" class="rounded mt-2" alt="profile Image"
+                            src="{!! asset('img/user.png') !!}" width="150" height="150" />
+                            @endif
+
                         </div>
                         <table class="table">
                             <tr>

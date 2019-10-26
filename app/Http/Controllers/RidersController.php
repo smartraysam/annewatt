@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Riders;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Redirect;
+use Response;
 
 class RidersController extends Controller
 {
@@ -17,8 +20,8 @@ class RidersController extends Controller
     public function index(Request $request)
     {
         $request->session()->forget('rider');
-        $rider = Riders::all();
-        return view('riders.index', compact('rider', $rider));
+        $riders = DB::table('riders')->get();
+        return view('riders.index', compact('riders', $riders));
     }
     public function createRider(Request $request)
     {

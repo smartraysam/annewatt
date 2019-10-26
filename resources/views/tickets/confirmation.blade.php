@@ -7,7 +7,6 @@
     @include('theme.nav')
     <!-- Begin Page Content -->
     <div class="container-fluid">
-        <p>{{  \Session::get('ticket')}}</p>
         <div class="card-header"></div>
         <form method="POST" action="{{ route('saveticket') }}">
             {{ csrf_field() }}
