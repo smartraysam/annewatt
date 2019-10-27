@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Tickets;
-use Datatables;
-use DB;
 use Illuminate\Http\Request;
-use Redirect;
 use Response;
 
 class TicketsController extends Controller
@@ -20,8 +17,21 @@ class TicketsController extends Controller
     public function index(Request $request)
     {
         $request->session()->forget('ticket');
-        $tickets = DB::table('tickets')->get();
-        return view('tickets.index', compact('tickets',$tickets));
+        if (request()->ajax()) {
+            return datatables()->of(Tickets::select('*'))
+                ->addColumn('action', 'action')
+                ->rawColumns(['action'])
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view('tickets.index');
+    }
+
+    public function show($id)
+    {
+        $where = array('id' => $id);
+        $ticket = Tickets::where($where)->get();
+        return Response::json($ticket);
     }
     public function createTicket(Request $request)
     {

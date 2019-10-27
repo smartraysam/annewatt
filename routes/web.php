@@ -40,6 +40,7 @@ Route::get('/riders/prev_other', 'OtherDetailsController@back')->name('backother
 
 //create ticket
 Route::get('/tickets', 'TicketsController@index')->name('viewtickets');
+Route::get('/tickets/{id}/show', 'TicketsController@show');
 Route::get('/tickets/ticket', 'TicketsController@createTicket')->name('createTicket');
 Route::post('/tickets/ticket', 'TicketsController@postTicket')->name('postTicket');
 

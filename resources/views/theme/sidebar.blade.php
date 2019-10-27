@@ -102,9 +102,10 @@
 
 
      <li class="nav-item">
-         <a class="nav-link" href="{{ route('logout') }}">
-             <i class="fas fa-fw fa-table"></i>
-             <span>Logout</span></a>
+            <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
+                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Logout
+            </a>
      </li>
 
      <!-- Divider -->
