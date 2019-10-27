@@ -8,8 +8,15 @@
     <div class="container-fluid">
         <div class="col">
             <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Tickets Entries</h6>
+                <div class="card-header py-3 ">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h6 class="m-0 font-weight-bold text-primary">Tickets Entries</h6>
+                        </div>
+                        <div class="col-md-4 float-right" style="position:relative;">
+                            <a  href="#" class="m-0 font-weight-bold text-primary" style="position:absolute; right:0px;"> Export Ticket Entries to CSV </a>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -38,22 +45,100 @@
                                     <th>Action</th>
                                 </tr>
                             </tfoot>
-                            {{-- <tbody>
-                                @foreach ($tickets as $ticket)
-                                <tr>
-                                    <td style="text-transform: capitalize;">{{ $ticket->transID }}</td>
-                            <td style="text-transform: capitalize;">{{ $ticket->collectorname }}</td>
-                            <td>{{ $ticket->collectionlga }}</td>
-                            <td style="text-transform: capitalize;">{{ $ticket->payerlga }}</td>
-                            <td style="text-transform: uppercase;">{{ $ticket->vehicleno }}</td>
-                            <td>{{ $ticket->amount }}</td>
-                            <td>{{ $ticket->collectiondate }}</td>
-                            </tr>
-                            @endforeach
-                            </tbody> --}}
                         </table>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="ticket-modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="ticketCrudModal"></h4>
+            </div>
+            <div class="modal-body">
+                <form id="productForm" name="productForm" class="form-horizontal">
+                    {{ csrf_field() }}
+                    <div class="card shadow mb-4">
+                        <!-- Card Header - Accordion -->
+                        <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse"
+                            role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                            <h6 class="m-0 font-weight-bold text-primary">Ticket Entry Review</h6>
+                            <br>
+                            <p id="tranID"> Transaction ID>:</p>
+                        </a>
+                        <!-- Card Content - Collapse -->
+                        <div class="collapse show" id="collapseCardExample">
+                            <div class="card-body justify-content-center">
+                                <table class="table">
+                                    <tr>
+                                        <td>Collector Name:</td>
+                                        <td style="text-transform: capitalize;" id="collectorname">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Collection LGA:</td>
+                                        <td style="text-transform: capitalize;" id="collectionlga">
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Collection Date:</td>
+                                        <td style="text-transform: capitalize;" id="collectiondate">
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Amount (₦):</td>
+                                        <td style="text-transform: capitalize;" id="amount">
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Transaction ID:</td>
+                                        <td style="text-transform: capitalize;" id="transID">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Payer Vehicle Number:</td>
+                                        <td style="text-transform: uppercase;" id="vehicleno">
+
+                                    </tr>
+                                    <tr>
+                                        <td>Payer's LGA:</td>
+                                        <td style="text-transform: capitalize;" id="payerlga">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Payer's Name:</td>
+                                        <td style="text-transform: capitalize;" id="payername">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Payer's ID:</td>
+                                        <td style="text-transform: capitalize;" id="payerID"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Payer's Phone No.:</td>
+                                        <td style="text-transform: capitalize;" id="payerphone"></td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="float-left">
+                    <a data-dismiss="modal" class="btn btn-primary" style="color: white;"> Print </a>
+                </div>
+                <div class="float-right">
+                    <a data-dismiss="modal" class="btn btn-primary" style="color: white;"> Close </a>
+                </div>
+
             </div>
         </div>
     </div>
@@ -106,17 +191,19 @@
              type:"GET",
              url:"/tickets/"+_id+'/show',
              success : function(results) {
-                 console.log(results);
-                  //  $('#title-error').hide();
-        //  $('#product_code-error').hide();
-        //  $('#description-error').hide();
-        //  $('#productCrudModal').html("Edit Product");
-        //   $('#btn-save').val("edit-product");
-        //   $('#ajax-product-modal').modal('show');
-        //   $('#product_id').val(data.id);
-        //   $('#title').val(data.title);
-        //   $('#product_code').val(data.product_code);
-        //   $('#description').val(data.description);
+              console.log(results);
+                $('#ticket-modal').modal('show');
+                $('#tranID').html('Transaction ID:'+ results[0].transID);
+                $('#collectorname').html(results[0].collectorname);
+                $('#vehicleno').html(results[0].vehicleno);
+                $('#transID').html(results[0].transID);
+                $('#amount').html(results[0].amount);
+                $('#collectionlga').html(results[0].collectionlga);
+                $('#collectiondate').html(results[0].collectiondate);
+                $('#payername').html(results[0].payername);
+                $('#payerID').html(results[0].payerID);
+                $('#payerphone').html(results[0].payerphone);
+                $('#payerlga').html(results[0].payerlga);
              }
         });
 
