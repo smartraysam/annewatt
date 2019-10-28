@@ -14,7 +14,7 @@
                             <h6 class="m-0 font-weight-bold text-primary">Tickets Entries</h6>
                         </div>
                         <div class="col-md-4 float-right" style="position:relative;">
-                            <a href="#" class="m-0 font-weight-bold text-primary" style="position:absolute; right:0px;">
+                            <a href="{{route('exportTicket')}}" class="m-0 font-weight-bold text-primary" style="position:absolute; right:0px;">
                                 Export Ticket Entries to Excel </a>
                         </div>
                     </div>

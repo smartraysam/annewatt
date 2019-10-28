@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Tickets;
 use Illuminate\Http\Request;
 use Response;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\TicketsExport;
+
 
 class TicketsController extends Controller
 {
@@ -33,6 +36,11 @@ class TicketsController extends Controller
         $ticket = Tickets::where($where)->get();
         return Response::json($ticket);
     }
+    public function exportExcel()
+    {
+      return Excel::download(new TicketsExport, 'tickets.xlsx');
+    }
+
     public function createTicket(Request $request)
     {
         $ticket = $request->session()->get('ticket');
