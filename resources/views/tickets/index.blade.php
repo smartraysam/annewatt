@@ -14,7 +14,7 @@
                             <h6 class="m-0 font-weight-bold text-primary">Tickets Entries</h6>
                         </div>
                         <div class="col-md-4 float-right" style="position:relative;">
-                            <a  href="#" class="m-0 font-weight-bold text-primary" style="position:absolute; right:0px;"> Export Ticket Entries to CSV </a>
+                            <a  href="#" class="m-0 font-weight-bold text-primary" style="position:absolute; right:0px;"> Export Ticket Entries to Excel </a>
                         </div>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                 <h4 class="modal-title" id="ticketCrudModal"></h4>
             </div>
             <div class="modal-body">
-                <form id="productForm" name="productForm" class="form-horizontal">
+                <form id="ticketform" name="ticketform" class="form-horizontal ticketform">
                     {{ csrf_field() }}
                     <div class="card shadow mb-4">
                         <!-- Card Header - Accordion -->
@@ -67,7 +67,7 @@
                             role="button" aria-expanded="true" aria-controls="collapseCardExample">
                             <h6 class="m-0 font-weight-bold text-primary">Ticket Entry Review</h6>
                             <br>
-                            <p id="tranID"> Transaction ID>:</p>
+                            <div id="tranID" style="text-align: center"> Transaction ID>:</div>
                         </a>
                         <!-- Card Content - Collapse -->
                         <div class="collapse show" id="collapseCardExample">
@@ -131,9 +131,9 @@
                     </div>
                 </form>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" id="printdoc">
                 <div class="float-left">
-                    <a data-dismiss="modal" class="btn btn-primary" style="color: white;"> Print </a>
+                    <a data-dismiss="modal" class="btn btn-primary print" id="print" style="color: white;"> Print </a>
                 </div>
                 <div class="float-right">
                     <a data-dismiss="modal" class="btn btn-primary" style="color: white;"> Close </a>
@@ -151,6 +151,12 @@
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       }
   });
+     $(function() {
+        $("#printdoc").find('.print').on('click', function() {
+            $(".ticketform").printThis();
+        });
+    });
+
   $('#dataTable').DataTable({
          processing: true,
          serverSide: true,
@@ -161,7 +167,7 @@
          columns: [
                   {data: 'transID', name: 'transID'},
                   {
-                      data: 'collectorname', 
+                      data: 'collectorname',
                       name: 'collectorname',
                       createdCell: function (td, cellData, rowData, row, col)
                       {
@@ -175,7 +181,7 @@
                     createdCell: function (td, cellData, rowData, row, col)
                       {
                         $(td).css('text-transform', 'uppercase');
-                      }                 
+                      }
                    },
                   { data: 'amount', name: 'amount' },
                   { data: 'collectiondate', name: 'collectiondate' },

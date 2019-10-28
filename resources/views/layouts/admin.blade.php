@@ -18,6 +18,8 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <link href="{!! asset('css/sb-admin-2.css') !!}" rel="stylesheet">
+    {{-- <link href="{!! asset('css/normalize.css') !!}" rel="stylesheet">
+    <link href="{!! asset('css/skeleton.css') !!}" rel="stylesheet"> --}}
 
     <link href="{!! asset('css/bootstrap-select.min.css') !!}" rel="stylesheet">
    
@@ -61,6 +63,7 @@
   
   
     <script src="{!! asset('js/appscript.js') !!}"></script>
+    <script src="{!! asset('js/printThis.js') !!}"></script>
     <script src="{!! asset('js/bootstrap-select.min.js') !!}"></script>
     
     <script src="{!! asset('js/bootstrap-select-country.min.js') !!}"></script>
