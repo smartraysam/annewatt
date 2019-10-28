@@ -14,7 +14,8 @@
                             <h6 class="m-0 font-weight-bold text-primary">Tickets Entries</h6>
                         </div>
                         <div class="col-md-4 float-right" style="position:relative;">
-                            <a  href="#" class="m-0 font-weight-bold text-primary" style="position:absolute; right:0px;"> Export Ticket Entries to Excel </a>
+                            <a href="#" class="m-0 font-weight-bold text-primary" style="position:absolute; right:0px;">
+                                Export Ticket Entries to Excel </a>
                         </div>
                     </div>
                 </div>
@@ -61,14 +62,14 @@
             <div class="modal-body">
                 <form id="ticketform" name="ticketform" class="form-horizontal ticketform">
                     {{ csrf_field() }}
+
                     <div class="card shadow mb-4">
                         <!-- Card Header - Accordion -->
-                        <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse"
-                            role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                        <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Ticket Entry Review</h6>
                             <br>
                             <div id="tranID" style="text-align: center"> Transaction ID>:</div>
-                        </a>
+                        </div>
                         <!-- Card Content - Collapse -->
                         <div class="collapse show" id="collapseCardExample">
                             <div class="card-body justify-content-center">
