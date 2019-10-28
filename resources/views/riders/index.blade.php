@@ -23,7 +23,7 @@
                                     <th>Status</th>
                                     <th>LGA</th>
                                     <th>Vehicle Reg. No.</th>
-
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tfoot>
@@ -33,21 +33,9 @@
                                     <th>Status</th>
                                     <th>LGA</th>
                                     <th>Vehicle Reg. No.</th>
+                                    <th>Actions</th>
                                 </tr>
                             </tfoot>
-                            <tbody>
-                                @foreach ($riders as $rider)
-                                <tr>
-                                    {{-- <td style="text-transform: capitalize;">{{ $ticket->transID }}</td>
-                                    <td style="text-transform: capitalize;">{{ $ticket->collectorname }}</td>
-                                    <td>{{ $ticket->collectionlga }}</td>
-                                    <td style="text-transform: capitalize;">{{ $ticket->payerlga }}</td>
-                                    <td style="text-transform: uppercase;">{{ $ticket->vehicleno }}</td>
-                                    <td>{{ $ticket->amount }}</td>
-                                    <td>{{ $ticket->collectiondate }}</td> --}}
-                                </tr>
-                                @endforeach
-                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -55,8 +43,74 @@
         </div>
     </div>
 </div>
-<script>
+<script type="text/javascript">
+    var SITEURL = '{{URL::to('')}}';
+ $(document).ready( function () {
+   $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+  });
+  $('#dataTable').DataTable({
+         processing: true,
+         serverSide: true,
+         ajax: {
+          url: SITEURL + "/rider",
+          type: 'GET',
+         },
+         columns: [
+                  {data: 'transID', name: 'transID'},
+                  {
+                      data: 'collectorname', 
+                      name: 'collectorname',
+                      createdCell: function (td, cellData, rowData, row, col)
+                      {
+                        $(td).css('text-transform', 'capitalize');
+                      }
+                  },
+                  { data: 'collectionlga', name: 'collectionlga' },
+                  { data: 'payerlga', name: 'payerlga' },
+                  { data: 'vehicleno',
+                    name: 'vehicleno',
+                    createdCell: function (td, cellData, rowData, row, col)
+                      {
+                        $(td).css('text-transform', 'uppercase');
+                      }                 
+                   },
+                  { data: 'amount', name: 'amount' },
+                  { data: 'collectiondate', name: 'collectiondate' },
+                  {data: 'action', name: 'action', orderable: false},
+               ],
+        order: [[0, 'desc']]
+      });
+
+   /* When click edit user */
+    $('body').on('click', '.view-rider', function () {
+      var _id = $(this).data('id');
+      $.ajax({
+             type:"GET",
+             url:"/rider/"+_id+'/show',
+             success : function(results) {
+            //   console.log(results);
+            //     $('#ticket-modal').modal('show');
+            //     $('#tranID').html('Transaction ID:'+ results[0].transID);
+            //     $('#collectorname').html(results[0].collectorname);
+            //     $('#vehicleno').html(results[0].vehicleno);
+            //     $('#transID').html(results[0].transID);
+            //     $('#amount').html(results[0].amount);
+            //     $('#collectionlga').html(results[0].collectionlga);
+            //     $('#collectiondate').html(results[0].collectiondate);
+            //     $('#payername').html(results[0].payername);
+            //     $('#payerID').html(results[0].payerID);
+            //     $('#payerphone').html(results[0].payerphone);
+            //     $('#payerlga').html(results[0].payerlga);
+             }
+        });
+
+   });
+});
 
 </script>
+
 
 @endsection

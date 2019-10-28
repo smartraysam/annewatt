@@ -17,6 +17,7 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 //create rider
 
 Route::get('/riders', 'RidersController@index')->name('viewriders');
+Route::get('/riders/{id}/show', 'RidersController@show');
 Route::get('/riders/rider', 'RidersController@createRider')->name('createRider');
 
 Route::post('/riders/rider', 'RidersController@postRider')->name('postRider');
@@ -56,3 +57,5 @@ Route::get('/tickets/prev_ticket', 'TicketsPreviewController@back')->name('backt
 Route::post('/tickets/submit', 'TicketsPreviewController@store')->name('saveticket');
 
 Route::get('/tickets/cancel', 'RiderPreviewController@cancel')->name('cancelticket');
+
+Route::get('/tickets/{id}/ticketprint','PrintController@printpreview');

@@ -63,7 +63,6 @@
              <div class="bg-white py-2 collapse-inner rounded">
                  <a class="collapse-item" href={{route('createTicket')}}>@csrf New Ticket Entry</a>
                  <a class="collapse-item" href={{route('viewtickets')}}>View All Tickets</a>
-                 <a class="collapse-item" href={{route('createTicket')}}>Generation Report</a>
              </div>
          </div>
      </li>

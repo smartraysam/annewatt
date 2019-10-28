@@ -7,7 +7,6 @@ use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
-use Redirect;
 use Response;
 
 class RidersController extends Controller
@@ -20,8 +19,20 @@ class RidersController extends Controller
     public function index(Request $request)
     {
         $request->session()->forget('rider');
-        $riders = DB::table('riders')->get();
-        return view('riders.index', compact('riders', $riders));
+        if (request()->ajax()) {
+            return datatables()->of(Riders::select('*'))
+                ->addColumn('action', 'actionrider')
+                ->rawColumns(['action'])
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view('riders.index');
+    }
+    public function show($id)
+    {
+        $where = array('id' => $id);
+        $rider = Riders::where($where)->get();
+        return Response::json($rider);
     }
     public function createRider(Request $request)
     {
