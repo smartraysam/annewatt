@@ -57,5 +57,3 @@ Route::get('/tickets/prev_ticket', 'TicketsPreviewController@back')->name('backt
 Route::post('/tickets/submit', 'TicketsPreviewController@store')->name('saveticket');
 
 Route::get('/tickets/cancel', 'RiderPreviewController@cancel')->name('cancelticket');
-
-Route::get('/tickets/{id}/ticketprint','PrintController@printpreview');
