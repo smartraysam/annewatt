@@ -18,21 +18,25 @@
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
                                     <th>Full Name</th>
                                     <th>Status</th>
                                     <th>LGA</th>
                                     <th>Vehicle Reg. No.</th>
+                                    <th>Contact Number</th>
+                                    <th>Rider ID</th>
+                                    <th>Unit Park Name</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
-                                    <th>ID</th>
                                     <th>Full Name</th>
                                     <th>Status</th>
                                     <th>LGA</th>
                                     <th>Vehicle Reg. No.</th>
+                                    <th>Contact Number</th>
+                                    <th>Rider ID</th>
+                                    <th>Unit Park Name</th>
                                     <th>Actions</th>
                                 </tr>
                             </tfoot>
@@ -55,33 +59,49 @@
          processing: true,
          serverSide: true,
          ajax: {
-          url: SITEURL + "/rider",
+          url: SITEURL + "/riders",
           type: 'GET',
          },
          columns: [
-                  {data: 'transID', name: 'transID'},
-                  {
-                      data: 'collectorname', 
-                      name: 'collectorname',
-                      createdCell: function (td, cellData, rowData, row, col)
-                      {
-                        $(td).css('text-transform', 'capitalize');
-                      }
-                  },
-                  { data: 'collectionlga', name: 'collectionlga' },
-                  { data: 'payerlga', name: 'payerlga' },
-                  { data: 'vehicleno',
-                    name: 'vehicleno',
-                    createdCell: function (td, cellData, rowData, row, col)
-                      {
-                        $(td).css('text-transform', 'uppercase');
-                      }                 
-                   },
-                  { data: 'amount', name: 'amount' },
-                  { data: 'collectiondate', name: 'collectiondate' },
-                  {data: 'action', name: 'action', orderable: false},
+                   
+                    { data: 'ridername', name: 'bike_details.ridername' ,
+                        createdCell: function (td, cellData, rowData, row, col)
+                        {
+                            $(td).css('text-transform', 'capitalize');
+                        } 
+                    },
+                    { data: 'status', name: 'riders.status' ,
+                        createdCell: function (td, cellData, rowData, row, col)
+                        {
+                            $(td).css('text-transform', 'capitalize');
+                        } },
+                    {
+                        data: 'lga',
+                        name: 'riders.lga',
+                        createdCell: function (td, cellData, rowData, row, col)
+                        {
+                            $(td).css('text-transform', 'capitalize');
+                        }
+                    },
+                   
+                    { data: 'registrationnum', name: 'bike_details.registrationnum',  createdCell: function (td, cellData, rowData, row, col)
+                        {
+                            $(td).css('text-transform', 'uppercase');
+                        } 
+                    },
+                    { data: 'phonenumber',
+                        name: 'riders.phonenumber' 
+                    },
+                    { data: 'riderid', name: 'other_details.riderid' },
+                    { data: 'unitparkname', name: 'other_details.unitparkname' ,
+                        createdCell: function (td, cellData, rowData, row, col)
+                        {
+                            $(td).css('text-transform', 'capitalize');
+                        }
+                    },
+                    {data: 'action', name: 'action', orderable: false},
                ],
-        order: [[0, 'desc']]
+        order: [[3, 'desc']]
       });
 
    /* When click edit user */

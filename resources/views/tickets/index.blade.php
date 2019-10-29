@@ -24,7 +24,7 @@
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Trans. ID.</th>
+                                    <th>Transaction ID.</th>
                                     <th>Collector Name</th>
                                     <th>Collection LGA</th>
                                     <th>Payer LGA</th>
@@ -36,7 +36,7 @@
                             </thead>
                             <tfoot>
                                 <tr>
-                                    <th>Trans. ID.</th>
+                                    <th>Transaction ID.</th>
                                     <th>Collector Name</th>
                                     <th>Collection LGA</th>
                                     <th>Payer LGA</th>

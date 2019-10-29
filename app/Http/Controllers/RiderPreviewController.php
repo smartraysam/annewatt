@@ -67,6 +67,6 @@ class RiderPreviewController extends Controller
         $request->session()->forget('bike');
         $request->session()->forget('nextkin');
         $request->session()->forget('other');
-        return redirect('/home');
+        return redirect('/home')->with('success', 'New Rider successfully saved');
     }
 }

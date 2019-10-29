@@ -19,8 +19,12 @@ class RidersController extends Controller
     public function index(Request $request)
     {
         $request->session()->forget('rider');
+        $riderData = DB::table('riders')
+        ->join('bike_details', 'riders.id', '=', 'bike_details.id')
+        ->join('other_details', 'riders.id', '=', 'other_details.id')
+        ->select(['riders.id','riders.phonenumber', 'riders.status', 'riders.lga', 'bike_details.ridername', 'bike_details.registrationnum','other_details.unitparkname', 'other_details.riderid' ]);
         if (request()->ajax()) {
-            return datatables()->of(Riders::select('*'))
+            return datatables()->of($riderData)
                 ->addColumn('action', 'actionrider')
                 ->rawColumns(['action'])
                 ->addIndexColumn()
@@ -64,7 +68,7 @@ class RidersController extends Controller
             'bvn' => 'required',
             'dob' => 'required',
             'address' => 'required',
-            'profilepic' => 'required',
+            'profilepic' => 'nullable',
         ]);
 
         if (empty($request->session()->get('rider'))) {

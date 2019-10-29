@@ -50,7 +50,7 @@ class TicketsPreviewController extends Controller
         $ticket = $request->session()->get('ticket');
         $ticket->save();
         $request->session()->forget('ticket');
-        return redirect('/home')->with('success', 'Ticket entry is successfully saved');;
+        return redirect('/home')->with('success', 'Ticket entry is successfully saved');
 
     }
 }

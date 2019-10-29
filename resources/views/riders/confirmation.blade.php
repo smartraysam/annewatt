@@ -22,7 +22,7 @@
                         <div style="text-align: center" class="justify-content-center">
                             @if(isset($rider->profilepic))
                             <img id="profilepic" class="rounded mt-2 my-2" alt="profile Image"
-                            src="/img/{{session('rider.profilepic')}}" width="150" height="150" />
+                            src="/app/public/{{session('rider.profilepic')}}" width="150" height="150" />
                             @else
                             <img id="profilepic" class="rounded mt-2" alt="profile Image"
                             src="{!! asset('img/user.png') !!}" width="150" height="150" />
