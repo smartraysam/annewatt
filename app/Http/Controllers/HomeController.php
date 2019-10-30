@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Riders;
+
 use DB;
 use Illuminate\Http\Request;
+
 class HomeController extends Controller
 {
     /**
@@ -19,7 +20,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $riders = DB::table('riders')->get();
-        return view('home', compact('riders', $riders));
+        $riderData = DB::table('bike_details')
+            ->join('riders', 'bike_details.id', '=', 'riders.id')
+            ->join('other_details', 'bike_details.id', '=', 'other_details.id')
+            ->join('tickets', 'bike_details.registrationnum', '=', 'tickets.vehicleno')
+            ->select(['riders.id', 'riders.phonenumber', 'riders.status', 'riders.lga', 'bike_details.ridername',
+                'bike_details.registrationnum', 'other_details.unitparkname', 'other_details.riderid',
+                DB::raw("count(tickets.vehicleno) AS ticket_count")])
+             ->groupBy('riders.id');
+        if (request()->ajax()) {
+            return datatables()->of($riderData)
+                ->addColumn('action', 'actionhome')
+                ->rawColumns(['action'])
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view('home');
     }
 }

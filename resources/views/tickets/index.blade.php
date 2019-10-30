@@ -188,7 +188,7 @@
                   { data: 'collectiondate', name: 'collectiondate' },
                   {data: 'action', name: 'action', orderable: false},
                ],
-        order: [[0, 'desc']]
+        order: [[6, 'desc']]
       });
 
    /* When click edit user */

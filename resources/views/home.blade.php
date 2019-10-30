@@ -20,7 +20,8 @@
                     class="fas fa-download fa-sm text-white-50"> @csrf</i> Add New Rider</a>
             <a href="{{ route('createTicket') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                     class="fas fa-download fa-sm text-white-50"> @csrf</i> New Ticket Entry</a>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+            <a href="javascript:void(0)"
+                class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm reportmodal"><i
                     class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
         </div>
 
@@ -104,50 +105,147 @@
         <!-- Content Row -->
         <div class="col">
             <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Latest Registered Riders</h6>
+                <div class="card-header py-3 ">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h6 class="m-0 font-weight-bold text-primary">Top Active Riders</h6>
+                        </div>
+                        <div class="col-md-4 float-right" style="position:relative;">
+                            <a href="#" class="m-0 font-weight-bold text-primary" style="position:absolute; right:0px;">
+                                Export Top Rider to Excel </a>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
                                     <th>Full Name</th>
                                     <th>Status</th>
                                     <th>LGA</th>
                                     <th>Vehicle Reg. No.</th>
-
+                                    <th>Contact Number</th>
+                                    <th>Rider ID</th>
+                                    <th>Unit Park Name</th>
+                                    <th>Tickets count</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
-                                    <th>ID</th>
                                     <th>Full Name</th>
                                     <th>Status</th>
                                     <th>LGA</th>
                                     <th>Vehicle Reg. No.</th>
+                                    <th>Contact Number</th>
+                                    <th>Rider ID</th>
+                                    <th>Unit Park Name</th>
+                                    <th>Tickets Count</th>
+                                    <th>Actions</th>
                                 </tr>
                             </tfoot>
-                            <tbody>
-                                @foreach ($riders as $rider)
-                                <tr>
-                                    {{-- <td style="text-transform: capitalize;">{{ $ticket->transID }}</td>
-                                    <td style="text-transform: capitalize;">{{ $ticket->collectorname }}</td>
-                                    <td>{{ $ticket->collectionlga }}</td>
-                                    <td style="text-transform: capitalize;">{{ $ticket->payerlga }}</td>
-                                    <td style="text-transform: uppercase;">{{ $ticket->vehicleno }}</td>
-                                    <td>{{ $ticket->amount }}</td>
-                                    <td>{{ $ticket->collectiondate }}</td> --}}
-                                </tr>
-                                @endforeach
-                            </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="modal fade" id="report-modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="ticketCrudModal"></h4>
+                </div>
+                <div class="modal-body row">
+                    {{Form::label('type', 'Select', ['class' => 'col-md-4 col-form-label text-md-right'])}}
+                    <div class="col-md-7">
+                        {{Form::select('martialstatus', ['Married' => 'Married', 'Single' => 'Single', 'Divorce' => 'Divorce', 'Widower' => 'Widower'], 'Married', ['class' => 'form-control'])}}
+                    </div>
+                </div>
+                <div class="modal-footer" id="printdoc">
+                    <div class="float-left">
+                        <a data-dismiss="modal" class="btn btn-primary print" id="print" style="color: white;"> OK </a>
+                    </div>
+                    <div class="float-right">
+                        <a data-dismiss="modal" class="btn btn-primary" style="color: white;"> Close </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        var SITEURL = '{{URL::to('')}}';
+ $(document).ready( function () {
+   $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+  });
+
+    $('#dataTable').DataTable({
+         processing: true,
+         serverSide: true,
+         ajax: {
+          url: SITEURL + "/home",
+          type: 'GET',
+         },
+         columns: [
+
+                    { data: 'ridername', name: 'bike_details.ridername' ,
+                        createdCell: function (td, cellData, rowData, row, col)
+                        {
+                            $(td).css('text-transform', 'capitalize');
+                        }
+                    },
+                    { data: 'status', name: 'riders.status' ,
+                        createdCell: function (td, cellData, rowData, row, col)
+                        {
+                            $(td).css('text-transform', 'capitalize');
+                        } 
+                    },
+                    {
+                        data: 'lga',
+                        name: 'riders.lga',
+                        createdCell: function (td, cellData, rowData, row, col)
+                        {
+                            $(td).css('text-transform', 'capitalize');
+                        }
+                    },
+
+                    { data: 'registrationnum', name: 'bike_details.registrationnum',  createdCell: function (td, cellData, rowData, row, col)
+                        {
+                            $(td).css('text-transform', 'uppercase');
+                        }
+                    },
+                    { data: 'phonenumber',
+                        name: 'riders.phonenumber'
+                    },
+                    { data: 'riderid', name: 'other_details.riderid' },
+                    { data: 'unitparkname', name: 'other_details.unitparkname' ,
+                        createdCell: function (td, cellData, rowData, row, col)
+                        {
+                            $(td).css('text-transform', 'capitalize');
+                        }
+                    },
+                    { data: 'ticket_count',
+                      name: 'ticket_count'
+                    },
+                    {data: 'action', name: 'action', orderable: false},
+               ],
+        order: [[7, 'desc']]
+      });
+
+   /* When click edit user */
+    $('body').on('click', '.reportmodal', function () {
+        $('#report-modal').modal('show');
+   });
+});
+
+    </script>
 
     <!-- End of Main Content -->
 
