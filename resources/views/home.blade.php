@@ -110,10 +110,10 @@
                         <div class="col-md-8">
                             <h6 class="m-0 font-weight-bold text-primary">Top Active Riders</h6>
                         </div>
-                        <div class="col-md-4 float-right" style="position:relative;">
+                        {{-- <div class="col-md-4 float-right" style="position:relative;">
                             <a href="#" class="m-0 font-weight-bold text-primary" style="position:absolute; right:0px;">
                                 Export Top Rider to Excel </a>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="card-body">
@@ -158,9 +158,9 @@
                     <h4 class="modal-title" id="ticketCrudModal"></h4>
                 </div>
                 <div class="modal-body row">
-                    {{Form::label('type', 'Select', ['class' => 'col-md-4 col-form-label text-md-right'])}}
+                    {{Form::label('type', 'Select Report', ['class' => 'col-md-4 col-form-label text-md-right'])}}
                     <div class="col-md-7">
-                        {{Form::select('martialstatus', ['Married' => 'Married', 'Single' => 'Single', 'Divorce' => 'Divorce', 'Widower' => 'Widower'], 'Married', ['class' => 'form-control'])}}
+                        {{Form::select('report',['Select Report' => 'Select Report','Active Rider' => 'Active Rider Report', 'Tickets Report' => 'Tickets Report'], 'Select Report', ['class' => 'form-control'])}}
                     </div>
                 </div>
                 <div class="modal-footer" id="printdoc">
@@ -242,6 +242,12 @@
    /* When click edit user */
     $('body').on('click', '.reportmodal', function () {
         $('#report-modal').modal('show');
+   });
+
+
+   $('body').on('click', '.view-rider', function () {
+    var _id = $(this).data('id');
+      window.location.href = '/riders/'+_id+'/details'
    });
 });
 

@@ -107,23 +107,32 @@
    /* When click edit user */
     $('body').on('click', '.view-rider', function () {
       var _id = $(this).data('id');
+      window.location.href = '/riders/'+_id+'/details';
+   });
+
+
+//    $('body').on('click', '.edit-rider', function () {
+//       var _id = $(this).data('id');
+//       $.ajax({
+//              type:"GET",
+//              url:"/rider/"+_id+'/edit',
+//              success : function(results) {
+//              console.log(results);
+          
+//              }
+//         });
+
+//    });
+
+
+   $('body').on('click', '.delete-rider', function () {
+      var _id = $(this).data('id');
       $.ajax({
              type:"GET",
-             url:"/rider/"+_id+'/show',
+             url:"/rider/"+_id+'/delete',
              success : function(results) {
-            //   console.log(results);
-            //     $('#ticket-modal').modal('show');
-            //     $('#tranID').html('Transaction ID:'+ results[0].transID);
-            //     $('#collectorname').html(results[0].collectorname);
-            //     $('#vehicleno').html(results[0].vehicleno);
-            //     $('#transID').html(results[0].transID);
-            //     $('#amount').html(results[0].amount);
-            //     $('#collectionlga').html(results[0].collectionlga);
-            //     $('#collectiondate').html(results[0].collectiondate);
-            //     $('#payername').html(results[0].payername);
-            //     $('#payerID').html(results[0].payerID);
-            //     $('#payerphone').html(results[0].payerphone);
-            //     $('#payerlga').html(results[0].payerlga);
+               console.log(results);
+            
              }
         });
 

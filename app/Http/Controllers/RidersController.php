@@ -20,9 +20,9 @@ class RidersController extends Controller
     {
         $request->session()->forget('rider');
         $riderData = DB::table('riders')
-        ->join('bike_details', 'riders.id', '=', 'bike_details.id')
-        ->join('other_details', 'riders.id', '=', 'other_details.id')
-        ->select(['riders.id','riders.phonenumber', 'riders.status', 'riders.lga', 'bike_details.ridername', 'bike_details.registrationnum','other_details.unitparkname', 'other_details.riderid' ]);
+            ->join('bike_details', 'riders.id', '=', 'bike_details.id')
+            ->join('other_details', 'riders.id', '=', 'other_details.id')
+            ->select(['riders.id', 'riders.phonenumber', 'riders.status', 'riders.lga', 'bike_details.ridername', 'bike_details.registrationnum', 'other_details.unitparkname', 'other_details.riderid']);
         if (request()->ajax()) {
             return datatables()->of($riderData)
                 ->addColumn('action', 'actionrider')
@@ -34,9 +34,13 @@ class RidersController extends Controller
     }
     public function show($id)
     {
-        $where = array('id' => $id);
-        $rider = Riders::where($where)->get();
-        return Response::json($rider);
+        $riderData = DB::table('riders')->where('riders.id', '=', $id)
+            ->join('bike_details', 'riders.id', '=', 'bike_details.id')
+            ->join('nextkin_details', 'riders.id', '=', 'nextkin_details.id')
+            ->join('other_details', 'riders.id', '=', 'other_details.id')
+            ->join('tickets', 'bike_details.registrationnum', '=', 'tickets.vehicleno')
+            ->get();
+        return view('riders.riderview', compact('riderData', $riderData));
     }
     public function createRider(Request $request)
     {
