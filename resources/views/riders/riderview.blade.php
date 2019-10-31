@@ -21,7 +21,87 @@
                 @if ($loop->first)
                 <div class="collapse show" id="collapseCardExample">
                     <div class="card-body justify-content-center">
-                        <div style="text-align: center" class="justify-content-center">
+                        <div class="row">
+
+                            <!-- Earnings (Monthly) Card Example -->
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-primary shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                    Ticket Entry
+                                                    (Today)</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">200</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <!-- Earnings (Monthly) Card Example -->
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-primary shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                    Earnings
+                                                    (Today)</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">₦ 2,000</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Earnings (Monthly) Card Example -->
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-success shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                    Total Riders
+                                                </div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">5,000</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Pending Requests Card Example -->
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-warning shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                    Active Riders
+                                                </div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">2,800</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="text-align: center" class="justify-content-left">
                             @if(isset($rider->profilepic))
                             <img id="profilepic" class="rounded mt-2 my-2" alt="profile Image"
                                 src="/storage/{{$rider->profilepic}}" width="150" height="150" />
@@ -29,12 +109,12 @@
                             <img id="profilepic" class="rounded mt-2" alt="profile Image"
                                 src="{!! asset('img/user.png') !!}" width="150" height="150" />
                             @endif
-
                         </div>
+
                         <table class="table">
                             <tr>
                                 <td>Rider Name:</td>
-                            <td style="text-transform: capitalize;"><strong>{{$rider->payername}}</strong></td>
+                                <td style="text-transform: capitalize;"><strong>{{$rider->payername}}</strong></td>
                             </tr>
                             <tr>
                                 <td>Nick Name:</td>
@@ -94,7 +174,7 @@
                             <tr>
                                 <td>Contact Address:</td>
                                 <td style="text-transform: capitalize;">
-                                    <strong>{{$rider->address}}</strong></td>
+                                    <strong><div style=" word-wrap: break-word; width: 250px;">{{$rider->address}}</div></strong></td>
                             </tr>
                         </table>
                     </div>
@@ -117,7 +197,7 @@
                         <table class="table">
                             <tr>
                                 <td>Bike Brand:</td>
-                                <td style="text-transform: capitalize;"><strong></strong>
+                                <td style="text-transform: capitalize;"><strong>{{$rider->bikebrand}}</strong>
                                 </td>
                             </tr>
                             <tr>
@@ -186,7 +266,7 @@
                         <table class="table">
                             <tr>
                                 <td>Title:</td>
-                            <td style="text-transform: capitalize;"><strong>{{$rider->title}}</strong>
+                                <td style="text-transform: capitalize;"><strong>{{$rider->title}}</strong>
                                 </td>
                             </tr>
                             <tr>
@@ -279,9 +359,9 @@
             </div>
             <div class="form-group row h-100 justify-content-center align-items-center">
                 <div class="float-left mx-5">
-                   <a href="{{ route('home') }}" class="btn btn-primary"> Back </a>
+                    <a href="{{ route('home') }}" class="btn btn-primary"> Back </a>
                 </div>
-            
+
             </div>
         </form>
     </div>
