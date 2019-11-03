@@ -49,7 +49,7 @@
                                 <div class="col-md-7">
                                     <input id="firstname" type="text"
                                         class="form-control @error('firstname') is-invalid @enderror" name="firstname"
-                                        value="{{old('firstname') }}" required autocomplete="firstname" autofocus
+                                        value="{{session('nextkin.firstname') }}" required autocomplete="firstname" autofocus
                                         style="text-transform: capitalize;">
 
                                     @error('firstname')
@@ -65,7 +65,7 @@
                                 <div class="col-md-7">
                                     <input id="middlename" type="text"
                                         class="form-control @error('middlename') is-invalid @enderror" name="middlename"
-                                        value="{{old('middlename')}}" required autocomplete="name" autofocus
+                                        value="{{session('nextkin.middlename')}}" required autocomplete="name" autofocus
                                         style="text-transform: capitalize;">
 
                                     @error('middlename')
@@ -80,7 +80,7 @@
                                 <div class="col-md-7">
                                     <input id="surname" type="text"
                                         class="form-control @error('surname') is-invalid @enderror" name="surname"
-                                        value="{{old('surname') }}" required autocomplete="name" autofocus
+                                        value="{{session('nextkin.surname') }}" required autocomplete="name" autofocus
                                         style="text-transform: capitalize;">
 
                                     @error('surname')
@@ -128,7 +128,7 @@
 
                                 <div class="col-md-7">
                                     <input id="bvn" type="text" class="form-control @error('bvn') is-invalid @enderror"
-                                        name="bvn" value="{{ old('bvn') }}" required autocomplete="bvn">
+                                        name="bvn" value="{{session('nextkin.bvn') }}" required autocomplete="bvn">
 
                                     @error('BVN')
                                     <span class="invalid-feedback" role="alert">
@@ -188,7 +188,7 @@
                                     Origin</label>
                                 <div class="col-md-7">
                                     <select name="lga" id="lga" class="form-control" required>
-                                        <option value="{{old('lga') }}">{{old('lga') }}</option>
+                                        <option value="{{session('nextkin.lga') }}">{{session('nextkin.lga') }}</option>
                                     </select>
                                 </div>
                                 @error('lga')
@@ -204,7 +204,7 @@
                                 <div class="col-md-7">
                                     <input id="kinphonenumber" type="phonenumber"
                                         class="form-control @error('kinphonenumber') is-invalid @enderror"
-                                        name="kinphonenumber" value="{{ old('kinphonenumber') }}">
+                                        name="kinphonenumber" value="{{session('nextkin.kinphonenumber') }}">
                                     @error('kinphonenumber')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -218,7 +218,7 @@
                                     <div class="col-md-7">
                                         <input id="housenumname" type="text"
                                             class="form-control @error('housenumname') is-invalid @enderror" name="housenumname"
-                                            value="{{old('housenumname') }}" required autocomplete="housenumname" autofocus
+                                            value="{{session('nextkin.housenumname') }}" required autocomplete="housenumname" autofocus
                                             style="text-transform: capitalize;">
     
                                         @error('housenumname')
@@ -234,7 +234,7 @@
                                     <div class="col-md-7">
                                         <input id="streetname" type="text"
                                             class="form-control @error('streetname') is-invalid @enderror" name="streetname"
-                                            value="{{old('streetname')}}" required autocomplete="streetname" autofocus
+                                            value="{{session('nextkin.streetname')}}" required autocomplete="streetname" autofocus
                                             style="text-transform: capitalize;">
     
                                         @error('streetname')
@@ -249,7 +249,7 @@
                                     <div class="col-md-7">
                                         <input id="villagetown" type="text"
                                             class="form-control @error('villagetown') is-invalid @enderror" name="villagetown"
-                                            value="{{old('villagetown') }}" required autocomplete="villagetown" autofocus
+                                            value="{{session('nextkin.villagetown') }}" required autocomplete="villagetown" autofocus
                                             style="text-transform: capitalize;">
     
                                         @error('villagetown')
@@ -264,7 +264,7 @@
                                     Address:</label>
                                 <div class="col-md-7">
                                     <textarea class="form-control  @error('address') is-invalid @enderror"
-                                        name="address" value={{ old('address') }} required autocomplete="address"
+                                        name="address" value={{session('nextkin.address') }} required autocomplete="address"
                                         rows="5" id="address" required autocomplete="address"
                                         style="text-transform: capitalize;">
                                         </textarea>

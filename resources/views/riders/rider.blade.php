@@ -35,7 +35,7 @@
                                 <div class="col-md-7">
                                     <input id="firstname" type="text"
                                         class="form-control @error('firstname') is-invalid @enderror" name="firstname"
-                                        value="{{old('firstname') }}" required autocomplete="firstname" autofocus
+                                        value="{{session('rider.firstname')}}" required autocomplete="firstname" autofocus
                                         style="text-transform: capitalize;">
 
                                     @error('firstname')
@@ -51,7 +51,7 @@
                                 <div class="col-md-7">
                                     <input id="middlename" type="text"
                                         class="form-control @error('middlename') is-invalid @enderror" name="middlename"
-                                        value="{{old('middlename')}}" required autocomplete="name" autofocus
+                                        value="{{session('rider.middlename')}}" required autocomplete="name" autofocus
                                         style="text-transform: capitalize;">
 
                                     @error('middlename')
@@ -66,7 +66,7 @@
                                 <div class="col-md-7">
                                     <input id="surname" type="text"
                                         class="form-control @error('surname') is-invalid @enderror" name="surname"
-                                        value="{{old('surname') }}" required autocomplete="name" autofocus
+                                        value="{{session('rider.surname')}}" required autocomplete="name" autofocus
                                         style="text-transform: capitalize;">
 
                                     @error('surname')
@@ -81,7 +81,7 @@
                                 <div class="col-md-7">
                                     <input id="nickname" type="text"
                                         class="form-control @error('nickname') is-invalid @enderror" name="nickname"
-                                        value="{{old('nickname') }}" required autocomplete="nickname" autofocus
+                                        value="{{session('rider.nickname')}}" required autocomplete="nickname" autofocus
                                         style="text-transform: capitalize;">
 
                                     @error('nickname')
@@ -116,7 +116,7 @@
                                     Details:</label>
                                 <div class="col-md-7">
                                     <textarea class="form-control  @error('parttime_details') is-invalid @enderror"
-                                        name="parttime_details" value={{ old('parttime_details') }} required autocomplete="parttime_details"
+                                        name="parttime_details" value={{session('rider.parttime_details')}} required autocomplete="parttime_details"
                                         rows="2" id="parttime_details" required autocomplete="parttime_details"
                                         style="text-transform: capitalize;">
                                     </textarea>
@@ -167,7 +167,7 @@
                                     Birth</label>
                                 <div class='input-group date col-md-7' id='dob'>
                                     <input type="date" id="dob" class="form-control @error('dob') is-invalid @enderror"
-                                        name="dob" value="{{old('dob') }}">
+                                        name="dob" value="{{session('rider.dob')}}">
 
                                 </div>
                                 @error('dob')
@@ -186,9 +186,9 @@
                                         <input type="file" id="profile" class="form-control-file" id="profilepic"
                                             aria-describedby="fileHelp" name="profilepic" accept=".png, .jpg, .jpeg">
                                     </div>
-                                    @if(isset($rider->profilepic))
+                                    @if(session()->has('rider.profilepic'))
                                     <img id="profilepic" class="rounded mt-2" alt="profile Image"
-                                        src="/storage/{{$rider->profilepic}}" width="150" height="150" />
+                                        src="/storage/{{session('rider.profilepic')}}" width="150" height="150" />
                                     @else
                                     <img id="profilepic" class="rounded mt-2" alt="profile Image"
                                         src="{!! asset('img/user.png') !!}" width="150" height="150" />
@@ -222,8 +222,8 @@
                                     Origin</label>
                                 <div class="col-md-7">
                                     <select name="stateoforigin" id="state" class="form-control">
-                                        @if(isset($rider->stateoforigin))
-                                        <option value="{{$rider->stateoforigin}}">{{$rider->stateoforigin}}</option>
+                                        @if(session()->has('rider.stateoforigin'))
+                                        <option value="{{session('rider.stateoforigin')}}">{{session('rider.stateoforigin')}}</option>
                                         @else {
                                         <option value="" selected="selected">- Select -</option>
                                         }
@@ -274,7 +274,7 @@
                                     Origin</label>
                                 <div class="col-md-7">
                                     <select name="lga" id="lga" class="form-control" required>
-                                        <option value="{{old('lga') }}">{{old('lga') }}</option>
+                                        <option value="{{session('rider.lga')}}">{{session('rider.lga')}}</option>
                                     </select>
                                 </div>
                                 @error('lga')
@@ -289,7 +289,7 @@
                                 <div class="col-md-7">
                                     <input id="placeofbirth" type="text"
                                         class="form-control @error('placeofbirth') is-invalid @enderror"
-                                        name="placeofbirth" value="{{ old('placeofbirth') }}" required
+                                        name="placeofbirth" value="{{session('rider.placeofbirth')}}" required
                                         autocomplete="placeofbirth" autofocus style="text-transform: capitalize;">
                                     @error('Place of birth')
                                     <span class="invalid-feedback" role="alert">
@@ -303,7 +303,7 @@
 
                                 <div class="col-md-7">
                                     <input id="bvn" type="text" class="form-control @error('bvn') is-invalid @enderror"
-                                        name="bvn" value="{{ old('bvn') }}" required autocomplete="bvn">
+                                        name="bvn" value="{{session('rider.bvn')}}" required autocomplete="bvn">
 
                                     @error('BVN')
                                     <span class="invalid-feedback" role="alert">
@@ -320,7 +320,7 @@
                                 <div class="col-md-7">
                                     <input id="phonenumber" type="phonenumber"
                                         class="form-control @error('phonenumber') is-invalid @enderror"
-                                        name="phonenumber" value="{{ old('phonenumber') }}">
+                                        name="phonenumber" value="{{session('rider.phonenumber')}}">
                                     @error('phonenumber')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -334,7 +334,7 @@
                                 <div class="col-md-7">
                                     <input id="housenumname" type="text"
                                         class="form-control @error('housenumname') is-invalid @enderror" name="housenumname"
-                                        value="{{old('housenumname') }}" required autocomplete="housenumname" autofocus
+                                        value="{{session('rider.housenumname') }}" required autocomplete="housenumname" autofocus
                                         style="text-transform: capitalize;">
 
                                     @error('housenumname')
@@ -350,7 +350,7 @@
                                 <div class="col-md-7">
                                     <input id="streetname" type="text"
                                         class="form-control @error('streetname') is-invalid @enderror" name="streetname"
-                                        value="{{old('streetname')}}" required autocomplete="streetname" autofocus
+                                        value="{{session('rider.streetname')}}" required autocomplete="streetname" autofocus
                                         style="text-transform: capitalize;">
 
                                     @error('streetname')
@@ -365,7 +365,7 @@
                                 <div class="col-md-7">
                                     <input id="villagetown" type="text"
                                         class="form-control @error('villagetown') is-invalid @enderror" name="villagetown"
-                                        value="{{old('villagetown') }}" required autocomplete="villagetown" autofocus
+                                        value="{{session('rider.villagetown') }}" required autocomplete="villagetown" autofocus
                                         style="text-transform: capitalize;">
 
                                     @error('villagetown')
@@ -380,7 +380,7 @@
                                     Address:</label>
                                 <div class="col-md-7">
                                     <textarea class="form-control  @error('address') is-invalid @enderror"
-                                        name="address" value={{ old('address') }} required autocomplete="address"
+                                        name="address" value={{session('rider.address') }} required autocomplete="address"
                                         rows="5" id="address" required autocomplete="address"
                                         style="text-transform: capitalize;">
                                 </textarea>

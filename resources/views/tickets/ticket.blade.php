@@ -119,7 +119,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="vehicleno" class="col-md-4 col-form-label text-md-right">Payer Vehicle
+                            <label for="vehicleno" class="col-md-4 col-form-label text-md-right">Vehicle Reg.
                                 Number</label>
 
                             <div class="col-md-7">

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Tickets;
+use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\TicketsExport;
 
 class HomeController extends Controller
 {
@@ -29,7 +29,7 @@ class HomeController extends Controller
             ->select(['riders.id', 'riders.phonenumber', 'riders.status', 'riders.lga', 'bike_details.ridername',
                 'bike_details.registrationnum', 'other_details.unitparkname', 'other_details.riderid',
                 DB::raw("count(tickets.vehicleno) AS ticket_count")])
-             ->groupBy('riders.id');
+            ->groupBy('riders.id');
         if (request()->ajax()) {
             return datatables()->of($riderData)
                 ->addColumn('action', 'actionhome')
@@ -37,6 +37,10 @@ class HomeController extends Controller
                 ->addIndexColumn()
                 ->make(true);
         }
-        return view('home');
+        $currentDateTime = Carbon::now()->format('Y-m-d');
+        $todayTicket = Tickets::where('collectiondate', $currentDateTime)->count();
+        $totalRider = DB::table('riders')->count();
+        $sumIncome = DB::table('tickets')->where('tickets.collectiondate', $currentDateTime)->sum('amount');
+        return view('home', compact('todayTicket', 'totalRider', 'sumIncome'));
     }
 }

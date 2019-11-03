@@ -140,6 +140,16 @@
                                 <td style="text-transform: capitalize;"><strong>{{$rider->status}}</strong>
                                 </td>
                             </tr>
+                            @if(isset($rider->parttime_details))
+                            <tr>
+                                <td>Part-Time Details:</td>
+                                <td style="text-transform: capitalize;">
+                                    <strong>
+                                        <div style=" word-wrap: break-word; width: 250px;"> {{$rider->parttime_details}}</div>
+                                    </strong>
+                                </td>
+                            </tr>
+                            @endif
                             <tr>
                                 <td>Gender:</td>
                                 <td style="text-transform: capitalize;"><strong>{{$rider->gender}}</strong>
@@ -192,6 +202,21 @@
                                         <div style=" word-wrap: break-word; width: 250px;">{{$rider->address}}</div>
                                     </strong></td>
                             </tr>
+                            <tr>
+                                <td>House No./Name:</td>
+                                <td style="text-transform: capitalize;">
+                                    <strong>{{$rider->housenumname}}</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Street Name:</td>
+                                <td style="text-transform: capitalize;">
+                                    <strong>{{$rider->streetname}}</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Village/Town:</td>
+                                <td style="text-transform: capitalize;">
+                                    <strong>{{$rider->villagetown}}</strong></td>
+                            </tr>
                         </table>
                     </div>
                 </div>
@@ -229,7 +254,7 @@
                             </tr>
                             <tr>
                                 <td>Registration No.:</td>
-                                <td style="text-transform: capitalize;">
+                                <td style="text-transform: uppercase;">
                                     <strong>{{$rider->registrationnum}}</strong>
                                 </td>
                             </tr>
@@ -291,7 +316,8 @@
                             </tr>
                             <tr>
                                 <td>Full Name:</td>
-                                <td style="text-transform: capitalize;"><strong>{{$nxt->surname}} {{$nxt->firstname}} {{$nxt->middlename}}</strong></td>
+                                <td style="text-transform: capitalize;"><strong>{{$nxt->surname}} {{$nxt->firstname}}
+                                        {{$nxt->middlename}}</strong></td>
                             </tr>
                             <tr>
                                 <td>Gender:</td>
@@ -331,6 +357,21 @@
                                         <div style=" word-wrap: break-word; width: 250px;">{{$nxt->address}}</div>
                                     </strong></td>
 
+                            </tr>
+                            <tr>
+                                <td>House No./Name:</td>
+                                <td style="text-transform: capitalize;">
+                                    <strong>{{$nxt->housenumname}}</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Street Name:</td>
+                                <td style="text-transform: capitalize;">
+                                    <strong>{{$nxt->streetname}}</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Village/Town:</td>
+                                <td style="text-transform: capitalize;">
+                                    <strong>{{$nxt->villagetown}}</strong></td>
                             </tr>
 
 

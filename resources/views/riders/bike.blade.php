@@ -34,7 +34,7 @@
                             <div class="col-md-7">
                                 <input id="bikebrand" type="text"
                                     class="form-control @error('bikebrand') is-invalid @enderror" name="bikebrand"
-                                    value="{{old('bikebrand') }}" required autocomplete="bikebrand" autofocus style="text-transform: capitalize;">
+                                    value="{{session('bike.bikebrand') }}" required autocomplete="bikebrand" autofocus style="text-transform: capitalize;">
                                 @error('bikebrand')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -47,7 +47,7 @@
 
                             <div class="col-md-7">
                                 <input id="enginenumber" type="text" class="form-control @error('enginenumber') is-invalid @enderror"
-                                    name="enginenumber" value="{{ old('enginenumber') }}" required autocomplete="enginenumber" style="text-transform: uppercase;">
+                                    name="enginenumber" value="{{session('bike.enginenumber') }}" required autocomplete="enginenumber" style="text-transform: uppercase;">
 
                                 @error('enginenumber')
                                 <span class="invalid-feedback" role="alert">
@@ -62,7 +62,7 @@
 
                             <div class="col-md-7">
                                 <input id="chasisno" type="text" class="form-control @error('chasisno') is-invalid @enderror"
-                                    name="chasisno" value="{{ old('chasisno') }}" required autocomplete="chasisno" style="text-transform: uppercase;">
+                                    name="chasisno" value="{{session('bike.chasisno') }}" required autocomplete="chasisno" style="text-transform: uppercase;">
 
                                 @error('chasisno')
                                 <span class="invalid-feedback" role="alert">
@@ -73,11 +73,11 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="registrationnum" class="col-md-4 col-form-label text-md-right">Registration No.</label>
+                            <label for="registrationnum" class="col-md-4 col-form-label text-md-right">Vehicle Reg. No.</label>
 
                             <div class="col-md-7">
                                 <input id="registrationnum" type="text" class="form-control @error('registrationnum') is-invalid @enderror"
-                                    name="registrationnum" value="{{ old('registrationnum') }}" required autocomplete="registrationnum" style="text-transform: uppercase;">
+                                    name="registrationnum" value="{{session('bike.registrationnum') }}" required autocomplete="registrationnum" style="text-transform: uppercase;">
 
                                 @error('registrationnum')
                                 <span class="invalid-feedback" role="alert">
@@ -92,7 +92,7 @@
 
                             <div class="col-md-7">
                                 <input id="receiptnumber" type="text" class="form-control @error('receiptnumber') is-invalid @enderror"
-                                    name="receiptnumber" value="{{ old('receiptnumber') }}" required autocomplete="receiptnumber">
+                                    name="receiptnumber" value="{{session('bike.receiptnumber') }}" required autocomplete="receiptnumber">
 
                                 @error('receiptnumber')
                                 <span class="invalid-feedback" role="alert">
@@ -106,7 +106,7 @@
                                 Purchase</label>
                             <div class='input-group date col-md-7' id='dateofpurchase'>
                                 <input type="date" id="dateofpurchase" class="form-control @error('dateofpurchase') is-invalid @enderror"
-                                    name="dateofpurchase" value="{{old('dateofpurchase') }}">
+                                    name="dateofpurchase" value="{{session('bike.dateofpurchase') }}">
 
                             </div>
                             @error('dateofpurchase')
@@ -120,7 +120,7 @@
                             <div class="col-md-7">
                                 <input id="witnessname" type="text"
                                     class="form-control @error('witnessname') is-invalid @enderror" name="witnessname"
-                                    value="{{old('witnessname') }}" required autocomplete="witnessname" autofocus style="text-transform: capitalize;">
+                                    value="{{session('bike.witnessname') }}" required autocomplete="witnessname" autofocus style="text-transform: capitalize;">
 
                                 @error('witnessname')
                                 <span class="invalid-feedback" role="alert">
@@ -133,7 +133,7 @@
                             <label for="witnessaddress" class="col-md-4 col-form-label text-md-right">Witness Address</label>
                             <div class="col-md-7">
                                 <textarea class="form-control  @error('witnessaddress') is-invalid @enderror" name="witnessaddress"
-                                    value={{ old('witnessaddress') }} required autocomplete="address" rows="5" id="witnessaddress" style="text-transform: capitalize;">
+                                    value={{session('bike.witnessaddress') }} required autocomplete="address" rows="5" id="witnessaddress" style="text-transform: capitalize;">
                                 </textarea>
 
                                 @error('witnessaddress')
@@ -149,7 +149,7 @@
                             <div class="col-md-7">
                                 <input id="witnessphonenum" type="witnessphonenum"
                                     class="form-control @error('witnessphonenum') is-invalid @enderror" name="witnessphonenum"
-                                    value="{{ old('witnessphonenum') }}" required autocomplete="phonenumber">
+                                    value="{{session('bike.witnessphonenum') }}" required autocomplete="phonenumber">
                                 @error('witnessphonenum')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

@@ -20,12 +20,12 @@
                 <div class="collapse show" id="collapseCardExample">
                     <div class="card-body justify-content-center">
                         <div style="text-align: center" class="justify-content-center">
-                            @if(isset($rider->profilepic))
+                            @if(session()->has('rider.profilepic'))
                             <img id="profilepic" class="rounded mt-2 my-2" alt="profile Image"
-                            src="/app/public/{{session('rider.profilepic')}}" width="150" height="150" />
+                                src="/storage/{{session('rider.profilepic')}}" width="150" height="150" />
                             @else
                             <img id="profilepic" class="rounded mt-2" alt="profile Image"
-                            src="{!! asset('img/user.png') !!}" width="150" height="150" />
+                                src="{!! asset('img/user.png') !!}" width="150" height="150" />
                             @endif
 
                         </div>
@@ -45,6 +45,17 @@
                                 <td style="text-transform: capitalize;"><strong>{{session('rider.status')}}</strong>
                                 </td>
                             </tr>
+                            @if(session()->has('rider.parttime_details'))
+                            <tr>
+                                <td>Part-Time Details:</td>
+                                <td style="text-transform: capitalize;">
+                                    <strong>
+                                        <div style=" word-wrap: break-word; width: 250px;">
+                                            {{session('rider.parttime_details')}}</div>
+                                    </strong>
+                                </td>
+                            </tr>
+                            @endif
                             <tr>
                                 <td>Gender:</td>
                                 <td style="text-transform: capitalize;"><strong>{{session('rider.gender')}}</strong>
@@ -93,7 +104,25 @@
                             <tr>
                                 <td>Contact Address:</td>
                                 <td style="text-transform: capitalize;">
-                                    <strong>{{session('rider.address')}}</strong></td>
+                                    <strong>
+                                        <div style=" word-wrap: break-word; width: 250px;">
+                                            {{session('rider.address')}}</div>
+                                    </strong></td>
+                            </tr>
+                            <tr>
+                                <td>House No./Name:</td>
+                                <td style="text-transform: capitalize;">
+                                    <strong>{{session('rider.housenumname')}}</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Street Name:</td>
+                                <td style="text-transform: capitalize;">
+                                    <strong>{{session('rider.streetname')}}</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Village/Town:</td>
+                                <td style="text-transform: capitalize;">
+                                    <strong>{{session('rider.villagetown')}}</strong></td>
                             </tr>
 
 
@@ -221,7 +250,25 @@
                             <tr>
                                 <td>Contact Address:</td>
                                 <td style="text-transform: capitalize;">
-                                    <strong>{{session('nextkin.address')}}</strong></td>
+                                    <strong>
+                                        <div style=" word-wrap: break-word; width: 250px;">
+                                            {{session('nextkin.address')}}</div>
+                                    </strong></td>
+                            </tr>
+                            <tr>
+                                <td>House No./Name:</td>
+                                <td style="text-transform: capitalize;">
+                                    <strong>{{session('nextkin.housenumname')}}</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Street Name:</td>
+                                <td style="text-transform: capitalize;">
+                                    <strong>{{session('nextkin.streetname')}}</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Village/Town:</td>
+                                <td style="text-transform: capitalize;">
+                                    <strong>{{session('nextkin.villagetown')}}</strong></td>
                             </tr>
 
 
@@ -270,8 +317,8 @@
                     <a href="{{ route('confirmback') }}" class="btn btn-primary"> Back </a>
                 </div>
                 <div class="float-none mx-5">
-                        <a href="{{ route('cancel') }}" class="btn btn-primary"> Cancel </a>
-                    </div>
+                    <a href="{{ route('cancel') }}" class="btn btn-primary"> Cancel </a>
+                </div>
                 <div class="float-right mx-5">
                     <button type="submit" class="btn btn-primary">
                         Submit

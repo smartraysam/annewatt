@@ -34,7 +34,7 @@
                             <div class="col-md-7">
                                 <input id="riderid" type="text"
                                     class="form-control @error('bikebrand') is-invalid @enderror" name="riderid"
-                                    value="{{old('riderid') }}" required autocomplete="riderid" autofocus  style="text-transform: capitalize;">
+                                    value="{{session('other.riderid') }}" required autocomplete="riderid" autofocus  style="text-transform: capitalize;">
                                 @error('riderid')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -47,7 +47,7 @@
 
                             <div class="col-md-7">
                                 <input id="unitparkname" type="text" class="form-control @error('unitparkname') is-invalid @enderror"
-                                    name="unitparkname" value="{{ old('unitparkname') }}" required autocomplete="unitparkname"  style="text-transform: capitalize;">
+                                    name="unitparkname" value="{{session('nextkin.unitparkname') }}" required autocomplete="unitparkname"  style="text-transform: capitalize;">
 
                                 @error('unitparkname')
                                 <span class="invalid-feedback" role="alert">
@@ -62,7 +62,7 @@
 
                             <div class="col-md-7">
                                 <input id="chairmanname" type="text" class="form-control @error('chairmanname') is-invalid @enderror"
-                                    name="chairmanname" value="{{ old('chairmanname') }}" required autocomplete="chairmanname"  style="text-transform: capitalize;">
+                                    name="chairmanname" value="{{session('nextkin.chairmanname') }}" required autocomplete="chairmanname"  style="text-transform: capitalize;">
 
                                 @error('chairmanname')
                                 <span class="invalid-feedback" role="alert">
@@ -77,7 +77,7 @@
 
                             <div class="col-md-7">
                                 <input id="chairmanphoneno" type="phonenumber" class="form-control @error('chairmanphoneno') is-invalid @enderror"
-                                    name="chairmanphoneno" value="{{ old('chairmanphoneno') }}" required autocomplete="chairmanphoneno">
+                                    name="chairmanphoneno" value="{{session('nextkin.chairmanphoneno') }}" required autocomplete="chairmanphoneno">
 
                                 @error('chairmanphoneno')
                                 <span class="invalid-feedback" role="alert">
