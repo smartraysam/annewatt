@@ -23,6 +23,10 @@ class Riders extends Model
         'bvn',
         'dob',
         'address',
+        'housenumname',
+        'streetname',
+        'villagetown',
+        'parttime_details',
         'profilepic',
     ];
 }

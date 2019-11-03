@@ -20,6 +20,7 @@ class CreateRidersTable extends Migration
             $table->string('middlename');
             $table->string('surname');
             $table->string('status');
+            $table->string('parttime_details');
             $table->string('nickname');
             $table->string('gender');
             $table->string('martialstatus');
@@ -30,6 +31,9 @@ class CreateRidersTable extends Migration
             $table->string('bvn');
             $table->string('dob');
             $table->longText('address');
+            $table->longText('housenumname');
+            $table->longText('streetname');
+            $table->longText('villagetown');
             $table->string('profilepic')->default('user.jpg');
             $table->timestamps();
         });

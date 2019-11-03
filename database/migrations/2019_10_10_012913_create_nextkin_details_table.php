@@ -23,6 +23,9 @@ class CreateNextkinDetailsTable extends Migration
             $table->string('surname');
             $table->string('relationship');
             $table->longText('address');
+            $table->longText('housenumname');
+            $table->longText('streetname');
+            $table->longText('villagetown');
             $table->string('stateoforigin');
             $table->string('lga');
             $table->string('gender');

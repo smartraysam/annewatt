@@ -35,7 +35,8 @@
                                 <div class="col-md-7">
                                     <input id="firstname" type="text"
                                         class="form-control @error('firstname') is-invalid @enderror" name="firstname"
-                                        value="{{old('firstname') }}" required autocomplete="firstname" autofocus style="text-transform: capitalize;">
+                                        value="{{old('firstname') }}" required autocomplete="firstname" autofocus
+                                        style="text-transform: capitalize;">
 
                                     @error('firstname')
                                     <span class="invalid-feedback" role="alert">
@@ -50,7 +51,8 @@
                                 <div class="col-md-7">
                                     <input id="middlename" type="text"
                                         class="form-control @error('middlename') is-invalid @enderror" name="middlename"
-                                        value="{{old('middlename')}}" required autocomplete="name" autofocus style="text-transform: capitalize;">
+                                        value="{{old('middlename')}}" required autocomplete="name" autofocus
+                                        style="text-transform: capitalize;">
 
                                     @error('middlename')
                                     <span class="invalid-feedback" role="alert">
@@ -64,7 +66,8 @@
                                 <div class="col-md-7">
                                     <input id="surname" type="text"
                                         class="form-control @error('surname') is-invalid @enderror" name="surname"
-                                        value="{{old('surname') }}" required autocomplete="name" autofocus style="text-transform: capitalize;">
+                                        value="{{old('surname') }}" required autocomplete="name" autofocus
+                                        style="text-transform: capitalize;">
 
                                     @error('surname')
                                     <span class="invalid-feedback" role="alert">
@@ -78,7 +81,8 @@
                                 <div class="col-md-7">
                                     <input id="nickname" type="text"
                                         class="form-control @error('nickname') is-invalid @enderror" name="nickname"
-                                        value="{{old('nickname') }}" required autocomplete="nickname" autofocus style="text-transform: capitalize;">
+                                        value="{{old('nickname') }}" required autocomplete="nickname" autofocus
+                                        style="text-transform: capitalize;">
 
                                     @error('nickname')
                                     <span class="invalid-feedback" role="alert">
@@ -106,6 +110,23 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
+                            </div>
+                            <div class="form-group row parttime" id="parttime">
+                                <label for="parttime_details" class="col-md-4 col-form-label text-md-right">Part-Time
+                                    Details:</label>
+                                <div class="col-md-7">
+                                    <textarea class="form-control  @error('parttime_details') is-invalid @enderror"
+                                        name="parttime_details" value={{ old('parttime_details') }} required autocomplete="parttime_details"
+                                        rows="2" id="parttime_details" required autocomplete="parttime_details"
+                                        style="text-transform: capitalize;">
+                                    </textarea>
+
+                                    @error('parttime_details')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
                             </div>
                             <div class="form-group row">
                                 <!-- <label for="gender" class="col-md-4 col-form-label text-md-right">Gender</label> -->
@@ -162,15 +183,15 @@
                                     Image</label>
                                 <div class="col-md-7">
                                     <div class="form-group custom-file">
-                                        <input type="file" id="profile" class="form-control-file" id="profilepic" aria-describedby="fileHelp"
-                                            name="profilepic" accept=".png, .jpg, .jpeg">
+                                        <input type="file" id="profile" class="form-control-file" id="profilepic"
+                                            aria-describedby="fileHelp" name="profilepic" accept=".png, .jpg, .jpeg">
                                     </div>
                                     @if(isset($rider->profilepic))
                                     <img id="profilepic" class="rounded mt-2" alt="profile Image"
-                                    src="/storage/{{$rider->profilepic}}" width="150" height="150" />
+                                        src="/storage/{{$rider->profilepic}}" width="150" height="150" />
                                     @else
                                     <img id="profilepic" class="rounded mt-2" alt="profile Image"
-                                    src="{!! asset('img/user.png') !!}" width="150" height="150" />
+                                        src="{!! asset('img/user.png') !!}" width="150" height="150" />
                                     @endif
                                 </div>
                             </div>
@@ -308,12 +329,60 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label for="housenumname" class="col-md-4 col-form-label text-md-right">House
+                                    No./Name</label>
+                                <div class="col-md-7">
+                                    <input id="housenumname" type="text"
+                                        class="form-control @error('housenumname') is-invalid @enderror" name="housenumname"
+                                        value="{{old('housenumname') }}" required autocomplete="housenumname" autofocus
+                                        style="text-transform: capitalize;">
+
+                                    @error('housenumname')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="streetname" class="col-md-4 col-form-label text-md-right">Street
+                                    Name</label>
+                                <div class="col-md-7">
+                                    <input id="streetname" type="text"
+                                        class="form-control @error('streetname') is-invalid @enderror" name="streetname"
+                                        value="{{old('streetname')}}" required autocomplete="streetname" autofocus
+                                        style="text-transform: capitalize;">
+
+                                    @error('streetname')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="villagetown" class="col-md-4 col-form-label text-md-right">Village/Town</label>
+                                <div class="col-md-7">
+                                    <input id="villagetown" type="text"
+                                        class="form-control @error('villagetown') is-invalid @enderror" name="villagetown"
+                                        value="{{old('villagetown') }}" required autocomplete="villagetown" autofocus
+                                        style="text-transform: capitalize;">
+
+                                    @error('villagetown')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label for="address" class="col-md-4 col-form-label text-md-right">Contact
                                     Address:</label>
                                 <div class="col-md-7">
                                     <textarea class="form-control  @error('address') is-invalid @enderror"
                                         name="address" value={{ old('address') }} required autocomplete="address"
-                                        rows="5" id="address" required autocomplete="address" style="text-transform: capitalize;">
+                                        rows="5" id="address" required autocomplete="address"
+                                        style="text-transform: capitalize;">
                                 </textarea>
 
                                     @error('Address')
@@ -339,6 +408,18 @@
     <!-- /.container-fluid -->
 
 </div>
+<script type="text/javascript"> 
+    $(document).ready(function() { 
+        $("div.parttime").hide();
+        $('#part').click(function() { 
+           console.log('show part');
+           $("div.parttime").show();
+        }); 
+        $('#active').click(function() { 
+            $("div.parttime").hide();
+        }); 
+    }); 
+</script> 
 <!-- End of Main Content -->
 
 <!-- Footer -->
