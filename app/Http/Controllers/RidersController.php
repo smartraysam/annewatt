@@ -36,11 +36,18 @@ class RidersController extends Controller
     {
         $riderData = DB::table('riders')->where('riders.id', '=', $id)
             ->join('bike_details', 'riders.id', '=', 'bike_details.id')
-            ->join('nextkin_details', 'riders.id', '=', 'nextkin_details.id')
             ->join('other_details', 'riders.id', '=', 'other_details.id')
             ->join('tickets', 'bike_details.registrationnum', '=', 'tickets.vehicleno')
+            ->orderBy('tickets.collectiondate', 'desc')
             ->get();
-        return view('riders.riderview', compact('riderData', $riderData));
+        $ticketData = DB::table('bike_details')->where('bike_details.id', '=', $id)
+            ->join('tickets', 'bike_details.registrationnum', '=', 'tickets.vehicleno')
+            ->select([DB::raw("count(tickets.vehicleno) AS ticket_count")])
+            ->get();
+        $nextkinData = DB::table('nextkin_details')->where('nextkin_details.id', '=', $id)
+            ->get();
+
+        return view('riders.riderview', compact('riderData', 'ticketData', 'nextkinData'));
     }
     public function createRider(Request $request)
     {

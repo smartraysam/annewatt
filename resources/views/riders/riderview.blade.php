@@ -17,6 +17,7 @@
                     <h6 class="m-0 font-weight-bold text-primary">Rider Details</h6>
                 </a>
                 <!-- Card Content - Collapse -->
+
                 @foreach($riderData as $rider)
                 @if ($loop->first)
                 <div class="collapse show" id="collapseCardExample">
@@ -25,54 +26,16 @@
 
                             <!-- Earnings (Monthly) Card Example -->
                             <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-primary shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                    Ticket Entry
-                                                    (Today)</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">200</div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                            <!-- Earnings (Monthly) Card Example -->
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-primary shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                    Earnings
-                                                    (Today)</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">₦ 2,000</div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Earnings (Monthly) Card Example -->
-                            <div class="col-xl-3 col-md-6 mb-4">
                                 <div class="card border-left-success shadow h-100 py-2">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                    Total Riders
+                                                    Last Active Date
                                                 </div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">5,000</div>
+
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800" id="lastactive">
+                                                    {{$rider->collectiondate}}</div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -80,6 +43,42 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                {{-- <div class="card border-left-success shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                        Last Active Date
+                                                    </div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">5,000</div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> --}}
+                            </div>
+                            <div class="col-xl-3 col-md-6 mb-4">
+
+                                {{-- <div class="card border-left-success shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                        Last Active Date
+                                                    </div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">5,000</div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> --}}
                             </div>
                             <!-- Pending Requests Card Example -->
                             <div class="col-xl-3 col-md-6 mb-4">
@@ -88,9 +87,15 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                    Active Riders
+                                                    Total Tickets Paid
                                                 </div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">2,800</div>
+                                                @foreach($ticketData as $tick)
+                                                @if ($loop->first)
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800" id="totalticket">
+                                                    {{$tick->ticket_count}}</div>
+                                                @endif
+                                                @endforeach
+
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -100,16 +105,25 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div style="text-align: left" class="justify-content-left col">
+                                <br>
+                                <br>
+                                <br>
+                                <h4>Rider Identification Number: {{$rider->riderid}}</h4>
+                            </div>
+                            <div style="text-align: right" class="justify-content-right col mr-5">
+                                @if(isset($rider->profilepic))
+                                <img id="profilepic" class="rounded mt-2 my-2" alt="profile Image"
+                                    src="/storage/{{$rider->profilepic}}" width="150" height="150" />
+                                @else
+                                <img id="profilepic" class="rounded mt-2" alt="profile Image"
+                                    src="{!! asset('img/user.png') !!}" width="150" height="150" />
+                                @endif
+                            </div>
 
-                        <div style="text-align: center" class="justify-content-left">
-                            @if(isset($rider->profilepic))
-                            <img id="profilepic" class="rounded mt-2 my-2" alt="profile Image"
-                                src="/storage/{{$rider->profilepic}}" width="150" height="150" />
-                            @else
-                            <img id="profilepic" class="rounded mt-2" alt="profile Image"
-                                src="{!! asset('img/user.png') !!}" width="150" height="150" />
-                            @endif
                         </div>
+
 
                         <table class="table">
                             <tr>
@@ -174,7 +188,9 @@
                             <tr>
                                 <td>Contact Address:</td>
                                 <td style="text-transform: capitalize;">
-                                    <strong><div style=" word-wrap: break-word; width: 250px;">{{$rider->address}}</div></strong></td>
+                                    <strong>
+                                        <div style=" word-wrap: break-word; width: 250px;">{{$rider->address}}</div>
+                                    </strong></td>
                             </tr>
                         </table>
                     </div>
@@ -203,46 +219,50 @@
                             <tr>
                                 <td>Engine Number:</td>
                                 <td style="text-transform: capitalize;">
-                                    <strong></strong>
+                                    <strong>{{$rider->enginenumber}}</strong>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Chassis Number:</td>
-                                <td style="text-transform: capitalize;"><strong></strong>
+                                <td style="text-transform: capitalize;"><strong>{{$rider->chasisno}}</strong>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Registration No.:</td>
                                 <td style="text-transform: capitalize;">
-                                    <strong></strong>
+                                    <strong>{{$rider->registrationnum}}</strong>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Purchase Receipt No.:</td>
                                 <td style="text-transform: capitalize;">
-                                    <strong></strong></td>
+                                    <strong>{{$rider->receiptnumber}}</strong></td>
                             </tr>
                             <tr>
                                 <td>Date of
                                     Purchase:</td>
                                 <td style="text-transform: capitalize;">
-                                    <strong></strong></td>
+                                    <strong>{{$rider->dateofpurchase}}</strong></td>
                             </tr>
                             <tr>
                                 <td>Witness Name:</td>
                                 <td style="text-transform: capitalize;">
-                                    <strong></strong></td>
+                                    <strong>{{$rider->witnessname}}</strong></td>
                             </tr>
                             <tr>
                                 <td>Witness Address:</td>
                                 <td style="text-transform: capitalize;">
-                                    <strong></strong></td>
+                                    <strong>
+                                        <div style=" word-wrap: break-word; width: 250px;">{{$rider->witnessaddress}}
+                                        </div>
+                                    </strong></td>
+
                             </tr>
 
                             <tr>
                                 <td>WitnessPhone Number:</td>
                                 <td style="text-transform: capitalize;">
-                                    <strong></strong></td>
+                                    <strong>{{$rider->witnessphonenum}}</strong></td>
                             </tr>
 
                         </table>
@@ -259,55 +279,58 @@
                     <h6 class="m-0 font-weight-bold text-primary">Next of Kin Details</h6>
                 </a>
                 <!-- Card Content - Collapse -->
-                @foreach($riderData as $rider)
+                @foreach($nextkinData as $nxt)
                 @if ($loop->first)
                 <div class="collapse show" id="collapseCardExample">
                     <div class="card-body">
                         <table class="table">
                             <tr>
                                 <td>Title:</td>
-                                <td style="text-transform: capitalize;"><strong>{{$rider->title}}</strong>
+                                <td style="text-transform: capitalize;"><strong>{{$nxt->title}}</strong>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Full Name:</td>
-                                <td style="text-transform: capitalize;"><strong></strong></td>
+                                <td style="text-transform: capitalize;"><strong>{{$nxt->surname}} {{$nxt->firstname}} {{$nxt->middlename}}</strong></td>
                             </tr>
                             <tr>
                                 <td>Gender:</td>
-                                <td style="text-transform: capitalize;"><strong></strong>
+                                <td style="text-transform: capitalize;"><strong>{{$nxt->gender}}</strong>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Relationship:</td>
                                 <td style="text-transform: capitalize;">
-                                    <strong></strong></td>
+                                    <strong>{{$nxt->relationship}}</strong></td>
                             </tr>
                             <tr>
                                 <td>Bank Verification Number:</td>
                                 <td style="text-transform: capitalize;">
-                                    <strong></strong></td>
+                                    <strong>{{$nxt->bvn}}</strong></td>
                             </tr>
 
                             <tr>
                                 <td>State of Origin:</td>
                                 <td style="text-transform: capitalize;">
-                                    <strong></strong></td>
+                                    <strong>{{$nxt->stateoforigin}}</strong></td>
                             </tr>
                             <tr>
                                 <td>Local Government Area:</td>
                                 <td style="text-transform: capitalize;">
-                                    <strong></strong></td>
+                                    <strong>{{$nxt->lga}}</strong></td>
                             </tr>
                             <tr>
                                 <td>Phone Number:</td>
                                 <td style="text-transform: capitalize;">
-                                    <strong></strong></td>
+                                    <strong>{{$nxt->kinphonenumber}}</strong></td>
                             </tr>
                             <tr>
                                 <td>Contact Address:</td>
                                 <td style="text-transform: capitalize;">
-                                    <strong></strong></td>
+                                    <strong>
+                                        <div style=" word-wrap: break-word; width: 250px;">{{$nxt->address}}</div>
+                                    </strong></td>
+
                             </tr>
 
 
@@ -332,24 +355,24 @@
                             <tr>
                                 <td>Unit Park Name:</td>
                                 <td style="text-transform: capitalize;">
-                                    <strong></strong>
+                                    <strong>{{$rider->unitparkname}}</strong>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Chairman Name:</td>
-                                <td style="text-transform: capitalize;"><strong>
+                                <td style="text-transform: capitalize;"><strong>{{$rider->chairmanname}}
                                     </strong></td>
                             </tr>
                             <tr>
                                 <td>Chairman Phone No.:</td>
                                 <td style="text-transform: capitalize;">
-                                    <strong></strong>
+                                    <strong>{{$rider->chairmanphoneno}}</strong>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Rider Identification Number:</td>
                                 <td style="text-transform: capitalize;">
-                                    <strong></strong></td>
+                                    <strong>{{$rider->riderid}}</strong></td>
                             </tr>
                         </table>
                     </div>

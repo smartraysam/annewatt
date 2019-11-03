@@ -50,7 +50,7 @@
                 aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
                 <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
+                <span class="badge badge-danger badge-counter">0</span>
             </a>
             <!-- Dropdown - Alerts -->
             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -58,7 +58,7 @@
                 <h6 class="dropdown-header">
                     Alerts Center
                 </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
+                {{-- <a class="dropdown-item d-flex align-items-center" href="#">
                     <div class="mr-3">
                         <div class="icon-circle bg-primary">
                             <i class="fas fa-file-alt text-white"></i>
@@ -90,8 +90,8 @@
                         <div class="small text-gray-500">December 2, 2019</div>
                         Spending Alert: We've noticed unusually high spending for your account.
                     </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                </a> --}}
+                <a class="dropdown-item text-center small text-gray-500" href="#">No Alerts</a>
             </div>
         </li>
 
@@ -101,7 +101,7 @@
                 aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-envelope fa-fw"></i>
                 <!-- Counter - Messages -->
-                <span class="badge badge-danger badge-counter">7</span>
+                <span class="badge badge-danger badge-counter">0</span>
             </a>
             <!-- Dropdown - Messages -->
             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -109,7 +109,7 @@
                 <h6 class="dropdown-header">
                     Message Center
                 </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
+                {{-- <a class="dropdown-item d-flex align-items-center" href="#">
                     <div class="dropdown-list-image mr-3">
                         <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
                         <div class="status-indicator bg-success"></div>
@@ -152,8 +152,8 @@
                             people say this to all dogs, even if they aren't good...</div>
                         <div class="small text-gray-500">Chicken the Dog · 2w</div>
                     </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+                </a> --}}
+                <a class="dropdown-item text-center small text-gray-500" href="#">No Messages</a>
             </div>
         </li>
 
