@@ -13,7 +13,7 @@
 Route::get('/', 'HomeController@home')->name('index');
 Route::get('/index', 'HomeController@home')->name('index');
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+Route::get('/admin', 'HomeController@index')->name('home')->middleware('auth');
 //create rider
 
 Route::get('/riders', 'RidersController@index')->name('viewriders');

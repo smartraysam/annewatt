@@ -20,6 +20,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    public function home()
+    {
+
+        return view('index');
+    }
     public function index()
     {
         $riderData = DB::table('bike_details')
@@ -41,6 +46,6 @@ class HomeController extends Controller
         $todayTicket = Tickets::where('collectiondate', $currentDateTime)->count();
         $totalRider = DB::table('riders')->count();
         $sumIncome = DB::table('tickets')->where('tickets.collectiondate', $currentDateTime)->sum('amount');
-        return view('home', compact('todayTicket', 'totalRider', 'sumIncome'));
+        return view('admin', compact('todayTicket', 'totalRider', 'sumIncome'));
     }
 }
