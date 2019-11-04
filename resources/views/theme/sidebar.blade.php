@@ -80,31 +80,31 @@
 
      <!-- Nav Item - Charts -->
      <li class="nav-item">
-         <a class="nav-link" href="charts.html">
+         <a class="nav-link" href="#">
             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
              <span>Profile</span></a>
      </li>
      <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="#">
             <i class="fas fa-envelope fa-sm fa-fw mr-2 text-gray-400"></i>
             <span>Messages</span></a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="#">
             <i class="fas fa-bell fa-sm fa-fw mr-2 text-gray-400"></i>
             <span>Notifications</span></a>
     </li>
 
      <!-- Nav Item - Tables -->
      <li class="nav-item">
-         <a class="nav-link" href="tables.html">
+         <a class="nav-link"href="#">
             <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
              <span>Settings</span></a>
      </li>
 
      <li class="nav-item">
-         <a class="nav-link" href="tables.html">
+         <a class="nav-link" href="#">
             <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
              <span>Log Activities</span></a>
      </li>
