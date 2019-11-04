@@ -10,9 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
  */
-
+Route::get('/', 'HomeController@home')->name('index');
+Route::get('/index', 'HomeController@home')->name('index');
 Auth::routes();
-Route::get('/', 'HomeController@index')->name('/')->middleware('auth');
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 //create rider
 
