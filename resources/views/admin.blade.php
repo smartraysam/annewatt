@@ -186,7 +186,7 @@
          processing: true,
          serverSide: true,
          ajax: {
-          url: SITEURL + "/home",
+          url: SITEURL + "/admin",
           type: 'GET',
          },
          columns: [
