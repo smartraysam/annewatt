@@ -34,6 +34,7 @@
 
         <main class="py-4">
             @yield('content')
+            @include('theme.footer')
         </main>
     </div>
 

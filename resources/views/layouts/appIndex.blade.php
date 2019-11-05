@@ -23,6 +23,13 @@
         rel="stylesheet">
 
     <link href="{!! asset('css/sb-admin-2.css') !!}" rel="stylesheet">
+  
+    <link href="{!! asset('css/style.css') !!}" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/animate.css">
+  
+    <link rel="stylesheet" href="css/style.css">
+   
 
 </head>
 
@@ -31,7 +38,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container" style=" display: block; text-align: left; text-transform:uppercase ">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    <img src="{!! asset('favicon.ico') !!}" style="width:25px;height:25px;">  {{ config('app.name', 'Laravel') }}
                 </a>
 
             </div>
@@ -45,7 +52,7 @@
                 <!-- Topbar Search -->
                 <form class="d-none d-sm-inline-block form-inline navbar-search">
                     <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Enter Rider ID to search..."
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="Enter Rider ID..."
                             aria-label="Search" aria-describedby="basic-addon2">
                         <div class="input-group-append">
                             <button class="btn btn-primary" type="button">
@@ -61,6 +68,7 @@
 
         <main class="py-4">
             @yield('content')
+            @include('theme.footer')
         </main>
     </div>
 
@@ -70,15 +78,20 @@
     <script src="{!! asset('vendor/jquery-easing/jquery.easing.min.js') !!}"></script>
     <script src="{!! asset('js/sb-admin-2.min.js') !!}"></script>
 
-    <script src="{!! asset('vendor/chart.js/Chart.min.js') !!}"></script>
-    <script src="{!! asset('js/demo/chart-area-demo.js') !!}"></script>
-    <script src="{!! asset('js/demo/chart-pie-demo.js') !!}"></script>
-
-
-
     <!-- Bootstrap Core JavaScript -->
 
     <script src="{!! asset('vendor/bootstrap/js/bootstrap.min.js') !!}"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/jquery-migrate-3.0.0.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+
+
+
+    <script src="js/main.js"></script>
 </body>
 
 </html>
