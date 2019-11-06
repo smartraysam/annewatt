@@ -6,10 +6,10 @@
     <section class="site-hero overlay" data-stellar-background-ratio="0.5"
         style="background-image: url(img/okada.jpg);">
         <div class="container">
-            <div class="row align-items-center site-hero-inner justify-content-center">
+            <div class="row align-items-center  justify-content-center">
                 <div class="col-md-8 text-center">
 
-                    <div class="mb-5 element-animate fadeInUp element-animated">
+                    <div class="mb-5 element-animate fadeInUp element-animated" style=" margin-top: 20%;">
                         <img src="{!! asset('favicon.ico') !!}" style="width:80px;height:80px;">
                         <h1>ANNEWATT</h1>
                         <h1>Know more about your rider.</h1>
@@ -18,9 +18,9 @@
 
                     <form class="form-inline element-animate fadeInUp element-animated" id="search-form">
                         <label for="s" class="sr-only">Location</label>
-                        <input type="text" class="form-control form-control-block search-input" id="autocomplete"
+                        <input type="text" class="form-control form-control-block search-input" id="rideridbody"
                             placeholder="Enter Rider ID" autocomplete="off">
-                        <button type="submit" class="btn btn-primary">Search</button>
+                        <button type="submit" class="btn btn-primary view-riderbody">Search</button>
                     </form>
 
                 </div>
@@ -35,23 +35,37 @@
                     <h4 class="modal-title" id="riderdetails"></h4>
                 </div>
                 <div class="modal-body">
+                    <div class="row">
+                        <div style="text-align: left" class="justify-content-left col">
+                            <br>
+                            <br>
+                            <br>
+                            <h4 id="riderID"></h4>
+                        </div>
+                        <div style="text-align: right" class="justify-content-right col mr-5">
+                            <img id="profilepic" class="rounded mt-2" alt="profile Image"
+                                src="{!! asset('img/user.png') !!}" width="150" height="150" />
+                            {{-- @if(isset($rider->profilepic))
+                            <img id="profilepic" class="rounded mt-2 my-2" alt="profile Image"
+                                src="/storage/{{$rider->profilepic}}" width="150" height="150" />
+                            @else
+
+                            @endif --}}
+                        </div>
+
+                    </div>
                     <form id="riderdetailsform" name="riderdetailsform" class="form-horizontal ticketform">
                         {{ csrf_field() }}
 
                         <div class="card shadow mb-4">
                             <!-- Card Header - Accordion -->
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Ticket Entry Review</h6>
-                                <br>
-                                <div id="tranID" style="text-align: center"> Transaction ID>:</div>
-                            </div>
                             <!-- Card Content - Collapse -->
                             <div class="collapse show" id="collapseCardExample">
                                 <div class="card-body justify-content-center">
                                     <table class="table">
                                         <tr>
-                                            <td>Collector Name:</td>
-                                            <td style="text-transform: capitalize;" id="collectorname">
+                                            <td>Last Active Date:</td>
+                                            <td style="text-transform: capitalize;" id="lastactive">
                                             </td>
                                         </tr>
                                         <tr>
@@ -108,10 +122,6 @@
                     </form>
                 </div>
                 <div class="modal-footer" id="printdoc">
-                    <div class="float-left">
-                        <a data-dismiss="modal" class="btn btn-primary print" id="print" style="color: white;"> Print
-                        </a>
-                    </div>
                     <div class="float-right">
                         <a data-dismiss="modal" class="btn btn-primary" style="color: white;"> Close </a>
                     </div>
@@ -123,5 +133,66 @@
 
 
 </div>
+<script type="text/javascript">
+    var SITEURL = '{{URL::to('')}}';
+ $(document).ready( function () {
+   $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+  });
+   /* When click edit user */
+    $('body').on('click', '.view-riderbody', function () {
+      var _id = $('#rideridbody').val();
+      console.log(_id);
+      $.ajax({
+             type:"GET",
+             url:"/index/"+_id+'/details',
+             success : function(results) {
+              console.log(results);
+                 $('#riderdetails-modal').modal('show');
+                // $('#tranID').html('Transaction ID:'+ results[0].transID);
+                // $('#collectorname').html(results[0].collectorname);
+                // $('#vehicleno').html(results[0].vehicleno);
+                // $('#transID').html(results[0].transID);
+                // $('#amount').html(results[0].amount);
+                // $('#collectionlga').html(results[0].collectionlga);
+                // $('#collectiondate').html(results[0].collectiondate);
+                // $('#payername').html(results[0].payername);
+                // $('#payerID').html(results[0].payerID);
+                // $('#payerphone').html(results[0].payerphone);
+                // $('#payerlga').html(results[0].payerlga);
+             }
+        });
+
+   });
+
+   $('body').on('click', '.view-rider', function () {
+      var _id = $('#rideridheader').val();
+      console.log(_id);
+      $.ajax({
+             type:"GET",
+             url:"/index/"+_id+'/details',
+             success : function(results) {
+              console.log(results);
+                 $('#riderdetails-modal').modal('show');
+                // $('#tranID').html('Transaction ID:'+ results[0].transID);
+                // $('#collectorname').html(results[0].collectorname);
+                // $('#vehicleno').html(results[0].vehicleno);
+                // $('#transID').html(results[0].transID);
+                // $('#amount').html(results[0].amount);
+                // $('#collectionlga').html(results[0].collectionlga);
+                // $('#collectiondate').html(results[0].collectiondate);
+                // $('#payername').html(results[0].payername);
+                // $('#payerID').html(results[0].payerID);
+                // $('#payerphone').html(results[0].payerphone);
+                // $('#payerlga').html(results[0].payerlga);
+             }
+        });
+
+   });
+});
+
+</script>
 
 @endsection

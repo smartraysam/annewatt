@@ -22,7 +22,6 @@ class HomeController extends Controller
      */
     public function home()
     {
-
         return view('index');
     }
     public function index()
@@ -48,4 +47,17 @@ class HomeController extends Controller
         $sumIncome = DB::table('tickets')->where('tickets.collectiondate', $currentDateTime)->sum('amount');
         return view('admin', compact('todayTicket', 'totalRider', 'sumIncome'));
     }
+    public function details($riderid)
+    {
+        $riderData = DB::table('other_details')->where('other_details.riderid', $riderid)
+        ->join('riders', 'other_details.id', '=', 'riders.id')
+        ->get();
+        $riderData = DB::table('other_details')->where('other_details.riderid', $riderid)
+        ->join('tickets', 'other_details.riderid', '=', 'tickets.payerID')
+        ->orderBy('tickets.collectiondate', 'desc')
+        ->get();
+        $riderDetails=json_encode(['riderData' => $riderData, 'riderData' => $riderData]);
+        return Response::json($riderDetails);
+    }
+    
 }

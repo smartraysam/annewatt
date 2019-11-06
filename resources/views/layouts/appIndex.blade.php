@@ -17,19 +17,20 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Annewatt') }}</title>
     <!-- Bootstrap Core CSS -->
+    <script src="{!! asset('vendor/jquery/jquery.min.js') !!}"></script>
     <link href="{!! asset('vendor/fontawesome-free/css/all.min.css') !!}" rel="stylesheet">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <link href="{!! asset('css/sb-admin-2.css') !!}" rel="stylesheet">
-  
+
     <link href="{!! asset('css/style.css') !!}" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/animate.css">
-  
+
     <link rel="stylesheet" href="css/style.css">
-   
+
 
 </head>
 
@@ -53,9 +54,9 @@
                 <form class="d-none d-sm-inline-block form-inline navbar-search">
                     <div class="input-group">
                         <input type="text" class="form-control bg-light border-0 small" placeholder="Enter Rider ID..."
-                            aria-label="Search" aria-describedby="basic-addon2">
+                            aria-label="Search" aria-describedby="basic-addon2" id="rideridheader">
                         <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">
+                            <button class="btn btn-primary view-rider" type="button">
                                 <i class="fas fa-search fa-sm"></i>
                             </button>
                         </div>
@@ -73,7 +74,7 @@
     </div>
 
     <script src="{!! asset('vendor/jquery/jquery.min.js') !!}"></script>
-
+    <script src="{!! asset('vendor/jquery/jquery.js') !!}"></script>
     <script src="{!! asset('vendor/bootstrap/js/bootstrap.bundle.min.js') !!}"></script>
     <script src="{!! asset('vendor/jquery-easing/jquery.easing.min.js') !!}"></script>
     <script src="{!! asset('js/sb-admin-2.min.js') !!}"></script>

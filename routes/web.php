@@ -12,6 +12,7 @@
  */
 Route::get('/', 'HomeController@home')->name('index');
 Route::get('/index', 'HomeController@home')->name('index');
+Route::get('/index/{riderid}/details', 'RidersController@details');
 Auth::routes();
 Route::get('/admin', 'HomeController@index')->name('home')->middleware('auth');
 //create rider
