@@ -28,7 +28,6 @@
     <link href="{!! asset('css/style.css') !!}" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/animate.css">
-
     <link rel="stylesheet" href="css/style.css">
 
 
@@ -36,10 +35,11 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
             <div class="container" style=" display: block; text-align: left; text-transform:uppercase ">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{!! asset('favicon.ico') !!}" style="width:25px;height:25px;">  {{ config('app.name', 'Laravel') }}
+                    <img src="{!! asset('favicon.ico') !!}" style="width:25px;height:25px;">
+                    {{ config('app.name', 'Laravel') }}
                 </a>
 
             </div>
@@ -73,7 +73,7 @@
         </main>
     </div>
 
-    <script src="{!! asset('vendor/jquery/jquery.min.js') !!}"></script>
+    {{-- <script src="{!! asset('vendor/jquery/jquery.min.js') !!}"></script> --}}
     <script src="{!! asset('vendor/jquery/jquery.js') !!}"></script>
     <script src="{!! asset('vendor/bootstrap/js/bootstrap.bundle.min.js') !!}"></script>
     <script src="{!! asset('vendor/jquery-easing/jquery.easing.min.js') !!}"></script>
@@ -82,17 +82,7 @@
     <!-- Bootstrap Core JavaScript -->
 
     <script src="{!! asset('vendor/bootstrap/js/bootstrap.min.js') !!}"></script>
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/jquery-migrate-3.0.0.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.waypoints.min.js"></script>
-    <script src="js/jquery.stellar.min.js"></script>
 
-
-
-    <script src="js/main.js"></script>
 </body>
 
 </html>

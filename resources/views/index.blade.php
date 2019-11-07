@@ -3,8 +3,7 @@
 @section('content')
 <div id="content">
 
-    <section class="site-hero overlay" data-stellar-background-ratio="0.5"
-        style="background-image: url(img/okada.jpg);">
+    <section class="site-hero overlay" style="background-image: url(img/okada.jpg);">
         <div class="container">
             <div class="row align-items-center  justify-content-center">
                 <div class="col-md-8 text-center">
@@ -17,10 +16,9 @@
                     </div>
 
                     <form class="form-inline element-animate fadeInUp element-animated" id="search-form">
-                        <label for="s" class="sr-only">Location</label>
                         <input type="text" class="form-control form-control-block search-input" id="rideridbody"
-                            placeholder="Enter Rider ID" autocomplete="off">
-                        <button type="submit" class="btn btn-primary view-riderbody">Search</button>
+                            placeholder="Enter Rider ID" autocomplete="on">
+                        <button type="button" class="btn btn-primary view-riderbody">Search</button>
                     </form>
 
                 </div>
@@ -29,7 +27,7 @@
     </section>
 
     <div class="modal fade" id="riderdetails-modal" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="riderdetails"></h4>
@@ -38,11 +36,11 @@
                     <div class="row">
                         <div style="text-align: left" class="justify-content-left col">
                             <br>
-                            <br>
-                            <br>
                             <h4 id="riderID"></h4>
+                            <br>
+                            <h4 id="activeDate"></h4>
                         </div>
-                        <div style="text-align: right" class="justify-content-right col mr-5">
+                        <div style="text-align: right" class="justify-content-right col">
                             <img id="profilepic" class="rounded mt-2" alt="profile Image"
                                 src="{!! asset('img/user.png') !!}" width="150" height="150" />
                             {{-- @if(isset($rider->profilepic))
@@ -64,55 +62,55 @@
                                 <div class="card-body justify-content-center">
                                     <table class="table">
                                         <tr>
-                                            <td>Last Active Date:</td>
-                                            <td style="text-transform: capitalize;" id="lastactive">
+                                            <td>Rider Name:</td>
+                                            <td style="text-transform: capitalize;" id="ridername">
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Collection LGA:</td>
-                                            <td style="text-transform: capitalize;" id="collectionlga">
+                                            <td>Rider Status:</td>
+                                            <td style="text-transform: capitalize;" id="status">
 
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Collection Date:</td>
-                                            <td style="text-transform: capitalize;" id="collectiondate">
+                                            <td>Local Government Area:</td>
+                                            <td style="text-transform: capitalize;" id="lga">
 
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Amount (₦):</td>
-                                            <td style="text-transform: capitalize;" id="amount">
+                                            <td>Address:</td>
+                                            <td>
+                                                <div style="text-transform: capitalize; word-wrap: break-word; width: 250px;"
+                                                    id="address"></div>
 
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Transaction ID:</td>
-                                            <td style="text-transform: capitalize;" id="transID">
+                                            <td>Phone Number:</td>
+                                            <td style="text-transform: capitalize;" id="phoneno">
+
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Rider Vehicle Reg. No:</td>
+                                            <td style="text-transform: uppercase;" id="vehicle"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Rider Unit:</td>
+                                            <td style="text-transform: capitalize;" id="riderunit">
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Payer Vehicle Number:</td>
-                                            <td style="text-transform: uppercase;" id="vehicleno">
+                                            <td>Unit Chairman Name:</td>
+                                            <td style="text-transform: capitalize;" id="chairman">
 
                                         </tr>
                                         <tr>
-                                            <td>Payer's LGA:</td>
-                                            <td style="text-transform: capitalize;" id="payerlga">
+                                            <td>Chairman's Number:</td>
+                                            <td style="text-transform: capitalize;" id="chairmanno">
                                             </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Payer's Name:</td>
-                                            <td style="text-transform: capitalize;" id="payername">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Payer's ID:</td>
-                                            <td style="text-transform: capitalize;" id="payerID"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Payer's Phone No.:</td>
-                                            <td style="text-transform: capitalize;" id="payerphone"></td>
                                         </tr>
 
                                     </table>
@@ -144,24 +142,40 @@
    /* When click edit user */
     $('body').on('click', '.view-riderbody', function () {
       var _id = $('#rideridbody').val();
+      $("#rideridbody").attr("placeholder", "Enter Rider ID...").val("").focus().blur();
+      if(_id==''){
+        console.log('null');
+        alert("Please enter Rider ID");
+          return;
+      }
       console.log(_id);
       $.ajax({
              type:"GET",
              url:"/index/"+_id+'/details',
              success : function(results) {
-              console.log(results);
-                 $('#riderdetails-modal').modal('show');
-                // $('#tranID').html('Transaction ID:'+ results[0].transID);
-                // $('#collectorname').html(results[0].collectorname);
-                // $('#vehicleno').html(results[0].vehicleno);
-                // $('#transID').html(results[0].transID);
-                // $('#amount').html(results[0].amount);
-                // $('#collectionlga').html(results[0].collectionlga);
-                // $('#collectiondate').html(results[0].collectiondate);
-                // $('#payername').html(results[0].payername);
-                // $('#payerID').html(results[0].payerID);
-                // $('#payerphone').html(results[0].payerphone);
-                // $('#payerlga').html(results[0].payerlga);
+             var t = JSON.parse(results)
+             console.log(t ['riderData']);
+             console.log(t ['ticketData']);
+             if((t ['riderData'].length == 0) || (t['ticketData'].length == 0) ){
+                console.log('no Data');
+                alert("Rider not found");
+              }else{
+               
+                $('#riderdetails-modal').modal('show');
+                $('#riderID').html('Rider Identification Number: '+ _id);
+                $('#activeDate').html('Last Active Date: '+ t['ticketData'][0].collectiondate);
+                $('#ridername').html(t ['riderData'][0].surname +" "+ t ['riderData'][0].middlename +" "+ t ['riderData'][0].firstname);
+                 $('#status').html(t ['riderData'][0].status);
+                 $('#lga').html(t ['riderData'][0].lga);
+                 $('#address').html(t ['riderData'][0].address);
+                 $('#phoneno').html(t ['riderData'][0].phonenumber);
+                 $('#vehicle').html(t ['ticketData'][0].vehicleno);
+                 $('#riderunit').html(t ['riderData'][0].unitparkname);
+                 $('#chairmanno').html(t ['riderData'][0].chairmanphoneno);
+                 $('#chairman').html(t ['riderData'][0].chairmanname);
+                 $('#profilepic img').attr("src",SITEURL+"/storage/"+""+t ['riderData'][0].profilepic);
+                 console.log(SITEURL+"/storage/"+""+t ['riderData'][0].profilepic);
+              }
              }
         });
 
@@ -169,24 +183,41 @@
 
    $('body').on('click', '.view-rider', function () {
       var _id = $('#rideridheader').val();
+      $("#rideridheader").attr("placeholder", "Enter Rider ID...").val("").focus().blur();
+      if(_id==''){
+        console.log('null');
+        alert("Please Enter Rider ID");
+          return;
+      }
       console.log(_id);
       $.ajax({
              type:"GET",
              url:"/index/"+_id+'/details',
              success : function(results) {
-              console.log(results);
-                 $('#riderdetails-modal').modal('show');
-                // $('#tranID').html('Transaction ID:'+ results[0].transID);
-                // $('#collectorname').html(results[0].collectorname);
-                // $('#vehicleno').html(results[0].vehicleno);
-                // $('#transID').html(results[0].transID);
-                // $('#amount').html(results[0].amount);
-                // $('#collectionlga').html(results[0].collectionlga);
-                // $('#collectiondate').html(results[0].collectiondate);
-                // $('#payername').html(results[0].payername);
-                // $('#payerID').html(results[0].payerID);
-                // $('#payerphone').html(results[0].payerphone);
-                // $('#payerlga').html(results[0].payerlga);
+                console.log(results);
+                var t = JSON.parse(results)
+                console.log(t ['riderData']);
+                console.log(t ['ticketData']);
+             if((t ['riderData'].length == 0) || (t['ticketData'].length == 0) ){
+                console.log('no Data');
+                alert("Rider not found");
+              }else{
+                $('#riderdetails-modal').modal('show');
+                $('#riderID').html('Rider Identification Number: '+ _id);
+                $('#activeDate').html('Last Active Date: '+ t['ticketData'][0].collectiondate);
+                $('#ridername').html(t ['riderData'][0].surname +" "+ t ['riderData'][0].middlename +" "+ t ['riderData'][0].firstname);
+                 $('#status').html(t ['riderData'][0].status);
+                 $('#lga').html(t ['riderData'][0].lga);
+                 $('#address').html(t ['riderData'][0].address);
+                 $('#phoneno').html(t ['riderData'][0].phonenumber);
+                 $('#vehicle').html(t ['ticketData'][0].vehicleno);
+                 $('#riderunit').html(t ['riderData'][0].unitparkname);
+                 $('#chairmanno').html(t ['riderData'][0].chairmanphoneno);
+                 $('#chairman').html(t ['riderData'][0].chairmanname);
+                 $('#profilepic').attr("src",SITEURL+"/storage/"+""+t ['riderData'][0].profilepic);
+                 console.log(SITEURL+"/storage/"+""+t ['riderData'][0].profilepic);
+              }
+                
              }
         });
 

@@ -6,6 +6,7 @@ use App\Tickets;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request;
+use Response;
 
 class HomeController extends Controller
 {
@@ -47,17 +48,17 @@ class HomeController extends Controller
         $sumIncome = DB::table('tickets')->where('tickets.collectiondate', $currentDateTime)->sum('amount');
         return view('admin', compact('todayTicket', 'totalRider', 'sumIncome'));
     }
+
     public function details($riderid)
     {
         $riderData = DB::table('other_details')->where('other_details.riderid', $riderid)
-        ->join('riders', 'other_details.id', '=', 'riders.id')
-        ->get();
-        $riderData = DB::table('other_details')->where('other_details.riderid', $riderid)
-        ->join('tickets', 'other_details.riderid', '=', 'tickets.payerID')
-        ->orderBy('tickets.collectiondate', 'desc')
-        ->get();
-        $riderDetails=json_encode(['riderData' => $riderData, 'riderData' => $riderData]);
+            ->join('riders', 'other_details.id', '=', 'riders.id')
+            ->get();
+        $ticketData = DB::table('tickets')->where('tickets.payerID', $riderid)
+            ->orderBy('tickets.collectiondate', 'desc')
+            ->get();
+        $riderDetails = json_encode(['riderData' => $riderData, 'ticketData' => $ticketData]);
         return Response::json($riderDetails);
     }
-    
+
 }
