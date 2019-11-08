@@ -23,6 +23,7 @@
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
+        <p>{{ \Session::get('bike') }}</p>
         <div class="card-header">Next of Kin Information</div>
         <form method="POST" action="{{ route('postNextkin') }}" enctype="multipart/form-data">
             {{ csrf_field() }}

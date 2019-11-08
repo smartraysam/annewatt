@@ -38,6 +38,11 @@ h5 {
     z-index: 2;
 }
 
+td {
+    text-align: center;
+    font-weight: bold;
+}
+
 .site-hero.overlay {
     position: relative;
 }

@@ -110,21 +110,6 @@
       window.location.href = '/riders/'+_id+'/details';
    });
 
-
-//    $('body').on('click', '.edit-rider', function () {
-//       var _id = $(this).data('id');
-//       $.ajax({
-//              type:"GET",
-//              url:"/rider/"+_id+'/edit',
-//              success : function(results) {
-//              console.log(results);
-          
-//              }
-//         });
-
-//    });
-
-
    $('body').on('click', '.delete-rider', function () {
       var _id = $(this).data('id');
       $.ajax({

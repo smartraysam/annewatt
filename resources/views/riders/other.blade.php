@@ -20,7 +20,7 @@
     </div><br />
     @endif
     <!-- End of Topbar -->
-
+    <p>{{ \Session::get('nextkin') }}</p>
     <!-- Begin Page Content -->
     <div class="container-fluid">
         <div class="card-header">Other Information</div>

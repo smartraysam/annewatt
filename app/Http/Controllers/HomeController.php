@@ -53,6 +53,7 @@ class HomeController extends Controller
     {
         $riderData = DB::table('other_details')->where('other_details.riderid', $riderid)
             ->join('riders', 'other_details.id', '=', 'riders.id')
+            ->join('bike_details', 'other_details.id', '=', 'bike_details.id')
             ->get();
         $ticketData = DB::table('tickets')->where('tickets.payerID', $riderid)
             ->orderBy('tickets.collectiondate', 'desc')

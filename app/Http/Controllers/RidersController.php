@@ -34,20 +34,21 @@ class RidersController extends Controller
     }
     public function show($id)
     {
-        $riderData = DB::table('riders')->where('riders.id', '=', $id)
-            ->join('bike_details', 'riders.id', '=', 'bike_details.id')
-            ->join('other_details', 'riders.id', '=', 'other_details.id')
+        $riderData = DB::table('riders')->where('riders.id', $id)
+            ->join('other_details', 'other_details.id', '=', 'riders.id')
+            ->get();
+
+        $nextkinData = DB::table('nextkin_details')->where('nextkin_details.id', $id)
+            ->get();
+
+        $ticketData = DB::table('bike_details')->where('bike_details.id', $id)
             ->join('tickets', 'bike_details.registrationnum', '=', 'tickets.vehicleno')
             ->orderBy('tickets.collectiondate', 'desc')
             ->get();
-        $ticketData = DB::table('bike_details')->where('bike_details.id', '=', $id)
-            ->join('tickets', 'bike_details.registrationnum', '=', 'tickets.vehicleno')
-            ->select([DB::raw("count(tickets.vehicleno) AS ticket_count")])
-            ->get();
-        $nextkinData = DB::table('nextkin_details')->where('nextkin_details.id', '=', $id)
-            ->get();
-
-        return view('riders.riderview', compact('riderData', 'ticketData', 'nextkinData'));
+        $ticketCount = count($ticketData);
+       // $riderDetails = json_encode(['riderData' => $riderData, 'nextkinData' => $nextkinData, 'ticketData' => $ticketData, 'ticketCount' => $ticketCount]);
+       // return Response::json($riderDetails);
+        return view('riders.riderview', compact('riderData', 'nextkinData','ticketData', 'ticketCount'));
     }
     public function createRider(Request $request)
     {

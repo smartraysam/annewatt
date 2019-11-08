@@ -222,13 +222,13 @@
                                     Origin</label>
                                 <div class="col-md-7">
                                     <select name="stateoforigin" id="state" class="form-control">
-                                        @if(session()->has('rider.stateoforigin'))
+                                        {{-- @if(session()->has('rider.stateoforigin'))
                                         <option value="{{session('rider.stateoforigin')}}">{{session('rider.stateoforigin')}}</option>
                                         @else {
-                                        <option value="" selected="selected">- Select -</option>
+                                            <option value="" selected="selected">- Select -</option>
                                         }
-                                        @endif
-
+                                        @endif --}}
+                                        <option value="" selected="selected">- Select -</option>
                                         <option value="Abia">Abia</option>
                                         <option value='Adamawa'>Adamawa</option>
                                         <option value='AkwaIbom'>AkwaIbom</option>
@@ -274,7 +274,7 @@
                                     Origin</label>
                                 <div class="col-md-7">
                                     <select name="lga" id="lga" class="form-control" required>
-                                        <option value="{{session('rider.lga')}}">{{session('rider.lga')}}</option>
+                                        <option value="">Choose State</option>
                                     </select>
                                 </div>
                                 @error('lga')
@@ -411,6 +411,7 @@
 <script type="text/javascript"> 
     $(document).ready(function() { 
         $("div.parttime").hide();
+        $("textarea#parttime_details").val('Full Time');
         $('#part').click(function() { 
            console.log('show part');
            $("div.parttime").show();

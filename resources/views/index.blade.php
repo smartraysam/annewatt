@@ -17,7 +17,7 @@
 
                     <form class="form-inline element-animate fadeInUp element-animated" id="search-form">
                         <input type="text" class="form-control form-control-block search-input" id="rideridbody"
-                            placeholder="Enter Rider ID" autocomplete="on">
+                            placeholder="Enter Rider ID" autocomplete="off">
                         <button type="button" class="btn btn-primary view-riderbody">Search</button>
                     </form>
 
@@ -43,12 +43,6 @@
                         <div style="text-align: right" class="justify-content-right col">
                             <img id="profilepic" class="rounded mt-2" alt="profile Image"
                                 src="{!! asset('img/user.png') !!}" width="150" height="150" />
-                            {{-- @if(isset($rider->profilepic))
-                            <img id="profilepic" class="rounded mt-2 my-2" alt="profile Image"
-                                src="/storage/{{$rider->profilepic}}" width="150" height="150" />
-                            @else
-
-                            @endif --}}
                         </div>
 
                     </div>
@@ -62,54 +56,62 @@
                                 <div class="card-body justify-content-center">
                                     <table class="table">
                                         <tr>
-                                            <td>Rider Name:</td>
-                                            <td style="text-transform: capitalize;" id="ridername">
+                                            <td style="text-align:left; font-weight: bold;">Rider Name:</td>
+                                            <td style="text-align:left; text-transform: capitalize; font-weight: bold;"
+                                                id="ridername">
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Rider Status:</td>
-                                            <td style="text-transform: capitalize;" id="status">
+                                            <td style="text-align:left; font-weight: bold;">Rider Status:</td>
+                                            <td style="text-align:left; text-transform: capitalize;font-weight: bold;"
+                                                id="status">
 
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Local Government Area:</td>
-                                            <td style="text-transform: capitalize;" id="lga">
+                                            <td style="text-align:left; font-weight: bold;">Local Government Area:</td>
+                                            <td style="text-align:left; text-transform: capitalize; font-weight: bold;"
+                                                id="lga">
 
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Address:</td>
+                                            <td style="text-align:left; font-weight: bold;">Residential Address:</td>
                                             <td>
-                                                <div style="text-transform: capitalize; word-wrap: break-word; width: 250px;"
+                                                <div style=" text-align:left; text-transform: capitalize; word-wrap: break-word; width: 300px; font-weight: bold;"
                                                     id="address"></div>
 
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Phone Number:</td>
-                                            <td style="text-transform: capitalize;" id="phoneno">
+                                            <td style="text-align:left; font-weight: bold;">Phone Number:</td>
+                                            <td style="text-align:left; text-transform: capitalize;font-weight: bold;"
+                                                id="phoneno">
 
                                             </td>
                                         </tr>
 
                                         <tr>
-                                            <td>Rider Vehicle Reg. No:</td>
-                                            <td style="text-transform: uppercase;" id="vehicle"></td>
+                                            <td style="text-align:left; font-weight: bold;">Rider Vehicle Reg. No:</td>
+                                            <td style="text-align:left; text-transform: uppercase;font-weight: bold;"
+                                                id="vehicle"></td>
                                         </tr>
                                         <tr>
-                                            <td>Rider Unit:</td>
-                                            <td style="text-transform: capitalize;" id="riderunit">
+                                            <td style="text-align:left; font-weight: bold;">Rider Unit:</td>
+                                            <td style="text-align:left; text-transform: capitalize; font-weight: bold;"
+                                                id="riderunit">
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Unit Chairman Name:</td>
-                                            <td style="text-transform: capitalize;" id="chairman">
+                                            <td style="text-align:left; font-weight: bold;">Unit Chairman Name:</td>
+                                            <td style="text-align:left; text-transform: capitalize; font-weight: bold;"
+                                                id="chairman">
 
                                         </tr>
                                         <tr>
-                                            <td>Chairman's Number:</td>
-                                            <td style="text-transform: capitalize;" id="chairmanno">
+                                            <td style="text-align:left; font-weight: bold;">Chairman's Number:</td>
+                                            <td style="text-align:left; text-transform: capitalize; font-weight: bold;"
+                                                id="chairmanno">
                                             </td>
                                         </tr>
 
@@ -156,25 +158,31 @@
              var t = JSON.parse(results)
              console.log(t ['riderData']);
              console.log(t ['ticketData']);
-             if((t ['riderData'].length == 0) || (t['ticketData'].length == 0) ){
+             if((t ['riderData'].length == 0) && (t['ticketData'].length == 0) ){
                 console.log('no Data');
                 alert("Rider not found");
-              }else{
-               
+                return;
+              }
+              if(t ['riderData'].length > 0){
                 $('#riderdetails-modal').modal('show');
                 $('#riderID').html('Rider Identification Number: '+ _id);
-                $('#activeDate').html('Last Active Date: '+ t['ticketData'][0].collectiondate);
                 $('#ridername').html(t ['riderData'][0].surname +" "+ t ['riderData'][0].middlename +" "+ t ['riderData'][0].firstname);
                  $('#status').html(t ['riderData'][0].status);
                  $('#lga').html(t ['riderData'][0].lga);
                  $('#address').html(t ['riderData'][0].address);
                  $('#phoneno').html(t ['riderData'][0].phonenumber);
-                 $('#vehicle').html(t ['ticketData'][0].vehicleno);
                  $('#riderunit').html(t ['riderData'][0].unitparkname);
                  $('#chairmanno').html(t ['riderData'][0].chairmanphoneno);
                  $('#chairman').html(t ['riderData'][0].chairmanname);
-                 $('#profilepic img').attr("src",SITEURL+"/storage/"+""+t ['riderData'][0].profilepic);
+                 $('#vehicle').html(t ['riderData'][0].registrationnum);
+                 $('#profilepic').attr("src",SITEURL+"/storage/"+""+t ['riderData'][0].profilepic);
                  console.log(SITEURL+"/storage/"+""+t ['riderData'][0].profilepic);
+              }
+                
+              if(t ['ticketData'].length > 0){
+                $('#activeDate').html('Last Active Date: '+ t['ticketData'][0].collectiondate);
+              }else{
+                $('#activeDate').html('Last Active Date: Nill');
               }
              }
         });
@@ -198,26 +206,32 @@
                 var t = JSON.parse(results)
                 console.log(t ['riderData']);
                 console.log(t ['ticketData']);
-             if((t ['riderData'].length == 0) || (t['ticketData'].length == 0) ){
+             if((t ['riderData'].length == 0) && (t['ticketData'].length == 0) ){
                 console.log('no Data');
                 alert("Rider not found");
-              }else{
+                return;
+              }
+              if(t ['riderData'].length > 0){
                 $('#riderdetails-modal').modal('show');
                 $('#riderID').html('Rider Identification Number: '+ _id);
-                $('#activeDate').html('Last Active Date: '+ t['ticketData'][0].collectiondate);
                 $('#ridername').html(t ['riderData'][0].surname +" "+ t ['riderData'][0].middlename +" "+ t ['riderData'][0].firstname);
                  $('#status').html(t ['riderData'][0].status);
                  $('#lga').html(t ['riderData'][0].lga);
                  $('#address').html(t ['riderData'][0].address);
                  $('#phoneno').html(t ['riderData'][0].phonenumber);
-                 $('#vehicle').html(t ['ticketData'][0].vehicleno);
                  $('#riderunit').html(t ['riderData'][0].unitparkname);
                  $('#chairmanno').html(t ['riderData'][0].chairmanphoneno);
                  $('#chairman').html(t ['riderData'][0].chairmanname);
+                 $('#vehicle').html(t ['riderData'][0].registrationnum);
                  $('#profilepic').attr("src",SITEURL+"/storage/"+""+t ['riderData'][0].profilepic);
                  console.log(SITEURL+"/storage/"+""+t ['riderData'][0].profilepic);
               }
                 
+              if(t ['ticketData'].length > 0){
+                $('#activeDate').html('Last Active Date: '+ t['ticketData'][0].collectiondate);
+              }else{
+                $('#activeDate').html('Last Active Date: Nill');
+              }
              }
         });
 

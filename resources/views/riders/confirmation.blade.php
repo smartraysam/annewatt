@@ -2,7 +2,7 @@
 
 @section('content')
 <div id="content">
-
+{{-- <p>{{session('rider.profilepic')}}</p> --}}
     <!-- Topbar -->
     @include('theme.nav')
     <!-- Begin Page Content -->
@@ -45,7 +45,7 @@
                                 <td style="text-transform: capitalize;"><strong>{{session('rider.status')}}</strong>
                                 </td>
                             </tr>
-                            @if(session()->has('rider.parttime_details'))
+                            @if(Session::get('rider.status') =='part')
                             <tr>
                                 <td>Part-Time Details:</td>
                                 <td style="text-transform: capitalize;">
