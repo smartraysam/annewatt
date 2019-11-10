@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Bike_details;
 class TicketsPreviewController extends Controller
 {
     /**
@@ -48,8 +48,14 @@ class TicketsPreviewController extends Controller
     {
         //validate the form
         $ticket = $request->session()->get('ticket');
-        $ticket->save();
-        $request->session()->forget('ticket');
+        $bikedetail = Bike_details::where('bike_details.registrationnum',  $ticket->vehicleno)->first();
+
+        if(!$bikedetail){
+            return redirect('/tickets/ticket')->with('error', 'Rider does not exist, Please confirm the vehicle number');
+        }else{
+            $ticket->save();
+            $request->session()->forget('ticket');
+        }
         return redirect('/admin')->with('success', 'Ticket entry is successfully saved');
 
     }

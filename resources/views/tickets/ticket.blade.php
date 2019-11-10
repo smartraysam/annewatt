@@ -13,10 +13,17 @@
         </ul>
     </div><br />
     @endif
-    @if (\Session::has('success'))
-    <div class="alert alert-success">
-        <p>{{ \Session::get('success') }}</p>
-    </div><br />
+    @if ($message = Session::get('error'))
+    <div class="alert alert-danger alert-block">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>{{ $message }}</strong>
+    </div>
+    @endif
+    @if ($message = Session::get('success'))
+    <div class="alert  alert-success alert-block">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>{{ $message }}</strong>
+    </div>
     @endif
     <!-- End of Topbar -->
     <!-- Begin Page Content -->
@@ -58,14 +65,14 @@
                             </span>
                             @enderror
                         </div>
-                    
+
                         <div class="form-group row">
                             <label for="collectorname" class="col-md-4 col-form-label text-md-right">Collector
                                 Name</label>
                             <div class="col-md-7">
                                 <input id="collectorname" type="text"
                                     class="form-control @error('collectorname') is-invalid @enderror"
-                                    name="collectorname" value="{{ old('collectorname') }}" required
+                                    name="collectorname" value="{{session('ticket.collectorname')}}" required
                                     autocomplete="collectorname" style="text-transform: capitalize;">
 
                                 @error('collectorname')
@@ -81,7 +88,7 @@
                             <div class='input-group date col-md-7' id='collectiondate'>
                                 <input type="date" id="collectiondate"
                                     class="form-control @error('collectiondate') is-invalid @enderror"
-                                    name="collectiondate" value="{{old('collectiondate') }}">
+                                    name="collectiondate" value="{{session('ticket.collectiondate')}}">
                             </div>
                             @error('collectiondate')
                             <span class="invalid-feedback" role="alert">
@@ -94,7 +101,7 @@
                             <div class="col-md-7">
                                 <input id="amount" type="text"
                                     class="form-control @error('amount') is-invalid @enderror" name="amount"
-                                    value="{{old('amount') }}" required autocomplete="amount" autofocus>
+                                    value="{{session('ticket.amount')}}" required autocomplete="amount" autofocus>
                                 @error('amount')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -108,7 +115,7 @@
                             <div class="col-md-7">
                                 <input id="transID" type="text"
                                     class="form-control @error('transID') is-invalid @enderror" name="transID"
-                                    value="{{ old('transID') }}" required autocomplete="transID">
+                                    value="{{session('ticket.transID')}}" required autocomplete="transID">
 
                                 @error('transID')
                                 <span class="invalid-feedback" role="alert">
@@ -125,7 +132,7 @@
                             <div class="col-md-7">
                                 <input id="vehicleno" type="text"
                                     class="form-control @error('vehicleno') is-invalid @enderror" name="vehicleno"
-                                    value="{{ old('vehicleno') }}" required autocomplete="vehicleno"
+                                    value="{{session('ticket.vehicleno')}}" required autocomplete="vehicleno"
                                     style="text-transform: uppercase;">
 
                                 @error('vehicleno')
@@ -171,7 +178,7 @@
                             <div class="col-md-7">
                                 <input id="payername" type="text"
                                     class="form-control @error('payername') is-invalid @enderror" name="payername"
-                                    value="{{old('payername') }}" required autocomplete="payername" autofocus
+                                    value="{{session('ticket.payername')}}" required autocomplete="payername" autofocus
                                     style="text-transform: capitalize;">
                             </div>
                         </div>
@@ -180,7 +187,7 @@
                             <div class="col-md-7">
                                 <input id="payerID" type="text"
                                     class="form-control @error('payerID') is-invalid @enderror" name="payerID"
-                                    value="{{old('payerID') }}" required autocomplete="payerID" autofocus>
+                                    value="{{session('ticket.payerID')}}" required autocomplete="payerID" autofocus>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -190,7 +197,7 @@
                             <div class="col-md-7">
                                 <input id="payerphone" type="phonenumber"
                                     class="form-control @error('payerphone') is-invalid @enderror" name="payerphone"
-                                    value="{{ old('payerphone') }}" required autocomplete="payerphone">
+                                    value="{{session('ticket.payerphone')}}" required autocomplete="payerphone">
 
                             </div>
                         </div>

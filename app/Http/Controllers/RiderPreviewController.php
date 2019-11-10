@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Bike_details;
+use App\Other_details;
 
 class RiderPreviewController extends Controller
 {
@@ -59,14 +61,21 @@ class RiderPreviewController extends Controller
         $bike = $request->session()->get('bike');
         $nextkin = $request->session()->get('nextkin');
         $other = $request->session()->get('other');
-        $rider->save();
-        $bike->save();
-        $nextkin->save();
-        $other->save();
-        $request->session()->forget('rider');
-        $request->session()->forget('bike');
-        $request->session()->forget('nextkin');
-        $request->session()->forget('other');
+        $bikedetail = Bike_details::where('bike_details.registrationnum', $bike->registrationnum)->first();
+        $otherdetail = Other_details::where('other_details.riderid', $other->riderid)->first();
+        if($bikedetail || $otherdetail){
+            return redirect('/riders/bike')->with('error', 'Rider already exist, Please confirm the vehicle reg. number and the rider ID.');
+        }else{
+            $rider->save();
+            $bike->save();
+            $nextkin->save();
+            $other->save();
+            $request->session()->forget('rider');
+            $request->session()->forget('bike');
+            $request->session()->forget('nextkin');
+            $request->session()->forget('other');
+        }
+
         return redirect('/admin')->with('success', 'New Rider successfully saved');
     }
 }

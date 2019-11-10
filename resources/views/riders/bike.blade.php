@@ -14,13 +14,23 @@
         </ul>
     </div><br />
     @endif
-    @if (\Session::has('success'))
+
+    @if ($message = Session::get('error'))
     <div class="alert alert-success">
-        <p>{{ \Session::get('success') }}</p>
-    </div><br />
+        <div class="alert   alert-block">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>{{ $message }}</strong>
+    </div>
+    @endif
+
+    @if ($message = Session::get('error'))
+    <div class="alert alert-danger alert-block">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>{{ $message }}</strong>
+    </div>
     @endif
     <!-- End of Topbar -->
-    <p>{{ \Session::get('rider') }}</p>
+
     <!-- Begin Page Content -->
     <div class="container-fluid">
         <div class="card-header">Bike Information</div>

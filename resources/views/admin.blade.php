@@ -5,11 +5,17 @@
 
     <!-- Topbar -->
     @include('theme.nav')
-
+    @if ($message = Session::get('success'))
+    <div class="alert alert-success alert-block">
+        <button type="button" class="close" data-dismiss="alert">×</button>	
+            <strong>{{ $message }}</strong>
+    </div>
+    @endif
     <!-- End of Topbar -->
     @if (\Session::has('rider'))
     {{ \Session::flush() }}
     @endif
+   
     <!-- Begin Page Content -->
     <div class="container-fluid">
 
