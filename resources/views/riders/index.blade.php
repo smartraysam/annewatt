@@ -63,12 +63,12 @@
           type: 'GET',
          },
          columns: [
-                   
+
                     { data: 'ridername', name: 'bike_details.ridername' ,
                         createdCell: function (td, cellData, rowData, row, col)
                         {
                             $(td).css('text-transform', 'capitalize');
-                        } 
+                        }
                     },
                     { data: 'status', name: 'riders.status' ,
                         createdCell: function (td, cellData, rowData, row, col)
@@ -83,14 +83,14 @@
                             $(td).css('text-transform', 'capitalize');
                         }
                     },
-                   
+
                     { data: 'registrationnum', name: 'bike_details.registrationnum',  createdCell: function (td, cellData, rowData, row, col)
                         {
                             $(td).css('text-transform', 'uppercase');
-                        } 
+                        }
                     },
                     { data: 'phonenumber',
-                        name: 'riders.phonenumber' 
+                        name: 'riders.phonenumber'
                     },
                     { data: 'riderid', name: 'other_details.riderid' },
                     { data: 'unitparkname', name: 'other_details.unitparkname' ,
@@ -109,19 +109,39 @@
       var _id = $(this).data('id');
       window.location.href = '/riders/'+_id+'/details';
    });
-
    $('body').on('click', '.delete-rider', function () {
       var _id = $(this).data('id');
-      $.ajax({
-             type:"GET",
-             url:"/rider/"+_id+'/delete',
-             success : function(results) {
-               console.log(results);
-            
-             }
-        });
-
+        if(confirm("Are you sure you want to Delete this data?"))
+        {
+                $.ajax({
+                    type:"POST",
+                    url:"/riders/"+_id+'/delete',
+                    success:function(data)
+                    {
+                        console.log(data);
+                        alert(data);
+                        $('#dataTable').DataTable().ajax.reload();
+                    }
+                })
+        }
+        else
+        {
+            return false;
+        }
    });
+
+//    $('body').on('click', '.delete-rider', function () {
+//       var _id = $(this).data('id');
+//       $.ajax({
+//              type:"POST",
+//              url:"/riders/"+_id+'/delete',
+//              success : function(results) {
+//                console.log(results);
+
+//              }
+//         });
+
+//    });
 });
 
 </script>

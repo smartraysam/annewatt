@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Riders;
+use App\Bike_details;
+use App\Tickets;
+use App\Other_details;
+use App\Nextkin_details;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -36,6 +40,7 @@ class RidersController extends Controller
     {
         $riderData = DB::table('riders')->where('riders.id', $id)
             ->join('other_details', 'other_details.id', '=', 'riders.id')
+            ->join('bike_details', 'bike_details.id', '=', 'riders.id')
             ->get();
 
         $nextkinData = DB::table('nextkin_details')->where('nextkin_details.id', $id)
@@ -49,6 +54,19 @@ class RidersController extends Controller
        // $riderDetails = json_encode(['riderData' => $riderData, 'nextkinData' => $nextkinData, 'ticketData' => $ticketData, 'ticketCount' => $ticketCount]);
        // return Response::json($riderDetails);
         return view('riders.riderview', compact('riderData', 'nextkinData','ticketData', 'ticketCount'));
+    }
+
+    public function delete($id)
+    {
+        $rider = Riders::findOrFail($id);
+        $rider->delete();
+        $bike = Bike_details::findOrFail($id);
+        $bike->delete();
+        $other = Other_details::findOrFail($id);
+        $other->delete();
+        $next = Nextkin_details::findOrFail($id);
+        $next->delete();
+        echo "Record deleted successfully";
     }
     public function createRider(Request $request)
     {

@@ -205,7 +205,7 @@
                     <h6 class="m-0 font-weight-bold text-primary">Bike Details</h6>
                 </a>
                 <!-- Card Content - Collapse -->
-                @foreach($ticketData as $bike)
+                @foreach($riderData as $bike)
                 @if ($loop->first)
                 <div class="collapse show" id="collapseCardExample">
                     <div class="card-body">

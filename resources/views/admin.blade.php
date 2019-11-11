@@ -16,6 +16,10 @@
     {{ \Session::flush() }}
     @endif
    
+    @if (\Session::has('ticket'))
+    {{ \Session::flush() }}
+    @endif
+   
     <!-- Begin Page Content -->
     <div class="container-fluid">
 

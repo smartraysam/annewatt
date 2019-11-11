@@ -19,6 +19,7 @@ Route::get('/admin', 'HomeController@index')->name('home')->middleware('auth');
 
 Route::get('/riders', 'RidersController@index')->name('viewriders');
 Route::get('/riders/{id}/details', 'RidersController@show');
+Route::post('/riders/{id}/delete', 'RidersController@delete');
 Route::get('/riders/rider', 'RidersController@createRider')->name('createRider');
 
 Route::post('/riders/rider', 'RidersController@postRider')->name('postRider');
