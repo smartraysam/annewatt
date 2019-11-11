@@ -49,12 +49,18 @@ class NextkinDetailsController extends Controller
             $nextkin = new Nextkin_details();
             $nextkin->fill($validatedData);
             $rider = $request->session()->get('rider');
+            if(empty($rider)){
+                return redirect('/riders/bike')->with('error', 'Rider infromation is missing');
+            }
             $nextkin->phonenumber = $rider->phonenumber;
             $request->session()->put('nextkin', $nextkin);
         } else {
             $nextkin = $request->session()->get('nextkin');
             $nextkin->fill($validatedData);
             $rider = $request->session()->get('rider');
+            if(empty($rider)){
+                return redirect('/riders/bike')->with('error', 'Rider infromation is missing');
+            }
             $nextkin->phonenumber = $rider->phonenumber;
             $request->session()->put('nextkin', $nextkin);
         }

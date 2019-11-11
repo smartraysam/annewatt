@@ -27,22 +27,25 @@ class BikeDetailsController extends Controller
 
         $validatedData = $request->validate([
             'bikebrand' => 'required',
-            'enginenumber' => 'required|numeric',
-            'chasisno' => 'required|numeric',
+            'enginenumber' => 'required',
+            'chasisno' => 'required',
             'registrationnum' => 'required',
-            'receiptnumber' => 'required|numeric',
+            'receiptnumber' => 'required',
             'dateofpurchase' => 'required',
             'witnessname' => 'nullable',
             'witnessaddress' => 'nullable',
             'witnessphonenum' => 'nullable|numeric',
 
-           
+
         ]);
 
         if (empty($request->session()->get('bike'))) {
             $bike = new Bike_details();
             $bike->fill($validatedData);
             $rider = $request->session()->get('rider');
+            if(empty($rider)){
+                return redirect('/riders/bike')->with('error', 'Rider infromation is missing');
+            }
             $bike->ridername = $rider->firstname . ' ' . $rider->middlename . ' ' . $rider->surname;
             $bike->phonenumber = $rider->phonenumber;
             $request->session()->put('bike', $bike);
@@ -51,6 +54,9 @@ class BikeDetailsController extends Controller
             $bike = $request->session()->get('bike');
             $bike->fill($validatedData);
             $rider = $request->session()->get('rider');
+            if(empty($rider)){
+                return redirect('/riders/bike')->with('error', 'Rider infromation is missing');
+            }
             $bike->ridername = $rider->firstname . ' ' . $rider->middlename . ' ' . $rider->surname;
             $bike->phonenumber = $rider->phonenumber;
             $request->session()->put('bike', $bike);

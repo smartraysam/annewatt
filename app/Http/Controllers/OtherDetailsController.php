@@ -39,12 +39,18 @@ class OtherDetailsController extends Controller
             $other = new Other_details();
             $other->fill($validatedData);
             $rider = $request->session()->get('rider');
+            if(empty($rider)){
+                return redirect('/riders/bike')->with('error', 'Rider infromation is missing');
+            }
             $other->phonenumber = $rider->phonenumber;
             $request->session()->put('other', $other);
         } else {
             $other = $request->session()->get('other');
             $other->fill($validatedData);
             $rider = $request->session()->get('rider');
+            if(empty($rider)){
+                return redirect('/riders/bike')->with('error', 'Rider infromation is missing');
+            }
             $other->phonenumber = $rider->phonenumber;
             $request->session()->put('other', $other);
         }
