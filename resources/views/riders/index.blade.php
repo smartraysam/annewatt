@@ -129,19 +129,6 @@
             return false;
         }
    });
-
-//    $('body').on('click', '.delete-rider', function () {
-//       var _id = $(this).data('id');
-//       $.ajax({
-//              type:"POST",
-//              url:"/riders/"+_id+'/delete',
-//              success : function(results) {
-//                console.log(results);
-
-//              }
-//         });
-
-//    });
 });
 
 </script>

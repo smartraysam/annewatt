@@ -13,11 +13,14 @@
     @endif
     <!-- End of Topbar -->
     @if (\Session::has('rider'))
-    {{ \Session::flush() }}
+    {{ \Session::forget('rider')}}
+    {{ \Session::forget('bike')}}
+    {{ \Session::forget('nextkin')}}
+    {{ \Session::forget('other')}}
     @endif
    
     @if (\Session::has('ticket'))
-    {{ \Session::flush() }}
+    {{ \Session::forget('ticket')}}
     @endif
    
     <!-- Begin Page Content -->

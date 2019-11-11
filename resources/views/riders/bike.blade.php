@@ -15,7 +15,7 @@
     </div><br />
     @endif
 
-    @if ($message = Session::get('error'))
+    @if ($message = Session::get('success'))
     <div class="alert alert-success">
         <div class="alert   alert-block">
         <button type="button" class="close" data-dismiss="alert">×</button>
