@@ -116,7 +116,7 @@
                                 <!-- <label for="gender" class="col-md-4 col-form-label text-md-right">Gender</label> -->
                                 {{Form::label('relationship', 'Relationship', ['class' => 'col-md-4 col-form-label text-md-right'])}}
                                 <div class="col-md-7">
-                                    {{Form::select('relationship', ['Son' => 'Son', 'Daughter' => 'Daughter', 'Brother' => 'Brother', 'Sister' => 'Sister'], 'Son', ['class' => 'form-control'])}}
+                                    {{Form::select('relationship', ['Husband' => 'Husband', 'Wife' => 'Wife','Son' => 'Son', 'Daughter' => 'Daughter', 'Brother' => 'Brother', 'Sister' => 'Sister'], 'Son', ['class' => 'form-control'])}}
                                 </div>
                                 @error('relationship')
                                 <span class="invalid-feedback" role="alert">
