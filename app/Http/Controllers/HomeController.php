@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Tickets;
+use Artisan;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request;
@@ -58,8 +59,20 @@ class HomeController extends Controller
         $ticketData = DB::table('tickets')->where('tickets.payerID', $riderid)
             ->orderBy('tickets.collectiondate', 'desc')
             ->get();
-        $riderDetails = json_encode(['riderData' => $riderData, 'ticketData' => $ticketData]);
+        $riderDetails = json_encode( ['riderData' => $riderData, 'ticketData' => $ticketData]);
         return Response::json($riderDetails);
+    }
+
+    public function clearapp()
+    {
+        Artisan::call('config:clear');
+        Artisan::call('cache:clear');
+        Artisan::call('config:cache');
+        Artisan::call('view:clear');
+        Artisan::call('optimize');
+        $clear = 'App Cache Cleared and Optimized';
+        $resp = json_encode($clear);
+        return Response::json($resp);
     }
 
 }

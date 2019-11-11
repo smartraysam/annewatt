@@ -13,13 +13,14 @@
 Route::get('/', 'HomeController@home')->name('index');
 Route::get('/index', 'HomeController@home')->name('index');
 Route::get('/index/{riderid}/details', 'HomeController@details');
+Route::get('/clear', 'HomeController@clearapp')->name('clear');
 Auth::routes();
 Route::get('/admin', 'HomeController@index')->name('home')->middleware('auth');
 //create rider
 
 Route::get('/riders', 'RidersController@index')->name('viewriders');
-Route::get('/riders/{id}/details', 'RidersController@show');
-Route::post('/riders/{id}/delete', 'RidersController@delete');
+Route::get('/riders/{id}/details', 'RidersController@show')->name('details');;
+Route::post('/riders/{id}/delete', 'RidersController@delete')->name('delete');;
 Route::get('/riders/rider', 'RidersController@createRider')->name('createRider');
 
 Route::post('/riders/rider', 'RidersController@postRider')->name('postRider');
