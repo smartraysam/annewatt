@@ -36,8 +36,18 @@
            </header>
             <div class="row pb-5 px-5">
                 <div class="col-sm-8">
-                  <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h4><br>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                  <h4>Welcome to Annewatt, your number one online local rider directory giving you more details about
+                       your rider.
+                      We're dedicated to providing you the very best of transport services,
+                      with an emphasis on save and secure transportation.</h4><br>
+                  <p>Founded in 1990 by Edo state Government, Annewatt has come a long way from its beginnings in
+                      Auchi.  We now serve customers all over the townand are thrilled that we're able
+                      to turn our passion into online rider directory.
+                    We hope you enjoy the service that this online rider directory will offer you as much as
+                     we enjoy offering them to you.
+                     If you have any questions or comments,
+                     please don't hesitate to contact us through the contant us page or any of our excos.
+                    Thanks,</p>
                   <br><a href="#contact" class="btn btn-primary">Get in Touch</a>
                 </div>
                 <div class="col-sm-4 ">
@@ -55,7 +65,7 @@
                 <br>
             <div class="section-header">
                 <h1>Excos</h1>
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
+                <p>Get in touch  with out executive for more details about Annewatt </p>
             </div>
 
             <div class="row">
@@ -139,12 +149,7 @@
 
                 <div class="col-lg-6">
                     <div class="map mb-4 mb-lg-0">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0"
-                            style="border:0; width: 100%; height: 400px;" allowfullscreen></iframe>
-{{--
-                            <iframe width="600" height="450" frameborder="0" style="border:0"
-                            src="https://www.google.com/maps/embed/v1/place?q=KM134+Benin-Okene+Expressway,Auchi+Edo+State,+NG&key=AIzaSyDztlrk_3CnzGHo7CFvLFqE_2bUKEq1JEU" allowfullscreen></iframe> --}}
-
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7918.9363712925715!2d6.264679761578603!3d7.071589936186962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10467d12bfa68fd1%3A0xf8ecd9829a3da969!2sEtsako-West%20Local%20Government%20Council!5e0!3m2!1sen!2sng!4v1577470961774!5m2!1sen!2sng" width="600" height="400" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
                     </div>
                 </div>
 
@@ -165,7 +170,7 @@
                     </div>
 
                     <div class="form">
-                        <div id="sendmessage">Your message has been sent. Thank you!</div>
+                        {{-- <div id="sendmessage">Your message has been sent. Thank you!</div> --}}
                         <div id="errormessage"></div>
                         <form action="" method="post" role="form" class="contactForm">
                             <div class="form-row">
