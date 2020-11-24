@@ -61,3 +61,16 @@ Route::post('/tickets/submit', 'TicketsPreviewController@store')->name('savetick
 
 Route::get('/tickets/cancel', 'RiderPreviewController@cancel')->name('cancelticket');
 Route::get('/tickets/exportExcel', 'TicketsController@exportExcel')->name('exportTicket');
+
+//message
+
+Route::post('/index', 'messageController@saveMessage')->name('savemessage');
+Route::get('/inbox', 'messageController@viewMessages')->name('viewmessages');
+
+Route::get('/inbox/compose', 'messageController@compose')->name('composemsg');
+
+Route::get('/inbox/getMSg', 'messageController@getUnreadMSG')->name('getUnreadMSG');
+Route::get('/inbox/{id}/read', 'messageController@readMSG')->name('readMSG');
+Route::post('/inbox/{id}/delete', 'messageController@deleteMSG')->name('deleteMSG');
+
+Route::post('/inbox/message', 'messageController@sendmsg')->name('sendmsg');

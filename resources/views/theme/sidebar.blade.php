@@ -85,17 +85,16 @@
              <span>Profile</span></a>
      </li>
      <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href={{route('viewmessages')}}>
             <i class="fas fa-envelope fa-sm fa-fw mr-2 text-gray-400"></i>
             <span>Messages</span></a>
     </li>
-
     <li class="nav-item">
-        <a class="nav-link" href="#">
-            <i class="fas fa-bell fa-sm fa-fw mr-2 text-gray-400"></i>
-            <span>Notifications</span></a>
+        <a class="nav-link" href={{route('composemsg')}}>
+            <i class="fas fa-envelope fa-sm fa-fw mr-2 text-gray-400"></i>
+            <span>Compose Message</span></a>
     </li>
-
+     <!-- N
      <!-- Nav Item - Tables -->
      <li class="nav-item">
          <a class="nav-link"href="#">

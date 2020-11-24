@@ -45,19 +45,19 @@
         </li>
 
         <!-- Nav Item - Alerts -->
-        <li class="nav-item dropdown no-arrow mx-1">
+        {{-- <li class="nav-item dropdown no-arrow mx-1">
             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
                 <!-- Counter - Alerts -->
                 <span class="badge badge-danger badge-counter">0</span>
-            </a>
+            </a> --}}
             <!-- Dropdown - Alerts -->
-            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+            {{-- <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                 aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
                     Alerts Center
-                </h6>
+                </h6> --}}
                 {{-- <a class="dropdown-item d-flex align-items-center" href="#">
                     <div class="mr-3">
                         <div class="icon-circle bg-primary">
@@ -91,9 +91,9 @@
                         Spending Alert: We've noticed unusually high spending for your account.
                     </div>
                 </a> --}}
-                <a class="dropdown-item text-center small text-gray-500" href="#">No Alerts</a>
-            </div>
-        </li>
+                {{-- <a class="dropdown-item text-center small text-gray-500" href="#">No Alerts</a>
+            </div> --}}
+        {{-- </li> --}}
 
         <!-- Nav Item - Messages -->
         <li class="nav-item dropdown no-arrow mx-1">
@@ -101,7 +101,7 @@
                 aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-envelope fa-fw"></i>
                 <!-- Counter - Messages -->
-                <span class="badge badge-danger badge-counter">0</span>
+                <span id="msgcount" class="badge badge-danger badge-counter">0</span>
             </a>
             <!-- Dropdown - Messages -->
             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -191,3 +191,25 @@
     </ul>
 
 </nav>
+
+<script type="text/javascript">
+    var SITEURL = '{{URL::to('')}}';
+ $(document).ready( function () {
+   $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+  });
+    $.ajax({
+        type:"GET",
+        url:'/inbox/getMSg',
+        success:function(data){
+            console.log(data);
+            $("#msgcount").text(data);
+        }
+    });
+
+});
+
+</script>
+

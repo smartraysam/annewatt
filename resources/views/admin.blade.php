@@ -7,7 +7,7 @@
     @include('theme.nav')
     @if ($message = Session::get('success'))
     <div class="alert alert-success alert-block">
-        <button type="button" class="close" data-dismiss="alert">×</button>	
+        <button type="button" class="close" data-dismiss="alert">×</button>
             <strong>{{ $message }}</strong>
     </div>
     @endif
@@ -18,11 +18,11 @@
     {{ \Session::forget('nextkin')}}
     {{ \Session::forget('other')}}
     @endif
-   
+
     @if (\Session::has('ticket'))
     {{ \Session::forget('ticket')}}
     @endif
-   
+
     <!-- Begin Page Content -->
     <div class="container-fluid">
 
@@ -210,11 +210,12 @@
                             $(td).css('text-transform', 'capitalize');
                         }
                     },
+
                     { data: 'status', name: 'riders.status' ,
                         createdCell: function (td, cellData, rowData, row, col)
                         {
                             $(td).css('text-transform', 'capitalize');
-                        } 
+                        }
                     },
                     {
                         data: 'lga',
@@ -234,6 +235,7 @@
                         name: 'riders.phonenumber'
                     },
                     { data: 'riderid', name: 'other_details.riderid' },
+
                     { data: 'unitparkname', name: 'other_details.unitparkname' ,
                         createdCell: function (td, cellData, rowData, row, col)
                         {

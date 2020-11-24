@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Bike_details;
 use App\Other_details;
+use GuzzleHttp\Client;
+use Illuminate\Http\Request;
 
 class RiderPreviewController extends Controller
 {
@@ -53,7 +54,19 @@ class RiderPreviewController extends Controller
         return redirect('/admin');
 
     }
+    public function sendCtrlSMS($phoneNumber, $message)
+    {
+        $client = new Client();
 
+        $method = 'POST';
+        $url = "https://termii.com/api/sms/send?to=234" . $phoneNumber . "&from=Annewatt&sms=" . $message . "&type=plain&channel=generic&api_key=TLU204igSqZRUDDzHYgdsj7693rvcCFo3Ps3RkPxYbi9kyjXs7uYANxVTR9SBs";
+
+        \Log::info($url);
+        $request = $client->request($method, $url)->getBody();
+        $response = $request->getContents();
+        \Log::info($response);
+        return $response;
+    }
     public function submit(Request $request)
     {
         //validate the form
@@ -63,9 +76,9 @@ class RiderPreviewController extends Controller
         $other = $request->session()->get('other');
         $bikedetail = Bike_details::where('bike_details.registrationnum', $bike->registrationnum)->first();
         $otherdetail = Other_details::where('other_details.riderid', $other->riderid)->first();
-        if($bikedetail || $otherdetail){
+        if ($bikedetail || $otherdetail) {
             return redirect('/riders/bike')->with('error', 'Rider already exist, Please confirm the vehicle reg. number and the rider ID.');
-        }else{
+        } else {
             $rider->save();
             $bike->save();
             $nextkin->save();
@@ -75,7 +88,9 @@ class RiderPreviewController extends Controller
             $request->session()->forget('nextkin');
             $request->session()->forget('other');
         }
-
+        $phoneNumber = $rider->phonenumber;
+        $message = "Your bike registration is complete. View your details on https://www.annewatt.com using Your Rider ID " . $other->riderid;
+        $this->sendCtrlSMS($phoneNumber, $message);
         return redirect('/admin')->with('success', 'New Rider successfully saved');
     }
 }

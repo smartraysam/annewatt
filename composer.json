@@ -12,6 +12,7 @@
         "facade/ignition": "^1.11",
         "facade/ignition-code-editor": "^1.0",
         "fideloper/proxy": "^4.0",
+        "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^6.0",
