@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-
+@section('title', 'Ticket Confirmation')
 @section('content')
 <div id="content">
 

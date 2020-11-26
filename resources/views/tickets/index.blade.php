@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-
+@section('title', 'Ticket')
 @section('content')
 <div id="content">
     <!-- Topbar -->

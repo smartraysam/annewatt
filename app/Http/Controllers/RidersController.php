@@ -24,8 +24,8 @@ class RidersController extends Controller
     {
         $request->session()->forget('rider');
         $riderData = DB::table('riders')
-            ->join('bike_details', 'riders.id', '=', 'bike_details.id')
-            ->join('other_details', 'riders.id', '=', 'other_details.id')
+            ->join('bike_details', 'riders.phonenumber', '=', 'bike_details.phonenumber')
+            ->join('other_details', 'riders.phonenumber', '=', 'other_details.phonenumber')
             ->select(['riders.id', 'riders.phonenumber', 'riders.status', 'riders.lga', 'bike_details.ridername', 'bike_details.registrationnum', 'other_details.unitparkname', 'other_details.riderid']);
         if (request()->ajax()) {
             return datatables()->of($riderData)
@@ -38,15 +38,16 @@ class RidersController extends Controller
     }
     public function show($id)
     {
-        $riderData = DB::table('riders')->where('riders.id', $id)
-            ->join('other_details', 'other_details.id', '=', 'riders.id')
-            ->join('bike_details', 'bike_details.id', '=', 'riders.id')
+        $phonenumber = DB::table('riders')->where('riders.id', $id)->value("phonenumber");
+        $riderData = DB::table('riders')->where('riders.phonenumber', $phonenumber )
+            ->join('other_details', 'other_details.phonenumber', '=', 'riders.phonenumber')
+            ->join('bike_details', 'bike_details.phonenumber', '=', 'riders.phonenumber')
             ->get();
 
-        $nextkinData = DB::table('nextkin_details')->where('nextkin_details.id', $id)
+        $nextkinData = DB::table('nextkin_details')->where('nextkin_details.phonenumber', $phonenumber )
             ->get();
 
-        $ticketData = DB::table('bike_details')->where('bike_details.id', $id)
+        $ticketData = DB::table('bike_details')->where('bike_details.phonenumber', $phonenumber )
             ->join('tickets', 'bike_details.registrationnum', '=', 'tickets.vehicleno')
             ->orderBy('tickets.collectiondate', 'desc')
             ->get();

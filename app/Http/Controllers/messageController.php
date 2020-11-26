@@ -37,7 +37,7 @@ class messageController extends Controller
                 ->addIndexColumn()
                 ->make(true);
         }
-        // return Response::json($messages);
+        //return Response::json($messages);
         return view('inbox');
     }
 
@@ -99,8 +99,11 @@ class messageController extends Controller
 
     public function sendCtrlSMS($phoneNumber, $message)
     {
+        $firstCharacter = $phoneNumber[0];
+        if ($firstCharacter == "0") {
+            $phoneNumber = substr($phoneNumber, 1);
+        }
         $client = new Client();
-
         $method = 'POST';
         $url = "https://termii.com/api/sms/send?to=234" . $phoneNumber . "&from=Annewatt&sms=" . $message . "&type=plain&channel=generic&api_key=TLU204igSqZRUDDzHYgdsj7693rvcCFo3Ps3RkPxYbi9kyjXs7uYANxVTR9SBs";
         $request = $client->request($method, $url)->getBody();

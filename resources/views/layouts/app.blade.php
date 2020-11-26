@@ -1,9 +1,11 @@
-n <!doctype html>
+n
+<!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
 
 
-<meta charset="utf-8">
+    <meta charset="utf-8">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -12,21 +14,24 @@ n <!doctype html>
     <meta name="description" content="">
 
     <meta name="author" content="">
-     <!-- CSRF Token -->
+    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Annewatt') }}</title>
+    <title> @yield('title') | Annewatt</title>
     <!-- Bootstrap Core CSS -->
-    <link href="{!! asset('vendor/fontawesome-free/css/all.min.css') !!}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="{!!  asset('vendor/fontawesome-free/css/all.min.css') !!}" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
-    <link href="{!! asset('css/sb-admin-2.css') !!}" rel="stylesheet">
+    <link href="{!!  asset('css/sb-admin-2.css') !!}" rel="stylesheet">
 
 </head>
+
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container" style=" display: block; text-align: center; text-transform:uppercase ">
-                <a class="navbar-brand" href="{{ url('/') }}"  >
+                <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
             </div>
@@ -38,14 +43,15 @@ n <!doctype html>
         </main>
     </div>
 
-    <script src="{!! asset('vendor/jquery/jquery.min.js') !!}"></script>
+    <script src="{!!  asset('vendor/jquery/jquery.min.js') !!}"></script>
 
-    <script src="{!! asset('vendor/bootstrap/js/bootstrap.bundle.min.js') !!}"></script>
-    <script src="{!! asset('vendor/jquery-easing/jquery.easing.min.js') !!}"></script>
-    <script src="{!! asset('js/sb-admin-2.min.js') !!}"></script>
+    <script src="{!!  asset('vendor/bootstrap/js/bootstrap.bundle.min.js') !!}"></script>
+    <script src="{!!  asset('vendor/jquery-easing/jquery.easing.min.js') !!}"></script>
+    <script src="{!!  asset('js/sb-admin-2.min.js') !!}"></script>
 
     <!-- Bootstrap Core JavaScript -->
 
-    <script src="{!! asset('vendor/bootstrap/js/bootstrap.min.js') !!}"></script>
+    <script src="{!!  asset('vendor/bootstrap/js/bootstrap.min.js') !!}"></script>
 </body>
+
 </html>

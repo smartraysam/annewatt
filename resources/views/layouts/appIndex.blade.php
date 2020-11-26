@@ -15,7 +15,7 @@
     <meta name="author" content="">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Annewatt') }}</title>
+    <title> @yield('title') | Annewatt</title>
     <!-- Bootstrap Core CSS -->
     <script src="{!! asset('vendor/jquery/jquery.min.js') !!}"></script>
     <link href="{!! asset('vendor/fontawesome-free/css/all.min.css') !!}" rel="stylesheet">

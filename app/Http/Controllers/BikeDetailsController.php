@@ -1,5 +1,6 @@
 <?php
-namespace App\Http\Controllers ;
+namespace App\Http\Controllers;
+
 use App\Bike_details;
 use Illuminate\Http\Request;
 
@@ -35,15 +36,13 @@ class BikeDetailsController extends Controller
             'witnessname' => 'nullable',
             'witnessaddress' => 'nullable',
             'witnessphonenum' => 'nullable|numeric',
-
-
         ]);
 
         if (empty($request->session()->get('bike'))) {
             $bike = new Bike_details();
             $bike->fill($validatedData);
             $rider = $request->session()->get('rider');
-            if(empty($rider)){
+            if (empty($rider)) {
                 return redirect('/riders/bike')->with('error', 'Rider infromation is missing');
             }
             $bike->ridername = $rider->firstname . ' ' . $rider->middlename . ' ' . $rider->surname;
@@ -54,7 +53,7 @@ class BikeDetailsController extends Controller
             $bike = $request->session()->get('bike');
             $bike->fill($validatedData);
             $rider = $request->session()->get('rider');
-            if(empty($rider)){
+            if (empty($rider)) {
                 return redirect('/riders/bike')->with('error', 'Rider infromation is missing');
             }
             $bike->ridername = $rider->firstname . ' ' . $rider->middlename . ' ' . $rider->surname;

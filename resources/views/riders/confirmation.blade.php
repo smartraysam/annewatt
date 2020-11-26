@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-
+@section('title', 'Confirmation')
 @section('content')
 <div id="content">
 {{-- <p>{{session('rider.profilepic')}}</p> --}}
