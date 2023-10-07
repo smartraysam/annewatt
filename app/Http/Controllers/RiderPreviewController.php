@@ -77,7 +77,15 @@ class RiderPreviewController extends Controller
         $bikedetail = Bike_details::where('bike_details.registrationnum', $bike->registrationnum)->first();
         $otherdetail = Other_details::where('other_details.riderid', $other->riderid)->first();
         if ($bikedetail || $otherdetail) {
-            return redirect('/riders/bike')->with('error', 'Rider already exist, Please confirm the vehicle reg. number and the rider ID.');
+            $rider->update();
+            $bike->update();
+            $nextkin->update();
+            $other->update();
+            $request->session()->forget('rider');
+            $request->session()->forget('bike');
+            $request->session()->forget('nextkin');
+            $request->session()->forget('other');
+            return redirect('/admin')->with('success', 'Rider details successfully updated'); 
         } else {
             $rider->save();
             $bike->save();

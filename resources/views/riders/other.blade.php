@@ -20,12 +20,12 @@
     </div><br />
     @endif
     <!-- End of Topbar -->
-    <p>{{ \Session::get('nextkin') }}</p>
     <!-- Begin Page Content -->
     <div class="container-fluid">
         <div class="card-header">Other Information</div>
         <form method="POST" action="{{ route('postOther') }}" enctype="multipart/form-data">
             {{ csrf_field() }}
+            <input type="text" hidden value="{{ session('other.id') }}" name="id">
             <div class="card">
                 <div class="col-sm justify-content-center">
                     <div class="card-body">
@@ -47,7 +47,7 @@
 
                             <div class="col-md-7">
                                 <input id="unitparkname" type="text" class="form-control @error('unitparkname') is-invalid @enderror"
-                                    name="unitparkname" value="{{session('nextkin.unitparkname') }}" required autocomplete="unitparkname"  style="text-transform: capitalize;">
+                                    name="unitparkname" value="{{session('other.unitparkname') }}" required autocomplete="unitparkname"  style="text-transform: capitalize;">
 
                                 @error('unitparkname')
                                 <span class="invalid-feedback" role="alert">
@@ -62,7 +62,7 @@
 
                             <div class="col-md-7">
                                 <input id="chairmanname" type="text" class="form-control @error('chairmanname') is-invalid @enderror"
-                                    name="chairmanname" value="{{session('nextkin.chairmanname') }}" required autocomplete="chairmanname"  style="text-transform: capitalize;">
+                                    name="chairmanname" value="{{session('other.chairmanname') }}" required autocomplete="chairmanname"  style="text-transform: capitalize;">
 
                                 @error('chairmanname')
                                 <span class="invalid-feedback" role="alert">
@@ -77,7 +77,7 @@
 
                             <div class="col-md-7">
                                 <input id="chairmanphoneno" type="phonenumber" class="form-control @error('chairmanphoneno') is-invalid @enderror"
-                                    name="chairmanphoneno" value="{{session('nextkin.chairmanphoneno') }}" required autocomplete="chairmanphoneno">
+                                    name="chairmanphoneno" value="{{session('other.chairmanphoneno') }}" required autocomplete="chairmanphoneno">
 
                                 @error('chairmanphoneno')
                                 <span class="invalid-feedback" role="alert">

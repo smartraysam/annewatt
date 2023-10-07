@@ -1,0 +1,73 @@
+name: ANNEWATT_CICD
+
+on:
+  push:
+    branches: 
+          - "dev"
+          - "master"
+jobs:
+  staging-deployment:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/dev'
+
+    steps:
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.0"
+      - uses: actions/checkout@v3
+      - name: Set up Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16.x"
+      - run: npm install 
+
+      - name: Deploy to staging server
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER}}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+
+      - name: Call artisan  endpoint
+        run: |
+          http_status=$(curl -o /dev/null -s -w "%{http_code}" "https://staging.annewatt.com/clear")
+          echo "$http_status"
+          if [ "$http_status" = "200" ]; then
+            echo "Endpoint call successful"
+          else
+            echo "Endpoint call failed with HTTP status code: $http_status"
+          fi
+
+
+  prod-deployment:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+
+    steps:
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.0"
+      - uses: actions/checkout@v3
+      - name: Set up Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16.x"
+      - run: npm ci  
+  
+      - name: Deploy to main server
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER}}
+          username: ${{ secrets.FTP_USERNAME_MAIN}}
+          password: ${{ secrets.FTP_PASSWORD }}
+
+      - name: Call artisan endpoint
+        run: |
+          http_status=$(curl -o /dev/null -s -w "%{http_code}" "https://annewatt.com/clear")
+          echo "$http_status"
+          if [ "$http_status" = "200" ]; then
+            echo "Endpoint call successful"
+          else
+            echo "Endpoint call failed with HTTP status code: $http_status"
+          fi
+      
