@@ -26,6 +26,7 @@
             <div class="card-header">Rider Information</div>
             <form method="POST" action="{{ route('postRider') }}" enctype="multipart/form-data">
                 {{ csrf_field() }}
+                <input type="text" hidden value="{{ session('rider.id') }}" name="id">
                 <div class="card">
                     <div class="row justify-content-center">
                         <div class="col-sm">
@@ -115,10 +116,9 @@
                                     <label for="parttime_details" class="col-md-4 col-form-label text-md-right">Part-Time
                                         Details:</label>
                                     <div class="col-md-7">
-                                        <textarea class="form-control  @error('parttime_details') is-invalid @enderror"
-                                            name="parttime_details" value={{ session('rider.parttime_details') }} required
-                                            autocomplete="parttime_details" rows="2" id="parttime_details" required
-                                            autocomplete="parttime_details" style="text-transform: capitalize;">
+                                        <textarea class="form-control  @error('parttime_details') is-invalid @enderror" name="parttime_details"
+                                            value={{ session('rider.parttime_details') }} required autocomplete="parttime_details" rows="2"
+                                            id="parttime_details" required autocomplete="parttime_details" style="text-transform: capitalize;">
                                         </textarea>
 
                                         @error('parttime_details')
@@ -166,8 +166,9 @@
                                     <label for="dob" class="col-md-4 col-form-label text-md-right">Date of
                                         Birth</label>
                                     <div class='input-group date col-md-7' id='dob'>
-                                        <input type="date" id="dob" class="form-control @error('dob') is-invalid @enderror"
-                                            name="dob" value="{{ session('rider.dob') }}">
+                                        <input type="date" id="dob"
+                                            class="form-control @error('dob') is-invalid @enderror" name="dob"
+                                            value="{{ session('rider.dob') }}">
 
                                     </div>
                                     @error('dob')
@@ -182,16 +183,19 @@
                                     <label for="profilepic" class="col-md-4 col-form-label text-md-right">Profile
                                         Image</label>
                                     <div class="col-md-7">
-                                        <div class="form-group custom-file">
-                                            <input type="file" id="profile" class="form-control-file" id="profilepic"
-                                                aria-describedby="fileHelp" name="profilepic" accept=".png, .jpg, .jpeg">
-                                        </div>
                                         @if (session()->has('rider.profilepic'))
                                             <img id="profilepic" class="rounded mt-2" alt="profile Image"
-                                                src="/storage/{{ session('rider.profilepic') }}" width="150" height="150" />
+                                                src="/storage/{{ session('rider.profilepic') }}" width="150"
+                                                height="150" />
                                         @else
+                                            <div class="form-group custom-file">
+                                                <input type="file" id="profile" class="form-control-file"
+                                                    id="profilepic" aria-describedby="fileHelp"
+                                                    value="{{ session('rider.profilepic') }}" name="profilepic"
+                                                    accept=".png, .jpg, .jpeg">
+                                            </div>
                                             <img id="profilepic" class="rounded mt-2" alt="profile Image"
-                                                src="{!!  asset('img/user.png') !!}" width="150" height="150" />
+                                                src="{!! asset('img/user.png') !!}" width="150" height="150" />
                                         @endif
                                     </div>
                                 </div>
@@ -222,51 +226,13 @@
                                         Origin</label>
                                     <div class="col-md-7">
                                         <select name="stateoforigin" id="state" class="form-control">
-                                            {{-- @if (session()->has('rider.stateoforigin'))
-                                                <option value="{{ session('rider.stateoforigin') }}">
-                                                    {{ session('rider.stateoforigin') }}</option>
-                                                @else {
-                                                <option value="" selected="selected">- Select -</option>
-                                                }
-                                            @endif --}}
                                             <option value="" selected="selected">- Select -</option>
-                                            <option value="Abia">Abia</option>
-                                            <option value='Adamawa'>Adamawa</option>
-                                            <option value='AkwaIbom'>AkwaIbom</option>
-                                            <option value='Anambra'>Anambra</option>
-                                            <option value='Bauchi'>Bauchi</option>
-                                            <option value='Bayelsa'>Bayelsa</option>
-                                            <option value='Benue'>Benue</option>
-                                            <option value='Borno'>Borno</option>
-                                            <option value='Cross River'>Cross River</option>
-                                            <option value='Delta'>Delta</option>
-                                            <option value='Ebonyi'>Ebonyi</option>
-                                            <option value='Edo'>Edo</option>
-                                            <option value='Ekiti'>Ekiti</option>
-                                            <option value='Enugu'>Enugu</option>
-                                            <option value='Gombe'>Gombe</option>
-                                            <option value='Imo'>Imo</option>
-                                            <option value='Jigawa'>Jigawa</option>
-                                            <option value='Kaduna'>Kaduna</option>
-                                            <option value='Kano'>Kano</option>
-                                            <option value='Katsina'>Katsina</option>
-                                            <option value='Kebbi'>Kebbi</option>
-                                            <option value='Kogi'>Kogi</option>
-                                            <option value='Kwara'>Kwara</option>
-                                            <option value='Lagos'>Lagos</option>
-                                            <option value='Nasarawa'>Nasarawa</option>
-                                            <option value='Niger'>Niger</option>
-                                            <option value='Ogun'>Ogun</option>
-                                            <option value='Ondo'>Ondo</option>
-                                            <option value='Osun'>Osun</option>
-                                            <option value='Oyo'>Oyo</option>
-                                            <option value='Plateau'>Plateau</option>
-                                            <option value='Rivers'>Rivers</option>
-                                            <option value='Sokoto'>Sokoto</option>
-                                            <option value='Taraba'>Taraba</option>
-                                            <option value='Yobe'>Yobe</option>
-                                            <option value='Zamfara'>Zamafara</option>
-                                            <option value='Others'>Others</option>
+                                            @foreach ($states as $state)
+                                                <option value="{{ $state->name }}"
+                                                    {{ $state->name == session('rider.stateoforigin') ? 'selected' : '' }}>
+                                                    {{ $state->name }}
+                                                </option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -275,7 +241,13 @@
                                         Origin</label>
                                     <div class="col-md-7">
                                         <select name="lga" id="lga" class="form-control" required>
-                                            <option value="">Choose State</option>
+                                            <option value="">Choose LGA</option>
+                                            @foreach ($lgas as $lga)
+                                                <option value="{{ $lga->name }}"
+                                                    {{ $lga->name == session('rider.lga') ? 'selected' : '' }}>
+                                                    {{ $lga->name }}
+                                                </option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     @error('lga')
@@ -303,8 +275,9 @@
                                     <label for="bvn" class="col-md-4 col-form-label text-md-right">BVN</label>
 
                                     <div class="col-md-7">
-                                        <input id="bvn" type="text" class="form-control @error('bvn') is-invalid @enderror"
-                                            name="bvn" value="{{ session('rider.bvn') }}" required autocomplete="bvn">
+                                        <input id="bvn" type="text"
+                                            class="form-control @error('bvn') is-invalid @enderror" name="bvn"
+                                            value="{{ session('rider.bvn') }}" required autocomplete="bvn">
 
                                         @error('BVN')
                                             <span class="invalid-feedback" role="alert">
@@ -350,9 +323,9 @@
                                         Name</label>
                                     <div class="col-md-7">
                                         <input id="streetname" type="text"
-                                            class="form-control @error('streetname') is-invalid @enderror" name="streetname"
-                                            value="{{ session('rider.streetname') }}" required autocomplete="streetname"
-                                            autofocus style="text-transform: capitalize;">
+                                            class="form-control @error('streetname') is-invalid @enderror"
+                                            name="streetname" value="{{ session('rider.streetname') }}" required
+                                            autocomplete="streetname" autofocus style="text-transform: capitalize;">
 
                                         @error('streetname')
                                             <span class="invalid-feedback" role="alert">
@@ -381,10 +354,9 @@
                                     <label for="address" class="col-md-4 col-form-label text-md-right">Contact
                                         Address:</label>
                                     <div class="col-md-7">
-                                        <textarea class="form-control  @error('address') is-invalid @enderror"
-                                            name="address" value={{ session('rider.address') }} required
-                                            autocomplete="address" rows="5" id="address" required autocomplete="address"
-                                            style="text-transform: capitalize;">
+                                        <textarea class="form-control  @error('address') is-invalid @enderror" name="address"
+                                            value="{{ session('rider.address') }}" required autocomplete="address" rows="5" id="address" required
+                                            autocomplete="address" style="text-transform: capitalize;"> {{ session('rider.address') }} 
                                     </textarea>
 
                                         @error('Address')
@@ -422,7 +394,6 @@
                 $("div.parttime").hide();
             });
         });
-
     </script>
     <!-- End of Main Content -->
 

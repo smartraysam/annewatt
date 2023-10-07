@@ -14,7 +14,12 @@ class OtherDetailsController extends Controller
     }
     public function createOther(Request $request)
     {
-        $other = $request->session()->get('other');
+        if (!empty($request->id)) {
+            $nextkin = Other_details::find($request->id);
+            $request->session()->put('nextkin', $nextkin);
+        } else {
+            $other = $request->session()->get('other');
+        }
         return view('riders.other', compact('other', $other));
     }
 
@@ -25,42 +30,40 @@ class OtherDetailsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function postOther(Request $request)
-    {
-
-        $validatedData = $request->validate([
-            'unitparkname' => 'required',
-            'chairmanname' => 'required',
-            'chairmanphoneno' => 'required',
-            'riderid' => 'required',
-
-        ]);
-
-        if (empty($request->session()->get('other'))) {
+    { 
+        if (empty($request->id)) {
+            $validatedData = $request->validate([
+                'unitparkname' => 'required',
+                'chairmanname' => 'required',
+                'chairmanphoneno' => 'required',
+                'riderid' => 'required',
+    
+            ]);
+    
             $other = new Other_details();
             $other->fill($validatedData);
             $rider = $request->session()->get('rider');
-            if(empty($rider)){
+            if (empty($rider)) {
                 return redirect('/riders/bike')->with('error', 'Rider infromation is missing');
             }
             $other->phonenumber = $rider->phonenumber;
             $request->session()->put('other', $other);
         } else {
             $other = $request->session()->get('other');
-            $other->fill($validatedData);
+            $other->fill($request->all());
             $rider = $request->session()->get('rider');
-            if(empty($rider)){
+            if (empty($rider)) {
                 return redirect('/riders/bike')->with('error', 'Rider infromation is missing');
             }
             $other->phonenumber = $rider->phonenumber;
             $request->session()->put('other', $other);
         }
-     return redirect('/riders/confirmation');
+        return redirect('/riders/confirmation');
     }
 
     public function back(Request $request)
     {
         //validate the form
         return redirect('/riders/nextkin');
-
     }
 }

@@ -36,13 +36,11 @@ class RiderPreviewController extends Controller
         $riderInfo = array("rider", "bike", "nextkin", "other");
 
         return view('riders.confirmation', compact('riderInfo', $riderInfo));
-
     }
     public function back(Request $request)
     {
         //validate the form
         return redirect('/riders/other');
-
     }
     public function cancel(Request $request)
     {
@@ -52,19 +50,15 @@ class RiderPreviewController extends Controller
         $request->session()->forget('nextkin');
         $request->session()->forget('other');
         return redirect('/admin');
-
     }
     public function sendCtrlSMS($phoneNumber, $message)
     {
         $client = new Client();
 
         $method = 'POST';
-        $url = "https://termii.com/api/sms/send?to=234" . $phoneNumber . "&from=Annewatt&sms=" . $message . "&type=plain&channel=generic&api_key=TLU204igSqZRUDDzHYgdsj7693rvcCFo3Ps3RkPxYbi9kyjXs7uYANxVTR9SBs";
-
-        \Log::info($url);
+        $url = "https://termii.com/api/sms/send?to=234" . $phoneNumber . "&from=Annewatt&sms=" . $message . "&type=plain&channel=generic&api_key=".config('app.sms');
         $request = $client->request($method, $url)->getBody();
         $response = $request->getContents();
-        \Log::info($response);
         return $response;
     }
     public function submit(Request $request)
@@ -77,7 +71,15 @@ class RiderPreviewController extends Controller
         $bikedetail = Bike_details::where('bike_details.registrationnum', $bike->registrationnum)->first();
         $otherdetail = Other_details::where('other_details.riderid', $other->riderid)->first();
         if ($bikedetail || $otherdetail) {
-            return redirect('/riders/bike')->with('error', 'Rider already exist, Please confirm the vehicle reg. number and the rider ID.');
+            $rider->update();
+            $bike->update();
+            $nextkin->update();
+            $other->update();
+            $request->session()->forget('rider');
+            $request->session()->forget('bike');
+            $request->session()->forget('nextkin');
+            $request->session()->forget('other');
+            return redirect('/admin')->with('success', 'Rider details successfully updated');
         } else {
             $rider->save();
             $bike->save();

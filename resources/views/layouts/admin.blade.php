@@ -16,7 +16,9 @@
     <script src="{!! asset('vendor/jquery/jquery.min.js') !!}"></script>
     <link href="{!! asset('vendor/fontawesome-free/css/all.css') !!}" rel="stylesheet">
     <link href="{!! asset('vendor/font-awesome/css/fontawesome.min.css') !!}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
     <link href="{!! asset('css/sb-admin-2.css') !!}" rel="stylesheet">
     {{-- <link href="{!! asset('css/normalize.css') !!}" rel="stylesheet">
@@ -28,8 +30,13 @@
     <link href="{!! asset('css/select2.min.css') !!}" rel="stylesheet">
     <link href="{!! asset('vendor/datatables/dataTables.bootstrap4.min.css') !!}" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap4.min.css">
 
-    </head>
+    
+
+
+</head>
 
 <body id="page-top">
     <div id="wrapper">
@@ -65,12 +72,15 @@
     <script src="{!! asset('js/select2.min.js') !!}"></script>
     <script src="{!! asset('js/lga.js') !!}"></script>
 
-  <!-- Page level plugins -->
-  <script src="{!!asset('vendor/datatables/jquery.dataTables.min.js') !!}"></script>
-  <script src="{!!asset('vendor/datatables/dataTables.bootstrap4.min.js') !!}"></script>
+    <!-- Page level plugins -->
+    <script src="{!! asset('vendor/datatables/jquery.dataTables.min.js') !!}"></script>
+    <script src="{!! asset('vendor/datatables/dataTables.bootstrap4.min.js') !!}"></script>
 
-  <!-- Page level custom scripts -->
-  <script src="{!!asset('js/demo/datatables-demo.js') !!}"></script>
+    <!-- Page level custom scripts -->
+    <script src="{!! asset('js/demo/datatables-demo.js') !!}"></script>
+
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap4.min.js"></script>
 
     <!-- Core plugin JavaScript-->
 
