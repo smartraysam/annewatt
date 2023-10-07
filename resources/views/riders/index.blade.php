@@ -123,7 +123,7 @@
             /* When click edit user */
             $('body').on('click', '.view-rider', function() {
                 var _id = $(this).data('id');
-                window.location.href = '/riders/' + _id + '/edit';
+                window.location.href = '/riders/' + _id + '/details';
             });
 
             $('body').on('click', '.edit-rider', function() {
