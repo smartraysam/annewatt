@@ -36,13 +36,11 @@ class RiderPreviewController extends Controller
         $riderInfo = array("rider", "bike", "nextkin", "other");
 
         return view('riders.confirmation', compact('riderInfo', $riderInfo));
-
     }
     public function back(Request $request)
     {
         //validate the form
         return redirect('/riders/other');
-
     }
     public function cancel(Request $request)
     {
@@ -52,14 +50,13 @@ class RiderPreviewController extends Controller
         $request->session()->forget('nextkin');
         $request->session()->forget('other');
         return redirect('/admin');
-
     }
     public function sendCtrlSMS($phoneNumber, $message)
     {
         $client = new Client();
 
         $method = 'POST';
-        $url = "https://termii.com/api/sms/send?to=234" . $phoneNumber . "&from=Annewatt&sms=" . $message . "&type=plain&channel=generic&api_key=TLU204igSqZRUDDzHYgdsj7693rvcCFo3Ps3RkPxYbi9kyjXs7uYANxVTR9SBs";
+        $url = "https://termii.com/api/sms/send?to=234" . $phoneNumber . "&from=Annewatt&sms=" . $message . "&type=plain&channel=generic&api_key=".config('app.sms');
         $request = $client->request($method, $url)->getBody();
         $response = $request->getContents();
         return $response;
@@ -82,7 +79,7 @@ class RiderPreviewController extends Controller
             $request->session()->forget('bike');
             $request->session()->forget('nextkin');
             $request->session()->forget('other');
-            return redirect('/admin')->with('success', 'Rider details successfully updated'); 
+            return redirect('/admin')->with('success', 'Rider details successfully updated');
         } else {
             $rider->save();
             $bike->save();

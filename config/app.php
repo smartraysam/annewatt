@@ -123,6 +123,8 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    'sms' => env('TERRMII'),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
