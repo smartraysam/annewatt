@@ -115,10 +115,13 @@ class RidersController extends Controller
             ]);
             $rider = new Riders();
             $rider->fill($validatedData);
-            $cover = $request->file('profilepic');
-            $extension = $cover->getClientOriginalExtension();
-            Storage::disk('public')->put($cover->getFilename() . '.' . $extension, File::get($cover));
-            $rider->profilepic = $cover->getFilename() . '.' . $extension;
+            if ($request->has('profilepic')) {
+                $cover = $request->file('profilepic');
+                $extension = $cover->getClientOriginalExtension();
+                Storage::disk('public')->put($cover->getFilename() . '.' . $extension, File::get($cover));
+                $rider->profilepic = $cover->getFilename() . '.' . $extension;
+            }
+          
             $request->session()->put('rider', $rider);
         } else {
             $rider = $request->session()->get('rider');

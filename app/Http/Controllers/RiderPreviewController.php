@@ -60,11 +60,8 @@ class RiderPreviewController extends Controller
 
         $method = 'POST';
         $url = "https://termii.com/api/sms/send?to=234" . $phoneNumber . "&from=Annewatt&sms=" . $message . "&type=plain&channel=generic&api_key=TLU204igSqZRUDDzHYgdsj7693rvcCFo3Ps3RkPxYbi9kyjXs7uYANxVTR9SBs";
-
-        \Log::info($url);
         $request = $client->request($method, $url)->getBody();
         $response = $request->getContents();
-        \Log::info($response);
         return $response;
     }
     public function submit(Request $request)

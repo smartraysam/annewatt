@@ -185,7 +185,8 @@
                                     <div class="col-md-7">
                                         <div class="form-group custom-file">
                                             <input type="file" id="profile" class="form-control-file"
-                                                id="profilepic" aria-describedby="fileHelp" name="profilepic"
+                                                id="profilepic" aria-describedby="fileHelp"
+                                                value="{{session('rider.profilepic')}}" name="profilepic"
                                                 accept=".png, .jpg, .jpeg">
                                         </div>
                                         @if (session()->has('rider.profilepic'))
@@ -194,7 +195,7 @@
                                                 height="150" />
                                         @else
                                             <img id="profilepic" class="rounded mt-2" alt="profile Image"
-                                                src="{!! asset('img/user.png') !!}" width="150" height="150" />
+                                                src="{!!asset('img/user.png') !!}" width="150" height="150" />
                                         @endif
                                     </div>
                                 </div>

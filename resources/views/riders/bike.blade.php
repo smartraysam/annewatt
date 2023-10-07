@@ -160,10 +160,7 @@
                                 <div class="col-md-7">
                                     <textarea class="form-control  @error('witnessaddress') is-invalid @enderror" name="witnessaddress"
                                         value="{{ session('bike.witnessaddress') }}" required autocomplete="address" rows="5" id="witnessaddress"
-                                        style="text-transform: capitalize;">
-                               
-                                    {{ session('bike.witnessaddress') }} 
-                                </textarea>
+                                        style="text-transform: capitalize;">{{ session('bike.witnessaddress') }}</textarea>
 
                                     @error('witnessaddress')
                                         <span class="invalid-feedback" role="alert">
