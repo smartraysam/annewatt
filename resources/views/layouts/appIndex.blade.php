@@ -76,7 +76,8 @@
                     <li class="nav-item"><a class="nav-link" href="#about">About us</a></li>
                     <li class="nav-item"><a class="nav-link" href="#excos">Excos</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact us</a></li>
-            </ul>
+                    <li class="nav-item"><a class="nav-link" href="{{route('a')}}">Login</a></li>
+                  </ul>
             <form class="form-inline my-2 my-md-0 navbar-search">
                 <div class="input-group md-form form-sm form-2 pl-0">
                   <input class="form-control my-0 py-1 lime-border" type="text" placeholder="Enter Rider ID..." aria-label="Search" aria-describedby="basic-addon2" id="rideridheader">
