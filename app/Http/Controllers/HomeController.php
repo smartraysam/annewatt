@@ -37,6 +37,10 @@ class HomeController extends Controller
         return view('excos');
     }
 
+    public function privacy()
+    {
+        return view('privacy');
+    }
     public function contact()
     {
         return view('contact');

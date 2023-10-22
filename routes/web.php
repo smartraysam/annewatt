@@ -12,6 +12,8 @@
  */
 Route::get('/', 'HomeController@home')->name('index');
 Route::get('/index', 'HomeController@home')->name('index');
+
+Route::get('/privacy', 'HomeController@privacy')->name('privacy');
 Route::get('/index/{riderid}/details', 'HomeController@details');
 Route::get('/clear', 'HomeController@clearapp')->name('clear');
 Auth::routes();
