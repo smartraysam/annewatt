@@ -167,5 +167,5 @@
 <h2>Contact Us</h2>
 <p>If you have any questions about this Privacy Policy, You can contact us:</p>
 <ul>
-<li>By email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e685898892878592a68788888391879292c885898b">[email&#160;protected]</a></li>
+<li>By email:contact@annewatt.com</li>
 </ul><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
