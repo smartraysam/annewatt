@@ -59,24 +59,30 @@ class RidersController extends Controller
 
     public function delete($id)
     {
-        $rider = Riders::findOrFail($id);
-        if(!$rider){
+        try {
+            //code...
+            $rider = Riders::findOrFail($id);
+            if (!$rider) {
+                return redirect('/admin')->with('error', ' Rider not found');
+            }
+            $bike = Bike_details::where("phonenumber", $rider->phonenumber)->first();
+            if ($bike) {
+                $bike->delete();
+            }
+            $other = Other_details::where("phonenumber", $rider->phonenumber)->first();
+            if ($other) {
+                $other->delete();
+            }
+            $next = Nextkin_details::where("phonenumber", $rider->phonenumber)->first();
+            if ($next) {
+                $next->delete();
+            }
+            $rider->delete();
+            return redirect('/admin')->with('success', ' Rider successfully deleted');
+        } catch (\Throwable $th) {
+            //throw $th;
             return redirect('/admin')->with('error', ' Rider not found');
         }
-        $bike = Bike_details::where("phonenumber", $rider->phonenumber)->first();
-        if ($bike) {
-            $bike->delete();
-        }
-        $other = Other_details::where("phonenumber", $rider->phonenumber)->first();
-        if ($other) {
-            $other->delete();
-        }
-        $next = Nextkin_details::where("phonenumber", $rider->phonenumber)->first();
-        if ($next) {
-            $next->delete();
-        }
-        $rider->delete();
-        return redirect('/admin')->with('success', ' Rider successfully deleted');
     }
     public function createRider(Request $request)
     {
@@ -130,13 +136,13 @@ class RidersController extends Controller
                 Storage::disk('public')->put($cover->getFilename() . '.' . $extension, File::get($cover));
                 $rider->profilepic = $cover->getFilename() . '.' . $extension;
             }
-          
+
             $request->session()->put('rider', $rider);
         } else {
             $rider = $request->session()->get('rider');
             $rider->fill($request->all());
             $request->session()->put('rider', $rider);
-            $bike = Bike_details::where("phonenumber",$rider->phonenumber)->first();
+            $bike = Bike_details::where("phonenumber", $rider->phonenumber)->first();
             $request->session()->put('bike', $bike);
         }
         return redirect('/riders/bike');
