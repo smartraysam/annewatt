@@ -60,14 +60,23 @@ class RidersController extends Controller
     public function delete($id)
     {
         $rider = Riders::findOrFail($id);
+        if(!$rider){
+            return redirect('/admin')->with('error', ' Rider not found');
+        }
+        $bike = Bike_details::where("phonenumber", $rider->phonenumber)->first();
+        if ($bike) {
+            $bike->delete();
+        }
+        $other = Other_details::where("phonenumber", $rider->phonenumber)->first();
+        if ($other) {
+            $other->delete();
+        }
+        $next = Nextkin_details::where("phonenumber", $rider->phonenumber)->first();
+        if ($next) {
+            $next->delete();
+        }
         $rider->delete();
-        $bike = Bike_details::findOrFail($id);
-        $bike->delete();
-        $other = Other_details::findOrFail($id);
-        $other->delete();
-        $next = Nextkin_details::findOrFail($id);
-        $next->delete();
-        echo "Record deleted successfully";
+        return redirect('/admin')->with('success', ' Rider successfully deleted');
     }
     public function createRider(Request $request)
     {
