@@ -61,7 +61,7 @@ class RidersController extends Controller
     {
         try {
             //code...
-            $rider = Riders::findOrFail($id);
+            $rider = Riders::find($id);
             if (!$rider) {
                 return redirect('/admin')->with('error', ' Rider not found');
             }
