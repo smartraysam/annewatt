@@ -6,6 +6,15 @@
         <!-- Topbar -->
         @include('theme.nav')
         <!-- Begin Page Content -->
+        @if (\Session::has('success'))
+            <div class="alert alert-success">
+                <p>{{ \Session::get('success') }}</p>
+            </div><br />
+        @elseif (\Session::has('error'))
+            <div class="alert alert-danger">
+                <p>{{ \Session::get('error') }}</p>
+            </div><br />
+        @endif
         <p></p>
         <div class="container-fluid">
             <div class="col">

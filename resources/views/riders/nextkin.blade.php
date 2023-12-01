@@ -244,8 +244,7 @@
                                     <div class="col-md-7">
                                         <textarea class="form-control  @error('address') is-invalid @enderror" name="address"
                                             value="{{ session('nextkin.address') }}" required autocomplete="address" rows="5" id="address"
-                                            autocomplete="address" style="text-transform: capitalize;">{{ session('nextkin.address') }}
-                                        </textarea>
+                                            autocomplete="address" style="text-transform: capitalize;">{{ session('nextkin.address') }}</textarea>
 
                                         @error('address')
                                             <span class="invalid-feedback" role="alert">
