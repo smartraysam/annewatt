@@ -35,9 +35,6 @@ class NextkinDetailsController extends Controller
      */
     public function postNextkin(Request $request)
     {
-
-       
-
         if (empty($request->id)) {
             $validatedData = $request->validate([
 
@@ -65,7 +62,7 @@ class NextkinDetailsController extends Controller
             $nextkin->phonenumber = $rider->phonenumber;
             $request->session()->put('nextkin', $nextkin);
         } else {
-            $nextkin = $request->session()->get('nextkin');
+            $nextkin =Nextkin_details::find($request->id);  
             $nextkin->fill($request->all());
             $rider = $request->session()->get('rider');
             if (empty($rider)) {

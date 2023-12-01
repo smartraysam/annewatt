@@ -292,9 +292,17 @@
                                         Number</label>
 
                                     <div class="col-md-7">
-                                        <input id="phonenumber" type="phonenumber"
-                                            class="form-control @error('phonenumber') is-invalid @enderror"
-                                            name="phonenumber" value="{{ session('rider.phonenumber') }}">
+
+                                        @if (session()->has('rider.phonenumber'))
+                                            <input id="phonenumber" type="phonenumber"
+                                                class="form-control @error('phonenumber') is-invalid @enderror"
+                                                name="phonenumber" value="{{ session('rider.phonenumber') }}" readonly>
+                                        @else
+                                            <input id="phonenumber" type="phonenumber"
+                                                class="form-control @error('phonenumber') is-invalid @enderror"
+                                                name="phonenumber" value="{{ session('rider.phonenumber') }}">
+                                        @endif
+
                                         @error('phonenumber')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -356,8 +364,7 @@
                                     <div class="col-md-7">
                                         <textarea class="form-control  @error('address') is-invalid @enderror" name="address"
                                             value="{{ session('rider.address') }}" required autocomplete="address" rows="5" id="address" required
-                                            autocomplete="address" style="text-transform: capitalize;"> {{ session('rider.address') }} 
-                                    </textarea>
+                                            autocomplete="address" style="text-transform: capitalize;"> {{ session('rider.address') }}</textarea>
 
                                         @error('Address')
                                             <span class="invalid-feedback" role="alert">

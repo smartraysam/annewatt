@@ -139,7 +139,7 @@ class RidersController extends Controller
 
             $request->session()->put('rider', $rider);
         } else {
-            $rider = $request->session()->get('rider');
+            $rider = Riders::find($request->id); 
             $rider->fill($request->all());
             $request->session()->put('rider', $rider);
             $bike = Bike_details::where("phonenumber", $rider->phonenumber)->first();

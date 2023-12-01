@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Bike_details;
+use App\Nextkin_details;
 use App\Other_details;
+use App\Riders;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 
@@ -63,36 +65,101 @@ class RiderPreviewController extends Controller
     }
     public function submit(Request $request)
     {
-        //validate the form
-        $rider = $request->session()->get('rider');
-        $bike = $request->session()->get('bike');
-        $nextkin = $request->session()->get('nextkin');
-        $other = $request->session()->get('other');
-        $bikedetail = Bike_details::where('bike_details.registrationnum', $bike->registrationnum)->first();
-        $otherdetail = Other_details::where('other_details.riderid', $other->riderid)->first();
-        if ($bikedetail || $otherdetail) {
-            $rider->update();
-            $bike->update();
-            $nextkin->update();
-            $other->update();
-            $request->session()->forget('rider');
-            $request->session()->forget('bike');
-            $request->session()->forget('nextkin');
-            $request->session()->forget('other');
-            return redirect('/admin')->with('success', 'Rider details successfully updated');
-        } else {
-            $rider->save();
-            $bike->save();
-            $nextkin->save();
-            $other->save();
-            $request->session()->forget('rider');
-            $request->session()->forget('bike');
-            $request->session()->forget('nextkin');
-            $request->session()->forget('other');
+        try {
+            //code...
+            $rider = $request->session()->get('rider');
+            $bike = $request->session()->get('bike');
+            $nextkin = $request->session()->get('nextkin');
+            $other = $request->session()->get('other');
+            if (!empty($rider->id) && !empty($bike->id) && !empty($nextkin->id) && !empty($other->id)) {
+                $riderupdate=Riders::find($rider->id);
+                $bikeupdate=Bike_details::find($bike->id);
+                $nextkinupdate=Nextkin_details::find($nextkin->id);
+                $otherupdate=Other_details::find($other->id);
+                $riderupdate->update([
+                    'firstname' => $rider->firstname,
+                    'middlename' => $rider->middlename,
+                    'surname' => $rider->surname,
+                    'status' => $rider->status,
+                    'nickname' => $rider->nickname,
+                    'gender' => $rider->gender,
+                    'martialstatus' => $rider->martialstatus,
+                    'nationality' => $rider->nationality,
+                    'stateoforigin' => $rider->stateoforigin,
+                    'lga' => $rider->lga,
+                    'placeofbirth' => $rider->placeofbirth,
+                    'bvn' => $rider->bvn,
+                    'dob' => $rider->dob,
+                    'address' => $rider->address,
+                    'housenumname' => $rider->housenumname,
+                    'streetname' => $rider->streetname,
+                    'villagetown' => $rider->villagetown,
+                    'parttime_details' => $rider->parttime_details
+                ]);
+                
+                $bikeupdate->update([
+                    'ridername' => $bike->ridername,
+                    'bikebrand' => $bike->bikebrand,
+                    'enginenumber' => $bike->enginenumber,
+                    'chasisno' => $bike->chasisno,
+                    'registrationnum' => $bike->registrationnum,
+                    'receiptnumber' => $bike->receiptnumber,
+                    'dateofpurchase' => $bike->dateofpurchase,
+                    'witnessname' => $bike->witnessname,
+                    'witnessaddress' => $bike->witnessaddress,
+                    'witnessphonenum' => $bike->witnessphonenum,
+                ]);
+                
+                $nextkinupdate->update([
+                    'kinphonenumber' => $nextkin->kinphonenumber,
+                    'phonenumber' => $nextkin->phonenumber,
+                    'title' => $nextkin->title,
+                    'firstname' => $nextkin->firstname,
+                    'middlename' => $nextkin->middlename,
+                    'surname' => $nextkin->surname,
+                    'relationship' => $nextkin->relationship,
+                    'address' => $nextkin->address,
+                    'housenumname' => $nextkin->housenumname,
+                    'streetname' => $nextkin->streetname,
+                    'villagetown' => $nextkin->villagetown,
+                    'stateoforigin' => $nextkin->stateoforigin,
+                    'lga' => $nextkin->lga,
+                    'gender' => $nextkin->gender,
+                    'bvn' => $nextkin->bvn,
+                ]);
+                
+                $otherupdate->update([
+                    'unitparkname' => $other->unitparkname,
+                    'chairmanname' => $other->chairmanname,
+                    'chairmanphoneno' => $other->chairmanphoneno,
+                    'riderid' => $other->riderid,
+                ]);
+                 
+                $request->session()->forget('rider');
+                $request->session()->forget('bike');
+                $request->session()->forget('nextkin');
+                $request->session()->forget('other');
+                return redirect('/riders')->with('success', 'Rider details successfully updated');
+            } else {
+                $rider->save();
+                $bike->save();
+                $nextkin->save();
+                $other->save();
+                $request->session()->forget('rider');
+                $request->session()->forget('bike');
+                $request->session()->forget('nextkin');
+                $request->session()->forget('other');
+            }
+            $phoneNumber = $rider->phonenumber;
+            $message = "Your bike registration is complete. View your details on https://www.annewatt.com using Your Rider ID " . $other->riderid;
+            // $this->sendCtrlSMS($phoneNumber, $message);
+            return redirect('/riders')->with('success', 'New Rider successfully saved');
+        } catch (\Throwable $th) {
+            //throw $th;
+            \Log::info($th);
+            return redirect('/riders')->with('error', 'Error saving rider details');
+            
         }
-        $phoneNumber = $rider->phonenumber;
-        $message = "Your bike registration is complete. View your details on https://www.annewatt.com using Your Rider ID " . $other->riderid;
-        $this->sendCtrlSMS($phoneNumber, $message);
-        return redirect('/admin')->with('success', 'New Rider successfully saved');
+       
     }
 }
