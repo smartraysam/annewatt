@@ -37,7 +37,6 @@ class NextkinDetailsController extends Controller
     {
         if (empty($request->id)) {
             $validatedData = $request->validate([
-
                 'firstname' => 'required',
                 'middlename' => 'required',
                 'surname' => 'required',

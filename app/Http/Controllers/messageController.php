@@ -22,13 +22,14 @@ class messageController extends Controller
         $messages->subject = request('subject');
         $messages->message = request('message');
         $messages->read_status = "Unread";
+        $messages->owner = auth()->user()->id;
         $messages->save();
         return redirect('/')->with('success', 'Your message has been sent. Thank you!');
     }
 
     public function viewMessages()
     {
-        $messages = DB::table('messages')
+        $messages = DB::table('messages')->where('owner', auth()->user()->id)   
             ->get();
         if (request()->ajax()) {
             return datatables()->of($messages)
@@ -43,7 +44,7 @@ class messageController extends Controller
 
     public function getUnreadMSG()
     {
-        $msg = messages::where('read_status', "Unread")->count();
+        $msg = messages::where('read_status', "Unread")->where("owner", auth()->user()->id)->count();
         return $msg;
     }
 

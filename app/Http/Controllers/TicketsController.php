@@ -72,10 +72,12 @@ class TicketsController extends Controller
 
         if (empty($request->session()->get('ticket'))) {
             $ticket = new Tickets();
+            $ticket->owner= auth()->user()->id;
             $ticket->fill($validatedData);
             $request->session()->put('ticket', $ticket);
         } else {
             $ticket = $request->session()->get('ticket');
+            $ticket->owner= auth()->user()->id;
             $ticket->fill($validatedData);
             $request->session()->put('ticket', $ticket);
         }

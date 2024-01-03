@@ -13,6 +13,7 @@ class Riders extends Model
         'middlename',
         'surname',
         'status',
+        'owner',
         'nickname',
         'gender',
         'martialstatus',
@@ -29,4 +30,8 @@ class Riders extends Model
         'parttime_details',
         'profilepic',
     ];
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'owner');
+    }
 }
