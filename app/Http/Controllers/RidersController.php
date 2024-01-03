@@ -25,10 +25,17 @@ class RidersController extends Controller
     public function index(Request $request)
     {
         $request->session()->forget('rider');
-        $riderData = DB::table('riders')
+        $riderData = DB::table('riders')->where("owner", auth()->user()->id)
             ->join('bike_details', 'riders.phonenumber', '=', 'bike_details.phonenumber')
             ->join('other_details', 'riders.phonenumber', '=', 'other_details.phonenumber')
-            ->select(['riders.id', 'riders.phonenumber', 'riders.status', 'riders.lga', 'bike_details.ridername', 'bike_details.registrationnum', 'other_details.unitparkname', 'other_details.riderid']);
+            ->select([
+                'riders.id', 'riders.phonenumber',
+                'riders.status', 'riders.lga',
+                'bike_details.ridername',
+                'bike_details.registrationnum',
+                'other_details.unitparkname',
+                'other_details.riderid'
+            ]);
         if (request()->ajax()) {
             return datatables()->of($riderData)
                 ->addColumn('action', 'actionrider')
@@ -130,6 +137,7 @@ class RidersController extends Controller
             ]);
             $rider = new Riders();
             $rider->fill($validatedData);
+            $rider->owner = auth()->user()->id;
             if ($request->has('profilepic')) {
                 $cover = $request->file('profilepic');
                 $extension = $cover->getClientOriginalExtension();
@@ -139,7 +147,7 @@ class RidersController extends Controller
 
             $request->session()->put('rider', $rider);
         } else {
-            $rider = Riders::find($request->id); 
+            $rider = Riders::find($request->id);
             $rider->fill($request->all());
             $request->session()->put('rider', $rider);
             $bike = Bike_details::where("phonenumber", $rider->phonenumber)->first();

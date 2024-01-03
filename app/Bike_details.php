@@ -9,6 +9,7 @@ class Bike_details extends Model
     //
     protected $fillable = [
         'ridername',
+        'phonenumber',
         'bikebrand',
         'enginenumber',
         'chasisno',

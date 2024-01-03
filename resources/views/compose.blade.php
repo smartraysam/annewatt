@@ -42,7 +42,7 @@
                                 <div class="form-group" id="phonegroup">
                                     <label for="phone" class="">Enter phone number</label>
                                     <div>
-                                        <input id="phone" name="phone" type="tel" class="form-control value=""
+                                        <input id="phone" name="phone" type="tel" class="form-control" value="""
                                                                     autocomplete=" phone" autofocus pattern="[0-9]{11}"
                                             placeholder="07064536752">
                                     </div>
@@ -50,7 +50,7 @@
                                 <div class="form-group">
                                     <label>Message</label>
                                     <textarea class="form-control" name="message" value="" required rows="10" id="message"
-                                        required"></textarea>
+                                        required></textarea>
 
                                 </div>
                                 <button type="submit" id="butsend" class="btn btn-primary">
