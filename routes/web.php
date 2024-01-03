@@ -76,3 +76,9 @@ Route::get('/inbox/{id}/read', 'messageController@readMSG')->name('readMSG');
 Route::post('/inbox/{id}/delete', 'messageController@deleteMSG')->name('deleteMSG');
 
 Route::post('/inbox/message', 'messageController@sendmsg')->name('sendmsg');
+
+Route::get('/branch/all', 'AdminController@getBranches')->name('get.branch');
+Route::post('/branch/create', 'AdminController@registerBranch')->name('register.branch');
+
+
+Route::post('/change/password', 'HomeController@ChangePassword')->name('change.password');

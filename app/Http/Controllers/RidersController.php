@@ -25,10 +25,17 @@ class RidersController extends Controller
     public function index(Request $request)
     {
         $request->session()->forget('rider');
-        $riderData = DB::table('riders')
+        $riderData = DB::table('riders')->where("owner", auth()->user()->id)
             ->join('bike_details', 'riders.phonenumber', '=', 'bike_details.phonenumber')
             ->join('other_details', 'riders.phonenumber', '=', 'other_details.phonenumber')
-            ->select(['riders.id', 'riders.phonenumber', 'riders.status', 'riders.lga', 'bike_details.ridername', 'bike_details.registrationnum', 'other_details.unitparkname', 'other_details.riderid']);
+            ->select([
+                'riders.id', 'riders.phonenumber',
+                'riders.status', 'riders.lga',
+                'bike_details.ridername',
+                'bike_details.registrationnum',
+                'other_details.unitparkname',
+                'other_details.riderid'
+            ]);
         if (request()->ajax()) {
             return datatables()->of($riderData)
                 ->addColumn('action', 'actionrider')
@@ -59,15 +66,30 @@ class RidersController extends Controller
 
     public function delete($id)
     {
-        $rider = Riders::findOrFail($id);
-        $rider->delete();
-        $bike = Bike_details::findOrFail($id);
-        $bike->delete();
-        $other = Other_details::findOrFail($id);
-        $other->delete();
-        $next = Nextkin_details::findOrFail($id);
-        $next->delete();
-        echo "Record deleted successfully";
+        try {
+            //code...
+            $rider = Riders::find($id);
+            if (!$rider) {
+                return redirect('/admin')->with('error', ' Rider not found');
+            }
+            $bike = Bike_details::where("phonenumber", $rider->phonenumber)->first();
+            if ($bike) {
+                $bike->delete();
+            }
+            $other = Other_details::where("phonenumber", $rider->phonenumber)->first();
+            if ($other) {
+                $other->delete();
+            }
+            $next = Nextkin_details::where("phonenumber", $rider->phonenumber)->first();
+            if ($next) {
+                $next->delete();
+            }
+            $rider->delete();
+            return redirect('/admin')->with('success', ' Rider successfully deleted');
+        } catch (\Throwable $th) {
+            //throw $th;
+            return redirect('/admin')->with('error', ' Rider not found');
+        }
     }
     public function createRider(Request $request)
     {
@@ -115,19 +137,20 @@ class RidersController extends Controller
             ]);
             $rider = new Riders();
             $rider->fill($validatedData);
+            $rider->owner = auth()->user()->id;
             if ($request->has('profilepic')) {
                 $cover = $request->file('profilepic');
                 $extension = $cover->getClientOriginalExtension();
                 Storage::disk('public')->put($cover->getFilename() . '.' . $extension, File::get($cover));
                 $rider->profilepic = $cover->getFilename() . '.' . $extension;
             }
-          
+
             $request->session()->put('rider', $rider);
         } else {
-            $rider = $request->session()->get('rider');
+            $rider = Riders::find($request->id);
             $rider->fill($request->all());
             $request->session()->put('rider', $rider);
-            $bike = Bike_details::where("phonenumber",$rider->phonenumber)->first();
+            $bike = Bike_details::where("phonenumber", $rider->phonenumber)->first();
             $request->session()->put('bike', $bike);
         }
         return redirect('/riders/bike');

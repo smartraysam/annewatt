@@ -56,7 +56,7 @@ class BikeDetailsController extends Controller
             $bike->phonenumber = $rider->phonenumber;
             $request->session()->put('bike', $bike);
         } else {
-            $bike = $request->session()->get('bike');
+            $bike = Bike_details::find($request->id);
             $bike->fill($request->all());
             $rider = $request->session()->get('rider');
             if (empty($rider)) {

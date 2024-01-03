@@ -90,7 +90,7 @@
                     <li class="nav-item"><a class="nav-link" href="#about">About us</a></li>
                     <li class="nav-item"><a class="nav-link" href="#excos">Excos</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Dashboard</a></li>
                 </ul>
                 <form class="form-inline my-2 my-md-0 navbar-search">
                     <div class="input-group md-form form-sm form-2 pl-0">

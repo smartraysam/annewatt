@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','role', 'branch','lga','phonenumber','address'
     ];
 
     /**
@@ -33,5 +33,13 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+     public function riders()
+     {
+        //  return $this->hasMany(Riders::class, 'owner');
+         return  Riders::where('owner', $this->id)->get();
+     }
+
+    
     
 }

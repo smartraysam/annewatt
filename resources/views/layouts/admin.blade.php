@@ -55,6 +55,8 @@
 
     @include('theme.logout')
 
+    @include('theme.changepass')
+
     <!-- jQuery -->
     <script src="{!! asset('vendor/jquery/jquery.min.js') !!}"></script>
     <script src="{!! asset('vendor/jquery/jquery.js') !!}"></script>

@@ -30,16 +30,14 @@ class OtherDetailsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function postOther(Request $request)
-    { 
+    {
         if (empty($request->id)) {
             $validatedData = $request->validate([
                 'unitparkname' => 'required',
                 'chairmanname' => 'required',
                 'chairmanphoneno' => 'required',
                 'riderid' => 'required',
-    
             ]);
-    
             $other = new Other_details();
             $other->fill($validatedData);
             $rider = $request->session()->get('rider');
@@ -49,7 +47,7 @@ class OtherDetailsController extends Controller
             $other->phonenumber = $rider->phonenumber;
             $request->session()->put('other', $other);
         } else {
-            $other = $request->session()->get('other');
+            $other = Other_details::find($request->id);
             $other->fill($request->all());
             $rider = $request->session()->get('rider');
             if (empty($rider)) {
