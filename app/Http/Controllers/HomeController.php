@@ -16,7 +16,8 @@ class HomeController extends Controller
 {
     public function home()
     {
-        return view('index');
+        $branches = User::where('role', 'user')->get();
+        return view('index', compact('branches'));
     }
 
     public function about()
@@ -40,9 +41,6 @@ class HomeController extends Controller
 
     public function ChangePassword(Request $request)
     {
-        $validatedData = $request->validate([
-            'password' => 'required|confirmed|min:6',
-        ]);
         $user = User::find(auth()->user()->id);
         $user->password = Hash::make($request->password);
         $user->save();
@@ -83,10 +81,12 @@ class HomeController extends Controller
         }
     }
 
-    public function details($riderid)
+    public function details($owner, $riderid)
     {
         $riderData = DB::table('other_details')->where('other_details.riderid', $riderid)
             ->join('riders', 'other_details.phonenumber', '=', 'riders.phonenumber')
+            ->where('riders.owner', $owner)
+            ->join('users', 'users.id', '=', 'riders.owner')
             ->join('bike_details', 'other_details.phonenumber', '=', 'bike_details.phonenumber')
             ->get();
         $ticketData = DB::table('tickets')->where('tickets.payerID', $riderid)
