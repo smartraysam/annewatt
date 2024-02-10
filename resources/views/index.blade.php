@@ -67,14 +67,28 @@
                             your rider.
                             We're dedicated to providing you the very best of transport services,
                             with an emphasis on save and secure transportation.</h4><br>
-                        <p>Founded in 1990 by Edo state Government, Annewatt has come a long way from its beginnings in
-                            Auchi. We now serve customers all over the townand are thrilled that we're able
-                            to turn our passion into online rider directory.
-                            We hope you enjoy the service that this online rider directory will offer you as much as
-                            we enjoy offering them to you.
-                            If you have any questions or comments,
-                            please don't hesitate to contact us through the contant us page or any of our excos.
-                            Thanks,</p>
+                        <p>In 2017, the Edo State Government called for the harmonization of all the 8 different registered
+                            Associations/Unions existing and operating differently or having working relationship with one
+                            another </p>
+                        <p>Consequently, they picked one of the Registered Trade Union TOAN (Tricycle Owners Association of
+                            Nigeria) to operate with. </p>
+                        <p>After about a year, due to issues of common ownership, the federating unions decided to pick the
+                            first alphabet of each association that would be more representative of the 8 unions.
+                            Therefore, the first letter of each of these Associations/Unions is what is known as ANNEWATT.
+                        </p>
+                        <p>In Edo State, ANNEWATT is the registered umbrella body managing and unionizing tricycles and
+                            motorcycles in the state recognized by the Edo State Government.
+                            From the passage of the uniform and harmonised Law of 2017 on charges, rates and levies
+                            collected by the local government councils;
+                            we are partners with the State and local government following the passage of this law to allow
+                            for the harmonization of our union Dues into state government presumptive tax and local
+                            government tax.
+                            Our role is to enforce these collections from our members in line with the law.</p>
+                        <p>We have the State Executive Council with a Coordinator each for Bikes and tricycles, six
+                            supervisory Chairmen, a State Monitoring Leader and a General Secretary.
+                            At the local government level, we have General Chairmen/ Branch/Zonal Coordinators while at the
+                            Unit level, we have Unit Chairmen and the executives.
+                            On the field, we have Revenue Enforcers and after collections field Monitors.,</p>
                         <br><a href="#contact" class="btn btn-primary">Get in Touch</a>
                     </div>
                     <div class="col-sm-4 ">
@@ -92,75 +106,103 @@
                 <br>
                 <div class="section-header">
                     <h1>Excos</h1>
-                    <p>Get in touch with out executive for more details about Annewatt </p>
+                    <p>Get in touch with our executives for more details about Annewatt </p>
                 </div>
 
                 <div class="row">
-
-                    <div class="col-lg-3 col-md-6 wow fadeInUp">
+                    <div class="col-lg-4 col-md-6 wow fadeInUp">
                         <div class="member">
-                            <img src="img/team-1.jpg" class="img-fluid" alt="">
+                            <img src="img/team-5.png" class="img-fluid" alt="" style="height:300px !important">
                             <div class="member-info">
                                 <div class="member-info-content">
-                                    <h4>Walter White</h4>
-                                    <span>Chairman</span>
-                                    <div class="social">
+                                    <h4>Comrade Blessing Omofoman</h4>
+                                    <span>State Leader</span>
+                                    {{-- <div class="social">
                                         <a href="tel: 08153553555"><i class="fa fa-mobile"></i> 08153553555</a>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="member">
-                            <img src="img/team-2.jpg" class="img-fluid" alt="">
-                            <div class="member-info">
-                                <div class="member-info-content">
-                                    <h4>Sarah Jhonson</h4>
-                                    <span>Vice Chairman</span>
-                                    <div class="social">
-                                        <div class="social">
-                                            <a href="tel: 08153553555"><i class="fa fa-mobile"></i> 08153553555</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="member">
-                            <img src="img/team-3.jpg" class="img-fluid" alt="">
+                            <img src="img/team-6.png" style="height:300px !important" class="img-fluid" alt="">
                             <div class="member-info">
                                 <div class="member-info-content">
-                                    <h4>William Anderson</h4>
-                                    <span>Teasurer</span>
-                                    <div class="social">
+                                    <h4>Chief Alhaji Comrade Abdullawal Haruna Momoh</h4>
+                                    <span>State Leader</span>
+                                    {{-- <div class="social">
                                         <a href="tel: 08153553555"><i class="fa fa-mobile"></i> 08153553555</a>
-                                    </div>
+                                    </div> --}}
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+ 
+                    <div class="col-lg-4 col-md-6 wow fadeInUp">
+                        <div class="member">
+                            <img src="img/team-1.png" class="img-fluid" alt="" style="height:300px !important">
+                            <div class="member-info">
+                                <div class="member-info-content">
+                                    <h4> Comrade Daniel Ayegbeni OSIAGA (Ph.D)</h4>
+                                    <span> State Secretary</span>
+                                    {{-- <div class="social">
+                                        <a href="tel: 08153553555"><i class="fa fa-mobile"></i> 08153553555</a>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="member">
-                            <img src="img/team-4.jpg" class="img-fluid" alt="">
+                            <img src="img/team-2.png" style="height:300px !important" class="img-fluid" alt="">
                             <div class="member-info">
                                 <div class="member-info-content">
-                                    <h4>Amanda Jepson</h4>
-                                    <span>General Secretary</span>
-                                    <div class="social">
-                                        <a href=""><i class="fa fa-mobile"></i> 08153553555</a>
-                                    </div>
+                                    <h4> Comrade Michael Okhuarobo</h4>
+                                    <span> State Coordinator (Tricycles) </span>
+                                    {{-- <div class="social">
+                                        <a href="tel: 08153553555"><i class="fa fa-mobile"></i> 08153553555</a>
+                                    </div> --}}
                                 </div>
-                            </div>
+                            </div> 
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="member">
+                            <img src="img/team-3.png" class="img-fluid" style="height:300px !important" alt="">
+                            <div class="member-info">
+                                <div class="member-info-content">
+                                    <h4> Comrade (Dr.) Oregbe Omorodion</h4>
+                                    <span> State Coordinator(Motorcycles) </span>
+                                    {{-- <div class="social">
+                                        <a href="tel: 08153553555"><i class="fa fa-mobile"></i> 08153553555</a>
+                                    </div> --}}
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                  
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="member">
+                            <img src="img/team-4.png" class="img-fluid" style="height:300px !important" alt="">
+                            <div class="member-info">
+                                <div class="member-info-content">
+                                    <h4> Comrade Monday Odigie</h4>
+                                    <span>   State Monitoring Team Leader </span>
+                                    {{-- <div class="social">
+                                        <a href="tel: 08153553555"><i class="fa fa-mobile"></i> 08153553555</a>
+                                    </div> --}}
+                                </div>
+                            </div> 
                         </div>
                     </div>
 
                 </div>
-
             </div>
         </section>
 
@@ -440,7 +482,7 @@
                             $('#chairman').html(t['riderData'][0].chairmanname);
                             $('#vehicle').html(t['riderData'][0].registrationnum);
                             $('#profilepic').attr("src", SITEURL +
-                                "/annewatt/storage/app/public/" + "" + t['riderData'][0]
+                                "/storage/" + "" + t['riderData'][0]
                                 .profilepic);
                         }
 
@@ -505,7 +547,7 @@
                             $('#chairman').html(t['riderData'][0].chairmanname);
                             $('#vehicle').html(t['riderData'][0].registrationnum);
                             $('#profilepic').attr("src", SITEURL +
-                                "/annewatt/storage/app/public/" + "" + t['riderData'][0]
+                                "/storage/" + "" + t['riderData'][0]
                                 .profilepic);
 
                         }
